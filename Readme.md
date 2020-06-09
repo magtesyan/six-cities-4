@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
-* Студент: [Mikael Magtesyan](https://up.htmlacademy.ru/react/4/user/1100875).
-* Наставник: `Неизвестно`.
+* Студент: [Mikael Magtesyan](https://htmlacademy.ru/profile/id1100875).
+* Наставник: [Денис Быков](https://htmlacademy.ru/profile/id66426).
 
 ---
 
