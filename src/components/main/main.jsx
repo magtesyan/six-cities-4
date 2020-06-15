@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const renderCard = (name, index) => {
+const renderCard = (name) => {
   return (
-    <article key={index} className="cities__place-card place-card">
+    <article key={name.id} className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -32,7 +32,7 @@ const renderCard = (name, index) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name}</a>
+          <a href="#">{name.name}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
@@ -128,7 +128,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {
-                  offersNames.map((offerName, index) => renderCard(offerName, index))
+                  offersNames.map((offerName) => renderCard(offerName))
                 }
               </div>
             </section>
@@ -144,7 +144,7 @@ const Main = (props) => {
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offersNames: PropTypes.arrayOf(PropTypes.string).isRequired
+  offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
 };
 
 export default Main;

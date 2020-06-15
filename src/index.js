@@ -1,15 +1,31 @@
+import App from "./components/app/app.jsx";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/app/app.jsx";
+import shortid from "shortid";
 
 const Offers = {
   OFFERS_COUNT: 312,
   OFFERS_NAMES: [
-    `Beautiful & luxurious apartment at great location`,
-    `Wood and stone place`,
-    `Canal View Prinsengracht`,
-    `Nice, cozy, warm big bed apartment`,
-    `Wood and stone place`
+    {
+      id: shortid.generate(),
+      name: `Beautiful & luxurious apartment at great location`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Wood and stone place`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Canal View Prinsengracht`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Nice, cozy, warm big bed apartment`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Wood and stone place`
+    }
   ]
 };
 
