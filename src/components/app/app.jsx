@@ -1,15 +1,22 @@
-import React from "react";
 import Main from "../main/main.jsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 
 const App = (props) => {
-  // eslint-disable-next-line react/prop-types
-  const {offersCount} = props;
+  const {offersCount, offersNames} = props;
 
   return (
-    <Main offersCount={offersCount} />
+    <Main
+      offersCount={offersCount}
+      offersNames={offersNames}
+    />
   );
 };
 
+App.propTypes = {
+  offersCount: PropTypes.number.isRequired,
+  offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
+};
 
 export default App;
