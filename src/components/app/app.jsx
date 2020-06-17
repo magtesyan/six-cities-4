@@ -5,11 +5,13 @@ import React from "react";
 
 const App = (props) => {
   const {offersCount, offersNames} = props;
+  const offerTitleHandler = () => {};
 
   return (
     <Main
       offersCount={offersCount}
       offersNames={offersNames}
+      onOfferTitleClick={offerTitleHandler}
     />
   );
 };

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const RenderCard = (props) => {
-  const {name} = props;
+  const {name, onOfferTitleClick} = props;
 
   return (
     <article className="cities__place-card place-card">
@@ -33,7 +33,10 @@ const RenderCard = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2
+          className="place-card__name"
+          onClick={onOfferTitleClick}
+        >
           <a href="#">{name}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
@@ -43,11 +46,12 @@ const RenderCard = (props) => {
 };
 
 const Main = (props) => {
-  const {offersCount, offersNames} = props;
+  const {offersCount, offersNames, onOfferTitleClick} = props;
   const cards = offersNames.map((offerName) =>
     <RenderCard
       name={offerName.name}
       key={offerName.id}
+      onOfferTitleClick = {onOfferTitleClick}
     />
   );
 
@@ -150,11 +154,13 @@ const Main = (props) => {
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
+  offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  onOfferTitleClick: PropTypes.func.isRequired,
 };
 
 RenderCard.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  onOfferTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;

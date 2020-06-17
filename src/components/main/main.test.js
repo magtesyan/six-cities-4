@@ -8,6 +8,7 @@ it(`Render Main`, () => {
     .create(<Main
       offersCount={Offers.OFFERS_COUNT}
       offersNames={Offers.OFFERS_NAMES}
+      onOfferTitleClick={() => {}}
     />)
     .toJSON();
 
