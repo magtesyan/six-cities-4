@@ -1,9 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const renderCard = (name) => {
+const RenderCard = (props) => {
+  const {name} = props;
+
   return (
-    <article key={name.id} className="cities__place-card place-card">
+    <article className="cities__place-card place-card">
       <div className="place-card__mark">
         <span>Premium</span>
       </div>
@@ -32,7 +34,7 @@ const renderCard = (name) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{name.name}</a>
+          <a href="#">{name}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
@@ -42,6 +44,12 @@ const renderCard = (name) => {
 
 const Main = (props) => {
   const {offersCount, offersNames} = props;
+  const cards = offersNames.map((offerName) =>
+    <RenderCard
+      name={offerName.name}
+      key={offerName.id}
+    />
+  );
 
   return (
     <div>
@@ -127,9 +135,7 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {
-                  offersNames.map((offerName) => renderCard(offerName))
-                }
+                {cards}
               </div>
             </section>
             <div className="cities__right-section">
@@ -145,6 +151,10 @@ const Main = (props) => {
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
+};
+
+RenderCard.propTypes = {
+  name: PropTypes.string.isRequired
 };
 
 export default Main;
