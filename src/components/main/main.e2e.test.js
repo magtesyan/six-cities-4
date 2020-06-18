@@ -2,7 +2,34 @@ import Adapter from "enzyme-adapter-react-16";
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Main from "./main";
-import {Offers} from "../../mocks/data.js";
+
+import shortid from "shortid";
+
+const Offers = {
+  OFFERS_COUNT: 312,
+  OFFERS_NAMES: [
+    {
+      id: shortid.generate(),
+      name: `Beautiful & luxurious apartment at great location`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Wood and stone place`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Canal View Prinsengracht`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Nice, cozy, warm big bed apartment`,
+    },
+    {
+      id: shortid.generate(),
+      name: `Wood and stone place`
+    }
+  ]
+};
 
 Enzyme.configure({
   adapter: new Adapter(),

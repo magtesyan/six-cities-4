@@ -1,5 +1,5 @@
 import App from "./components/app/app.jsx";
-import {Offers} from "./mocks/data.js";
+import {Offers} from "./mocks/offers.js";
 import React from "react";
 import ReactDOM from "react-dom";
 
