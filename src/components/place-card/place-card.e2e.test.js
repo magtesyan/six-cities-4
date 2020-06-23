@@ -63,12 +63,8 @@ it(`When mouse on card - card details sent`, () => {
 
   const card = mount(
       <PlaceCard
-        name={mock[0].name}
+        offer={mock[0]}
         key={mock[0].id}
-        price={mock[0].price}
-        rating={mock[0].rating}
-        type={mock[0].type}
-        rank={mock[0].rank}
         onOfferTitleClick = {() => {}}
         onMouseOver = {onMouseOver}
       />);

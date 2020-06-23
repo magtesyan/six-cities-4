@@ -1,35 +1,31 @@
-import Card from "../place-card/place-card.jsx";
+import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 
 class CardsList extends PureComponent {
   constructor(props) {
     super(props);
-    this._cardMouseOverHandler = this._cardMouseOverHandler.bind(this);
+    this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
 
     this.state = {
       activeCard: null,
     };
   }
 
-  _cardMouseOverHandler(card) {
+  _handleCardMouseOver(card) {
     this.setState({
       activeCard: card
     });
   }
 
   render() {
-    const {offersNames, onOfferTitleClick} = this.props;
-    const cards = offersNames.map((offerName) =>
-      <Card
-        name={offerName.name}
-        key={offerName.id}
-        price={offerName.price}
-        rating={offerName.rating}
-        type={offerName.type}
-        rank={offerName.rank}
+    const {offers, onOfferTitleClick} = this.props;
+    const cards = offers.map((offer) =>
+      <PlaceCard
+        offer={offer}
+        key={offer.id}
         onOfferTitleClick = {onOfferTitleClick}
-        onMouseOver = {this._cardMouseOverHandler}
+        onMouseOver = {this._handleCardMouseOver}
       />
     );
 
@@ -42,7 +38,7 @@ class CardsList extends PureComponent {
 }
 
 CardsList.propTypes = {
-  offersNames: PropTypes.arrayOf(PropTypes.object).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
 };
 

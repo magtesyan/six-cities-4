@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
 
-const Offers = [
+const offers = [
   {
     id: shortid.generate(),
     name: `Beautiful & luxurious apartment at great location`,
@@ -49,7 +49,7 @@ const Offers = [
 it(`Cards List is rendered correctly`, () => {
   const tree = renderer
     .create(<PlaceCardsList
-      offersNames = {Offers}
+      offers = {offers}
       onOfferTitleClick = {() => {}}
     />
     ).toJSON();

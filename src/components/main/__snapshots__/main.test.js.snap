@@ -162,7 +162,7 @@ exports[`Render Main 1`] = `
           <b
             className="places__found"
           >
-            312
+            5
              places to stay in Amsterdam
           </b>
           <form

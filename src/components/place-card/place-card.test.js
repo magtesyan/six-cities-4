@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
 
-const Offers = [
+const offers = [
   {
     id: shortid.generate(),
     name: `Beautiful & luxurious apartment at great location`,
@@ -49,12 +49,8 @@ const Offers = [
 it(`Cards are rendered correctly`, () => {
   const tree = renderer
     .create(<PlaceCard
-      name={Offers[0].name}
-      key={Offers[0].id}
-      price={Offers[0].price}
-      rating={Offers[0].rating}
-      type={Offers[0].type}
-      rank={Offers[0].rank}
+      offer={offers[0]}
+      key={offers[0].id}
       onOfferTitleClick = {() => {}}
       onMouseOver = {() => {}}
     />
