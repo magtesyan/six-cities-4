@@ -1,4 +1,4 @@
-import Card from "../card/card.jsx";
+import Card from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 

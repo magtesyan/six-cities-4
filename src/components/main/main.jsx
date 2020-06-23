@@ -1,4 +1,4 @@
-import CardsList from "../cards-list/cards-list.jsx";
+import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
 
@@ -89,7 +89,7 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <CardsList
+                <PlaceCardsList
                   offersNames = {offersNames}
                   onOfferTitleClick = {onOfferTitleClick}
                 />

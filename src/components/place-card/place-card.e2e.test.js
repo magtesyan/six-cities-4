@@ -1,5 +1,5 @@
 import Adapter from "enzyme-adapter-react-16";
-import Card from "./card.jsx";
+import PlaceCard from "./place-card.jsx";
 import Enzyme, {mount} from "enzyme";
 import React from "react";
 import shortid from "shortid";
@@ -62,7 +62,7 @@ it(`When mouse on card - card details sent`, () => {
   };
 
   const card = mount(
-      <Card
+      <PlaceCard
         name={mock[0].name}
         key={mock[0].id}
         price={mock[0].price}

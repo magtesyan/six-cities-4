@@ -3,7 +3,7 @@ import React from "react";
 
 const RATING_IN_WIDTH_PERCENT = 20;
 
-const Card = (props) => {
+const PlaceCard = (props) => {
   const {name, onOfferTitleClick, price, rating, type, rank, onMouseOver} = props;
 
   return (
@@ -52,7 +52,7 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {
+PlaceCard.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   rank: PropTypes.string.isRequired,
@@ -62,4 +62,4 @@ Card.propTypes = {
   onMouseOver: PropTypes.func.isRequired,
 };
 
-export default Card;
+export default PlaceCard;

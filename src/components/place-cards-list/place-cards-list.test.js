@@ -1,4 +1,4 @@
-import Card from "./card.jsx";
+import PlaceCardsList from "./place-cards-list.jsx";
 import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
@@ -46,17 +46,11 @@ const Offers = [
   }
 ];
 
-it(`Cards are rendered correctly`, () => {
+it(`Cards List is rendered correctly`, () => {
   const tree = renderer
-    .create(<Card
-      name={Offers[0].name}
-      key={Offers[0].id}
-      price={Offers[0].price}
-      rating={Offers[0].rating}
-      type={Offers[0].type}
-      rank={Offers[0].rank}
+    .create(<PlaceCardsList
+      offersNames = {Offers}
       onOfferTitleClick = {() => {}}
-      onMouseOver = {() => {}}
     />
     ).toJSON();
 
