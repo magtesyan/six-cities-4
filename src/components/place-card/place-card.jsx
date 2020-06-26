@@ -5,13 +5,12 @@ const RATING_IN_WIDTH_PERCENT = 20;
 
 const PlaceCard = (props) => {
   const {offer, onOfferTitleClick, onMouseOver} = props;
+  const callMouseOver = () => onMouseOver(offer);
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseOver={() => {
-        onMouseOver(offer);
-      }}
+      onMouseOver={callMouseOver}
     >
       <div className="place-card__mark">
         <span>{offer.rank}</span>
