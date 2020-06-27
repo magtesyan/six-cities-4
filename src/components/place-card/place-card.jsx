@@ -52,7 +52,14 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  offer: PropTypes.object.isRequired,
+  offer: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    rank: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    rating: PropTypes.number.isRequired,
+  }).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseOver: PropTypes.func.isRequired,
 };
