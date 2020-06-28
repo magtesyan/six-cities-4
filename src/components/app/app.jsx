@@ -4,21 +4,19 @@ import React from "react";
 
 
 const App = (props) => {
-  const {offersCount, offersNames} = props;
+  const {offers} = props;
   const offerTitleHandler = () => {};
 
   return (
     <Main
-      offersCount={offersCount}
-      offersNames={offersNames}
+      offers={offers}
       onOfferTitleClick={offerTitleHandler}
     />
   );
 };
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
-  offersNames: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default App;

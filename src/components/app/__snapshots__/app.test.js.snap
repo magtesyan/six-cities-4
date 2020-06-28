@@ -162,7 +162,7 @@ exports[`Render App 1`] = `
           <b
             className="places__found"
           >
-            312
+            5
              places to stay in Amsterdam
           </b>
           <form
@@ -224,6 +224,7 @@ exports[`Render App 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseOver={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -259,7 +260,8 @@ exports[`Render App 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -293,6 +295,13 @@ exports[`Render App 1`] = `
                   <div
                     className="place-card__stars rating__stars"
                   >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
                     <span
                       className="visually-hidden"
                     >
@@ -319,6 +328,7 @@ exports[`Render App 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseOver={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -354,7 +364,8 @@ exports[`Render App 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -388,6 +399,13 @@ exports[`Render App 1`] = `
                   <div
                     className="place-card__stars rating__stars"
                   >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
                     <span
                       className="visually-hidden"
                     >
@@ -414,6 +432,7 @@ exports[`Render App 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseOver={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -449,7 +468,8 @@ exports[`Render App 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -483,6 +503,13 @@ exports[`Render App 1`] = `
                   <div
                     className="place-card__stars rating__stars"
                   >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
                     <span
                       className="visually-hidden"
                     >
@@ -509,6 +536,7 @@ exports[`Render App 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseOver={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -544,7 +572,8 @@ exports[`Render App 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -578,6 +607,13 @@ exports[`Render App 1`] = `
                   <div
                     className="place-card__stars rating__stars"
                   >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
                     <span
                       className="visually-hidden"
                     >
@@ -604,6 +640,7 @@ exports[`Render App 1`] = `
             </article>
             <article
               className="cities__place-card place-card"
+              onMouseOver={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -639,7 +676,8 @@ exports[`Render App 1`] = `
                     <b
                       className="place-card__price-value"
                     >
-                      €120
+                      €
+                      80
                     </b>
                     <span
                       className="place-card__price-text"
@@ -673,6 +711,13 @@ exports[`Render App 1`] = `
                   <div
                     className="place-card__stars rating__stars"
                   >
+                    <span
+                      style={
+                        Object {
+                          "width": "20%",
+                        }
+                      }
+                    />
                     <span
                       className="visually-hidden"
                     >
