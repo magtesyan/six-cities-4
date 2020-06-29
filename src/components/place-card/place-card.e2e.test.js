@@ -75,3 +75,28 @@ it(`When mouse on card - card details sent`, () => {
   expect(onMouseOver).toHaveBeenCalledTimes(1);
   expect(onMouseOver.mock.calls[0][0]).toMatchObject(expectedObj);
 });
+
+it(`When title is clicked - card details sent`, () => {
+  const onOfferTitleClick = jest.fn((args) => args);
+  const expectedObj = {
+    name: `Beautiful & luxurious apartment at great location`,
+    price: 80,
+    rating: 1,
+    type: `Apartment`,
+    rank: `Premium`
+  };
+
+  const card = mount(
+      <PlaceCard
+        offer={mock[0]}
+        key={mock[0].id}
+        onOfferTitleClick = {onOfferTitleClick}
+        onMouseOver = {jest.fn()}
+      />);
+
+  const title = card.find(`.place-card__name`);
+  title.simulate(`click`);
+
+  expect(onOfferTitleClick).toHaveBeenCalledTimes(1);
+  expect(onOfferTitleClick.mock.calls[0][0]).toMatchObject(expectedObj);
+});

@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
+import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
 import React from "react";
-
-const RATING_IN_WIDTH_PERCENT = 20;
 
 const PlaceCard = (props) => {
   const {offer, onOfferTitleClick, onMouseOver} = props;
   const callMouseOver = () => onMouseOver(offer);
+  const callOfferTitleClick = () => onOfferTitleClick(offer);
 
   return (
     <article
@@ -41,7 +41,7 @@ const PlaceCard = (props) => {
         </div>
         <h2
           className="place-card__name"
-          onClick={onOfferTitleClick}
+          onClick={callOfferTitleClick}
         >
           <a href="#">{offer.name}</a>
         </h2>
