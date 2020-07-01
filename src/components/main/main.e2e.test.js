@@ -1,9 +1,10 @@
 import Adapter from "enzyme-adapter-react-16";
+import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import Enzyme, {mount} from "enzyme";
-import Main from "./main";
-
 import shortid from "shortid";
+
+import Main from "./main.jsx";
 
 const offers = [
   {
@@ -57,10 +58,12 @@ describe(`Click on Title Test`, () => {
     const onOfferTitleClick = jest.fn();
 
     const mainScreen = mount(
-        <Main
-          offers={offers}
-          onOfferTitleClick = {onOfferTitleClick}
-        />
+        <BrowserRouter>
+          <Main
+            offers={offers}
+            onOfferTitleClick = {onOfferTitleClick}
+          />
+        </BrowserRouter>
     );
 
     const offerTitle = mainScreen.find(`.place-card__name`);

@@ -1,11 +1,14 @@
 import PropTypes from "prop-types";
-import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
 import React from "react";
+import {Link} from "react-router-dom";
+
+import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
 
 const PlaceCard = (props) => {
   const {offer, onOfferTitleClick, onMouseOver} = props;
   const callMouseOver = () => onMouseOver(offer);
   const callOfferTitleClick = () => onOfferTitleClick(offer);
+  const offerRating = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
 
   return (
     <article
@@ -35,7 +38,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${offer.rating * RATING_IN_WIDTH_PERCENT}%`}}></span>
+            <span style={{width: offerRating}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -43,7 +46,7 @@ const PlaceCard = (props) => {
           className="place-card__name"
           onClick={callOfferTitleClick}
         >
-          <a href="#">{offer.name}</a>
+          <Link to="/details">{offer.name}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

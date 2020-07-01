@@ -1,7 +1,8 @@
-import PlaceDetails from "./place-details.jsx";
 import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
+
+import PlaceDetails from "./place-details.jsx";
 
 const offer = {
   id: shortid.generate(),

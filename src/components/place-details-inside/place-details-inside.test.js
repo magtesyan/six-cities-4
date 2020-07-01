@@ -1,6 +1,7 @@
-import PlaceDetailsInside from "./place-details-inside.jsx";
 import renderer from "react-test-renderer";
 import React from "react";
+
+import PlaceDetailsInside from "./place-details-inside.jsx";
 
 const features = [
   `Wi-Fi`,

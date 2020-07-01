@@ -94,7 +94,8 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/details"
+          onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
         </a>
@@ -198,7 +199,8 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/details"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>
@@ -302,7 +304,8 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/details"
+          onClick={[Function]}
         >
           Canal View Prinsengracht
         </a>
@@ -406,7 +409,8 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/details"
+          onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
         </a>
@@ -510,7 +514,8 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="#"
+          href="/details"
+          onClick={[Function]}
         >
           Wood and stone place
         </a>

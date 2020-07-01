@@ -1,7 +1,8 @@
-import App from "./app.jsx";
 import React from "react";
 import renderer from "react-test-renderer";
 import shortid from "shortid";
+
+import App from "./app.jsx";
 
 const offers = [
   {

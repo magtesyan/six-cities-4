@@ -1,6 +1,7 @@
-import PlaceDetailsGallery from "./place-details-gallery.jsx";
 import renderer from "react-test-renderer";
 import React from "react";
+
+import PlaceDetailsGallery from "./place-details-gallery.jsx";
 
 const pictures = [
   `img/room.jpg`,

@@ -1,6 +1,7 @@
-import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PropTypes from "prop-types";
 import React from "react";
+
+import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 
 const Main = (props) => {
   const {offers, onOfferTitleClick} = props;

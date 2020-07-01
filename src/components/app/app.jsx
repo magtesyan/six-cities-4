@@ -1,8 +1,9 @@
-import Main from "../main/main.jsx";
-import PlaceDetails from "../place-details/place-details.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+
+import Main from "../main/main.jsx";
+import PlaceDetails from "../place-details/place-details.jsx";
 
 
 class App extends PureComponent {
@@ -12,7 +13,7 @@ class App extends PureComponent {
 
     this.state = {
       step: `mainScreen`,
-      place: offers[0]
+      place: offers && offers.length && offers[0]
     };
 
     this.handleOfferTitle = this.handleOfferTitle.bind(this);

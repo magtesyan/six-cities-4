@@ -1,12 +1,13 @@
+import PropTypes from "prop-types";
+import React from "react";
+
 import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
 import PlaceDetailsInside from "../place-details-inside/place-details-inside.jsx";
-import PropTypes from "prop-types";
 import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
-import React from "react";
 
 const PlaceDetails = (props) => {
   const {offer} = props;
-
+  const offerRating = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   return (
     <div className="page">
       <header className="header">
@@ -55,7 +56,7 @@ const PlaceDetails = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${offer.rating * RATING_IN_WIDTH_PERCENT}%`}}></span>
+                  <span style={{width: offerRating}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.rating}</span>

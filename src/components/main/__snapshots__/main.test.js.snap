@@ -314,7 +314,8 @@ exports[`Render Main 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/details"
+                    onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
                   </a>
@@ -418,7 +419,8 @@ exports[`Render Main 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/details"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
@@ -522,7 +524,8 @@ exports[`Render Main 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/details"
+                    onClick={[Function]}
                   >
                     Canal View Prinsengracht
                   </a>
@@ -626,7 +629,8 @@ exports[`Render Main 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/details"
+                    onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
                   </a>
@@ -730,7 +734,8 @@ exports[`Render Main 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="#"
+                    href="/details"
+                    onClick={[Function]}
                   >
                     Wood and stone place
                   </a>
