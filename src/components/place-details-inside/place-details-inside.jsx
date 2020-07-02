@@ -6,9 +6,9 @@ const PlaceDetailsInside = (props) => {
   const {features} = props;
 
   const featuresList = features.map((feature) => {
-    const key = shortid.generate();
+    const placeInsideItemKey = shortid.generate();
     return (
-      <li className="property__inside-item" key={key}>
+      <li className="property__inside-item" key={placeInsideItemKey}>
         {feature}
       </li>
     );

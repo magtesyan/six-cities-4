@@ -40,7 +40,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Angelina`,
       super: 1,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -70,7 +71,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Sindi`,
       super: 0,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -103,7 +105,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Joanna`,
       super: 1,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -132,7 +135,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Eva`,
       super: 0,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -157,11 +161,19 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Marta`,
       super: 1,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   }
 ];
 
+const createMapBlock = () => {
+  const div = global.document.createElement(`div`);
+  div.setAttribute(`id`, `map`);
+  global.document.body.appendChild(div);
+};
+
 it(`Render App`, () => {
+  createMapBlock();
   const tree = renderer
     .create(<App
       offers={offers}

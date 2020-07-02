@@ -13,7 +13,8 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: `Premium`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -21,7 +22,8 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: `Premium`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -29,7 +31,8 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: `Premium`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -37,7 +40,8 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: `Premium`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -45,7 +49,8 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: `Premium`,
+    coordinates: [52.3909553943508, 4.85309666406198],
   }
 ];
 
@@ -53,7 +58,14 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
+const createMapBlock = () => {
+  const div = global.document.createElement(`div`);
+  div.setAttribute(`id`, `map`);
+  global.document.body.appendChild(div);
+};
+
 describe(`Click on Title Test`, () => {
+  createMapBlock();
   it(`Should offer title be pressed`, () => {
     const onOfferTitleClick = jest.fn();
 
