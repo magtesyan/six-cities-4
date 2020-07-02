@@ -1,7 +1,9 @@
-import PlaceCardsList from "./place-cards-list.jsx";
+import {BrowserRouter} from "react-router-dom";
 import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
+
+import PlaceCardsList from "./place-cards-list.jsx";
 
 const offers = [
   {
@@ -48,10 +50,13 @@ const offers = [
 
 it(`Cards List is rendered correctly`, () => {
   const tree = renderer
-    .create(<PlaceCardsList
-      offers = {offers}
-      onOfferTitleClick = {() => {}}
-    />
+    .create(
+        <BrowserRouter>
+          <PlaceCardsList
+            offers = {offers}
+            onOfferTitleClick = {jest.fn()}
+          />
+        </BrowserRouter>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,6 +1,7 @@
-import PlaceCard from "../place-card/place-card.jsx";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
+
+import PlaceCard from "../place-card/place-card.jsx";
 
 class CardsList extends PureComponent {
   constructor(props) {

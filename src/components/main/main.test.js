@@ -1,7 +1,9 @@
-import Main from "./main.jsx";
+import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import renderer from "react-test-renderer";
 import shortid from "shortid";
+
+import Main from "./main.jsx";
 
 const offers = [
   {
@@ -48,10 +50,13 @@ const offers = [
 
 it(`Render Main`, () => {
   const tree = renderer
-    .create(<Main
-      offers={offers}
-      onOfferTitleClick={() => {}}
-    />)
+    .create(
+        <BrowserRouter>
+          <Main
+            offers={offers}
+            onOfferTitleClick={() => {}}
+          />
+        </BrowserRouter>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
