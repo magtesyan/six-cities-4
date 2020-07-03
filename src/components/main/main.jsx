@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import {CITY_COORDINATES} from "../../const.js";
+import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 
 const Main = (props) => {
@@ -97,7 +99,10 @@ const Main = (props) => {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                city={CITY_COORDINATES.get(`Amsterdam`)}
+                offers = {offers}
+              />
             </div>
           </div>
         </div>

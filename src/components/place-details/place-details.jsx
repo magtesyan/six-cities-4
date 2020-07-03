@@ -7,7 +7,7 @@ import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
 
 const PlaceDetails = (props) => {
   const {offer} = props;
-  const offerRating = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
+  const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   return (
     <div className="page">
       <header className="header">
@@ -56,7 +56,7 @@ const PlaceDetails = (props) => {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: offerRating}}></span>
+                  <span style={{width: offerRatingStyleWidth}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">{offer.rating}</span>

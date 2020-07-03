@@ -36,7 +36,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Angelina`,
       super: 1,
-    }
+    },
+    coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: shortid.generate(),
@@ -66,7 +67,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Sindi`,
       super: 0,
-    }
+    },
+    coordinates: [52.369553943508, 4.85309666406198]
   },
   {
     id: shortid.generate(),
@@ -99,7 +101,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Joanna`,
       super: 1,
-    }
+    },
+    coordinates: [52.3909553943508, 4.929309666406198]
   },
   {
     id: shortid.generate(),
@@ -128,7 +131,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Eva`,
       super: 0,
-    }
+    },
+    coordinates: [52.3809553943508, 4.939309666406198]
   },
   {
     id: shortid.generate(),
@@ -153,7 +157,8 @@ const offers = [
       avatar: `img/avatar-angelina.jpg`,
       name: `Marta`,
       super: 1,
-    }
+    },
+    coordinates: []
   }
 ];
 
