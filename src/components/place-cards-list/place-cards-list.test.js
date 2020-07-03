@@ -47,12 +47,14 @@ const offers = [
     rank: `Premium`
   }
 ];
+const className = `near-places__card`;
 
 it(`Cards List is rendered correctly`, () => {
   const tree = renderer
     .create(
         <BrowserRouter>
           <PlaceCardsList
+            className = {className}
             offers = {offers}
             onOfferTitleClick = {jest.fn()}
           />

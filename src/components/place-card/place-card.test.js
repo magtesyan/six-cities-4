@@ -5,6 +5,8 @@ import shortid from "shortid";
 
 import PlaceCard from "./place-card.jsx";
 
+const className = `near-places__card`;
+
 const offers = {
   id: shortid.generate(),
   name: `Beautiful & luxurious apartment at great location`,
@@ -19,6 +21,7 @@ it(`Cards are rendered correctly`, () => {
     .create(
         <BrowserRouter>
           <PlaceCard
+            className = {className}
             offer={offers}
             key={offers.id}
             onOfferTitleClick = {jest.fn()}

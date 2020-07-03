@@ -3,7 +3,7 @@
 exports[`Cards List is rendered correctly 1`] = `
 Array [
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -108,7 +108,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -213,7 +213,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -318,7 +318,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -423,7 +423,7 @@ Array [
     </div>
   </article>,
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseOver={[Function]}
   >
     <div
