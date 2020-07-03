@@ -3,7 +3,7 @@ import React, {PureComponent} from "react";
 
 import PlaceCard from "../place-card/place-card.jsx";
 
-class CardsList extends PureComponent {
+class PlaceCardsList extends PureComponent {
   constructor(props) {
     super(props);
     this._handleCardMouseOver = this._handleCardMouseOver.bind(this);
@@ -20,9 +20,10 @@ class CardsList extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick} = this.props;
+    const {offers, onOfferTitleClick, className} = this.props;
     const cards = offers.map((offer) =>
       <PlaceCard
+        className = {className}
         offer={offer}
         key={offer.id}
         onOfferTitleClick = {onOfferTitleClick}
@@ -38,9 +39,10 @@ class CardsList extends PureComponent {
   }
 }
 
-CardsList.propTypes = {
+PlaceCardsList.propTypes = {
+  className: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
 };
 
-export default CardsList;
+export default PlaceCardsList;

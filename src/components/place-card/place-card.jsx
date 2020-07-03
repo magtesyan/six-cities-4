@@ -5,20 +5,20 @@ import {Link} from "react-router-dom";
 import {RATING_IN_WIDTH_PERCENT} from "../../const.js";
 
 const PlaceCard = (props) => {
-  const {offer, onOfferTitleClick, onMouseOver} = props;
+  const {offer, onOfferTitleClick, onMouseOver, className} = props;
   const callMouseOver = () => onMouseOver(offer);
   const callOfferTitleClick = () => onOfferTitleClick(offer);
-  const offerRating = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
+  const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${className} place-card`}
       onMouseOver={callMouseOver}
     >
       <div className="place-card__mark">
         <span>{offer.rank}</span>
       </div>
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`cities__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
         </a>
@@ -38,7 +38,7 @@ const PlaceCard = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: offerRating}}></span>
+            <span style={{width: offerRatingStyleWidth}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -65,6 +65,7 @@ PlaceCard.propTypes = {
   }).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseOver: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 export default PlaceCard;

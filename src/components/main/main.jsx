@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import {CITY_COORDINATES} from "../../const.js";
+import {CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 
@@ -93,16 +93,19 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <PlaceCardsList
+                  className={OFFER_CARDS_CLASSES.get(`main-page`)}
                   offers = {offers}
                   onOfferTitleClick = {onOfferTitleClick}
                 />
               </div>
             </section>
             <div className="cities__right-section">
-              <Map
-                city={CITY_COORDINATES.get(`Amsterdam`)}
-                offers = {offers}
-              />
+              <section className="cities__map map">
+                <Map
+                  city={CITY_COORDINATES.get(`Amsterdam`)}
+                  offers = {offers}
+                />
+              </section>
             </div>
           </div>
         </div>
