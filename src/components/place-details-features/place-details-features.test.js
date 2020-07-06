@@ -1,7 +1,7 @@
 import renderer from "react-test-renderer";
 import React from "react";
 
-import PlaceDetailsInside from "./place-details-inside.jsx";
+import PlaceDetailsFeatures from "./place-details-features.jsx";
 
 const features = [
   `Wi-Fi`,
@@ -16,7 +16,7 @@ const features = [
 
 it(`Features in PlaceDetailsInside are not rendered correctly`, () => {
   const tree = renderer
-    .create(<PlaceDetailsInside
+    .create(<PlaceDetailsFeatures
       features={features}
     />
     ).toJSON();

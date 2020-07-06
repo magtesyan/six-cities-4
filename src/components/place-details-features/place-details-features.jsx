@@ -1,14 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
-import shortid from "shortid";
 
-const PlaceDetailsInside = (props) => {
+const PlaceDetailsFeatures = (props) => {
   const {features} = props;
 
   const featuresList = features.map((feature) => {
-    const placeInsideItemKey = shortid.generate();
     return (
-      <li className="property__inside-item" key={placeInsideItemKey}>
+      <li className="property__inside-item" key={feature}>
         {feature}
       </li>
     );
@@ -24,8 +22,8 @@ const PlaceDetailsInside = (props) => {
   );
 };
 
-PlaceDetailsInside.propTypes = {
+PlaceDetailsFeatures.propTypes = {
   features: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-export default PlaceDetailsInside;
+export default PlaceDetailsFeatures;

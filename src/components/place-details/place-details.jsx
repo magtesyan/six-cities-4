@@ -5,7 +5,7 @@ import FeedbackList from "../feedback-list/feedback-list.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
-import PlaceDetailsInside from "../place-details-inside/place-details-inside.jsx";
+import PlaceDetailsFeatures from "../place-details-features/place-details-features.jsx";
 import {RATING_IN_WIDTH_PERCENT, CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
@@ -79,7 +79,7 @@ const PlaceDetails = (props) => {
                 <b className="property__price-value">&euro;{offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
-              <PlaceDetailsInside
+              <PlaceDetailsFeatures
                 features = {offer.features}
               />
               <div className="property__host">
