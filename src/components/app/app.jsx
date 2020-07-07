@@ -43,6 +43,8 @@ class App extends PureComponent {
       return (
         <PlaceDetails
           offer = {this.state.place}
+          nearestOffers = {offers.slice(0, 3)}
+          onOfferTitleClick={this.handleOfferTitle}
         />
       );
     }
@@ -50,6 +52,7 @@ class App extends PureComponent {
   }
 
   render() {
+    const {offers} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -59,6 +62,8 @@ class App extends PureComponent {
           <Route exact path="/details">
             <PlaceDetails
               offer = {this.state.place}
+              nearestOffers = {offers.slice(0, 3)}
+              onOfferTitleClick={this.handleOfferTitle}
             />
           </Route>
         </Switch>

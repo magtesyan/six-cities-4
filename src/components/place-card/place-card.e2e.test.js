@@ -19,6 +19,8 @@ const mock = {
   rank: `Premium`
 };
 
+const className = `cities__place-card`;
+
 it(`When mouse on card - card details sent`, () => {
   const onMouseOver = jest.fn((args) => args);
   const expectedObj = {
@@ -32,6 +34,7 @@ it(`When mouse on card - card details sent`, () => {
   const card = mount(
       <BrowserRouter>
         <PlaceCard
+          className = {className}
           offer={mock}
           key={mock.id}
           onOfferTitleClick = {() => {}}
@@ -59,6 +62,7 @@ it(`When title is clicked - card details sent`, () => {
   const card = mount(
       <BrowserRouter>
         <PlaceCard
+          className = {className}
           offer={mock}
           key={mock.id}
           onOfferTitleClick = {onOfferTitleClick}

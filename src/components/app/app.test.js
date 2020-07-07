@@ -42,6 +42,14 @@ const offers = [
       super: 1,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+        assessment: 5,
+        name: `Francis`,
+        date: new Date(2020, 0, 1)
+      },
+    ]
   },
   {
     id: shortid.generate(),
@@ -73,6 +81,14 @@ const offers = [
       super: 0,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+        assessment: 5,
+        name: `Francis`,
+        date: new Date(2020, 0, 1)
+      },
+    ]
   },
   {
     id: shortid.generate(),
@@ -107,6 +123,14 @@ const offers = [
       super: 1,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+        assessment: 5,
+        name: `Francis`,
+        date: new Date(2020, 0, 1)
+      },
+    ]
   },
   {
     id: shortid.generate(),
@@ -137,6 +161,14 @@ const offers = [
       super: 0,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+        assessment: 5,
+        name: `Francis`,
+        date: new Date(2020, 0, 1)
+      },
+    ]
   },
   {
     id: shortid.generate(),
@@ -163,6 +195,14 @@ const offers = [
       super: 1,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
+    reviews: [
+      {
+        text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+        assessment: 5,
+        name: `Francis`,
+        date: new Date(2020, 0, 1)
+      },
+    ]
   }
 ];
 
