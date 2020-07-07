@@ -45,24 +45,28 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
     reviews: [
       {
+        id: shortid.generate(),
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
+        id: shortid.generate(),
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
+        id: shortid.generate(),
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
+        id: shortid.generate(),
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -102,24 +106,28 @@ const offers = [
     coordinates: [52.369553943508, 4.85309666406198],
     reviews: [
       {
+        id: shortid.generate(),
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
+        id: shortid.generate(),
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
+        id: shortid.generate(),
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
+        id: shortid.generate(),
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -162,24 +170,28 @@ const offers = [
     coordinates: [52.3909553943508, 4.929309666406198],
     reviews: [
       {
+        id: shortid.generate(),
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
+        id: shortid.generate(),
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
+        id: shortid.generate(),
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
+        id: shortid.generate(),
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -218,24 +230,28 @@ const offers = [
     coordinates: [52.3809553943508, 4.939309666406198],
     reviews: [
       {
+        id: shortid.generate(),
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
+        id: shortid.generate(),
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
+        id: shortid.generate(),
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
+        id: shortid.generate(),
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -270,24 +286,28 @@ const offers = [
     coordinates: [],
     reviews: [
       {
+        id: shortid.generate(),
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
+        id: shortid.generate(),
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
+        id: shortid.generate(),
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
+        id: shortid.generate(),
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,

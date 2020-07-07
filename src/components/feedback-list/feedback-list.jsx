@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import React from "react";
-import shortid from "shortid";
 
 import Feedback from "../feedback/feedback.jsx";
 
@@ -9,7 +8,7 @@ const FeedbackList = (props) => {
   const renderReviews = reviews.map((review) => {
     return (
       <Feedback
-        key = {shortid.generate()}
+        key = {review.id}
         review = {review}
       />
     );

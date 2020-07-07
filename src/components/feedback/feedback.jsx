@@ -36,6 +36,7 @@ const Feedback = (props) => {
 
 Feedback.propTypes = {
   review: PropTypes.shape({
+    id: PropTypes.string,
     text: PropTypes.string,
     assessment: PropTypes.number,
     name: PropTypes.string,
