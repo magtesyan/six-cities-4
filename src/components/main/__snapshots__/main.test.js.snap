@@ -73,33 +73,23 @@ exports[`Render Main 1`] = `
         >
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item tabs__item--active"
               href="#"
             >
               <span>
-                Paris
+                Amsterdam
               </span>
             </a>
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item"
-              href="#"
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item "
               href="#"
             >
               <span>
@@ -109,20 +99,36 @@ exports[`Render Main 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item tabs__item--active"
+              className="locations__item-link tabs__item "
+              href="#"
             >
               <span>
-                Amsterdam
+                Paris
               </span>
             </a>
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item "
+              href="#"
+            >
+              <span>
+                Cologne
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+            onClick={[Function]}
+          >
+            <a
+              className="locations__item-link tabs__item "
               href="#"
             >
               <span>
@@ -132,9 +138,10 @@ exports[`Render Main 1`] = `
           </li>
           <li
             className="locations__item"
+            onClick={[Function]}
           >
             <a
-              className="locations__item-link tabs__item"
+              className="locations__item-link tabs__item "
               href="#"
             >
               <span>
@@ -162,8 +169,7 @@ exports[`Render Main 1`] = `
           <b
             className="places__found"
           >
-            5
-             places to stay in Amsterdam
+            5 places to stay in Amsterdam
           </b>
           <form
             action="#"

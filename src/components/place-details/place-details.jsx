@@ -129,29 +129,29 @@ const PlaceDetails = (props) => {
 
 PlaceDetails.propTypes = {
   offer: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    rank: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    rating: PropTypes.number.isRequired,
-    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-    description: PropTypes.string.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    guests: PropTypes.number.isRequired,
-    features: PropTypes.arrayOf(PropTypes.string).isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
+    rank: PropTypes.string,
+    price: PropTypes.number,
+    rating: PropTypes.number,
+    pictures: PropTypes.arrayOf(PropTypes.string),
+    description: PropTypes.string,
+    bedrooms: PropTypes.number,
+    guests: PropTypes.number,
+    features: PropTypes.arrayOf(PropTypes.string),
     host: PropTypes.shape({
-      avatar: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      super: PropTypes.number.isRequired,
+      avatar: PropTypes.string,
+      name: PropTypes.string,
+      super: PropTypes.number,
     }),
     reviews: PropTypes.arrayOf(PropTypes.shape({
       text: PropTypes.string,
       assessment: PropTypes.number,
       name: PropTypes.string,
       date: PropTypes.date
-    })).isRequired
-  }).isRequired,
+    }))
+  }),
   nearestOffers: PropTypes.array,
   onOfferTitleClick: PropTypes.func.isRequired,
 };

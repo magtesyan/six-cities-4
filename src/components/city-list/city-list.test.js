@@ -1,4 +1,8 @@
+import renderer from "react-test-renderer";
+import React from "react";
 import shortid from "shortid";
+
+import CityList from "./city-list.jsx";
 
 const fullOffers = new Map([
   [`Amsterdam`, [
@@ -381,4 +385,18 @@ const fullOffers = new Map([
   [`Dusseldorf`, []],
 ]);
 
-export {fullOffers};
+const city = `Amsterdam`;
+
+it(`Cities List is rendered correctly`, () => {
+  const onCityClick = jest.fn();
+  const tree = renderer
+    .create(
+        <CityList
+          fullOffers={fullOffers}
+          onCityClick={onCityClick}
+          activeCity={city}
+        />
+    ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
