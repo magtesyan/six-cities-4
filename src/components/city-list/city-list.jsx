@@ -4,8 +4,7 @@ import React from "react";
 import City from "../city/city.jsx";
 
 const CityList = (props) => {
-  const {fullOffers, onCityClick, activeCity} = props;
-  const cities = Array.from(fullOffers.keys());
+  const {cities, onCityClick, activeCity} = props;
   const renderCities = cities.map((city) => {
     return (
       <City
@@ -27,7 +26,7 @@ const CityList = (props) => {
 };
 
 CityList.propTypes = {
-  fullOffers: PropTypes.instanceOf(Map).isRequired,
+  cities: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
   activeCity: PropTypes.string.isRequired
 };

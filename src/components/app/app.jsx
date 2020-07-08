@@ -10,17 +10,16 @@ import PlaceDetails from "../place-details/place-details.jsx";
 
 class App extends PureComponent {
   _renderMainScreen() {
-    const {fullOffers, onOfferTitleClick, onCityClick, step, city, place} = this.props;
-    const offers = fullOffers.get(city);
+    const {offers, onOfferTitleClick, onCityClick, step, city, place, cities} = this.props;
 
     if (step === `mainScreen`) {
       return (
         <Main
-          fullOffers={fullOffers}
           offers={offers}
           onOfferTitleClick={onOfferTitleClick}
           onCityClick={onCityClick}
           city={city}
+          cities={cities}
         />
       );
     }
@@ -38,8 +37,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {fullOffers, onOfferTitleClick, city, place} = this.props;
-    const offers = fullOffers.get(city);
+    const {offers, onOfferTitleClick, place} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -60,18 +58,21 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  fullOffers: PropTypes.instanceOf(Map).isRequired,
+  offers: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
   step: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   place: PropTypes.object.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   step: state.step,
   city: state.city,
-  place: state.place
+  place: state.place,
+  offers: state.offers,
+  cities: state.cities
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -80,6 +81,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city));
   },
 });
 

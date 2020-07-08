@@ -1,9 +1,7 @@
-import shortid from "shortid";
-
 const fullOffers = new Map([
   [`Amsterdam`, [
     {
-      id: shortid.generate(),
+      id: `M_u53rqBj1L`,
       name: `Beautiful & luxurious apartment at great location`,
       price: 80,
       rating: 1,
@@ -41,28 +39,28 @@ const fullOffers = new Map([
       coordinates: [52.3909553943508, 4.85309666406198],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `hf1VdxqXxV`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `7Q3he9zq806`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `TFmHkG3D9L`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `E7BzjwJhIEm`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,
@@ -71,7 +69,7 @@ const fullOffers = new Map([
       ]
     },
     {
-      id: shortid.generate(),
+      id: `hHjtE1NWpQZ`,
       name: `Wood and stone place`,
       price: 90,
       rating: 2,
@@ -102,28 +100,28 @@ const fullOffers = new Map([
       coordinates: [52.369553943508, 4.85309666406198],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `SVEWJkQkvK`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `LI9x84pBqd9`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `VtXPYG9nKP`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `cpmJFqL52N7`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,
@@ -132,7 +130,7 @@ const fullOffers = new Map([
       ]
     },
     {
-      id: shortid.generate(),
+      id: `AuW30Tq01qt`,
       name: `Canal View Prinsengracht`,
       price: 100,
       rating: 3,
@@ -166,28 +164,28 @@ const fullOffers = new Map([
       coordinates: [52.3909553943508, 4.929309666406198],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `a0t2-k7Lrr`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `mJq8CowwXPe`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `ULfjTqLYTB`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `yaCJc6Lye`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,
@@ -196,7 +194,7 @@ const fullOffers = new Map([
       ]
     },
     {
-      id: shortid.generate(),
+      id: `9n21f8lMnjh`,
       name: `Nice, cozy, warm big bed apartment`,
       price: 110,
       rating: 4,
@@ -226,28 +224,28 @@ const fullOffers = new Map([
       coordinates: [52.3809553943508, 4.939309666406198],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `xgIMmtPQrZ`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `VKEGLrvZcWn`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `Wkj75rZKL7`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `kI7gOSS0Xu4`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,
@@ -256,7 +254,7 @@ const fullOffers = new Map([
       ]
     },
     {
-      id: shortid.generate(),
+      id: `RnSYsvkr797`,
       name: `Wood and stone place`,
       price: 120,
       rating: 5,
@@ -282,28 +280,28 @@ const fullOffers = new Map([
       coordinates: [],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `Wbq9lLh1fH`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `1LembBihNkF`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `VJ-Qyi4s73`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `NYUoB8sV4Nh`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,
@@ -314,7 +312,7 @@ const fullOffers = new Map([
   ]],
   [`Brussels`, [
     {
-      id: shortid.generate(),
+      id: `4HWSrCwIMGl`,
       name: `Wood and stone place`,
       price: 90,
       rating: 2,
@@ -345,28 +343,28 @@ const fullOffers = new Map([
       coordinates: [50.85045, 4.35],
       reviews: [
         {
-          id: shortid.generate(),
+          id: `EkJUXIvasgc`,
           text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
           assessment: 5,
           name: `Francis`,
           date: new Date(2020, 0, 1)
         },
         {
-          id: shortid.generate(),
+          id: `g8yIfubFm`,
           text: `We like the beach view.`,
           assessment: 4,
           name: `Marjorie`,
           date: new Date(2019, 1, 2)
         },
         {
-          id: shortid.generate(),
+          id: `XCSP_wmUjnl`,
           text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
           assessment: 3,
           name: `Amy`,
           date: new Date(2017, 3, 13)
         },
         {
-          id: shortid.generate(),
+          id: `_UR7KoYNhx`,
           text: `Very nice accommodations and would definitely recommend.`,
           assessment: 2,
           name: `Lori`,

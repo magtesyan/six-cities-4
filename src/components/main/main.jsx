@@ -7,7 +7,7 @@ import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 
 const Main = (props) => {
-  const {fullOffers, offers, onOfferTitleClick, onCityClick, city} = props;
+  const {offers, onOfferTitleClick, onCityClick, city, cities} = props;
   const printPlacesFoundCount = offers.length ? `${offers.length} places to stay in ${city}` : `No places to stay available`;
 
   return (
@@ -39,9 +39,9 @@ const Main = (props) => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <CityList
-            fullOffers={fullOffers}
             onCityClick={onCityClick}
             activeCity={city}
+            cities={cities}
           />
         </div>
         <div className="cities">
@@ -94,8 +94,8 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fullOffers: PropTypes.instanceOf(Map).isRequired,
+  offers: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
