@@ -10,7 +10,7 @@ import PlaceDetails from "../place-details/place-details.jsx";
 
 class App extends PureComponent {
   _renderMainScreen() {
-    const {offers, onOfferTitleClick, onCityClick, step, city, place, cities} = this.props;
+    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer} = this.props;
 
     if (step === `mainScreen`) {
       return (
@@ -20,6 +20,8 @@ class App extends PureComponent {
           onCityClick={onCityClick}
           city={city}
           cities={cities}
+          activeOffer={activeOffer}
+          onCardMouseOver={onCardMouseOver}
         />
       );
     }
@@ -30,6 +32,8 @@ class App extends PureComponent {
           offer = {place}
           nearestOffers = {offers.slice(0, 3)}
           onOfferTitleClick={onOfferTitleClick}
+          city={city}
+          onCardMouseOver={onCardMouseOver}
         />
       );
     }
@@ -37,7 +41,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, place} = this.props;
+    const {offers, onOfferTitleClick, place, city, onCardMouseOver} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -49,6 +53,8 @@ class App extends PureComponent {
               offer = {place}
               nearestOffers = {offers.slice(0, 3)}
               onOfferTitleClick={onOfferTitleClick}
+              city={city}
+              onCardMouseOver={onCardMouseOver}
             />
           </Route>
         </Switch>
@@ -61,10 +67,12 @@ App.propTypes = {
   offers: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
+  onCardMouseOver: PropTypes.func.isRequired,
   step: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   place: PropTypes.object.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  activeOffer: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
@@ -72,7 +80,8 @@ const mapStateToProps = (state) => ({
   city: state.city,
   place: state.place,
   offers: state.offers,
-  cities: state.cities
+  cities: state.cities,
+  activeOffer: state.activeOffer
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -82,6 +91,9 @@ const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
     dispatch(ActionCreator.getOffers(city));
+  },
+  onCardMouseOver(offer) {
+    dispatch(ActionCreator.activateOffer(offer));
   },
 });
 

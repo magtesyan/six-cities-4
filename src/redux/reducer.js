@@ -5,16 +5,23 @@ const initialState = {
   step: `mainScreen`,
   place: {},
   offers: fullOffers.get(`Amsterdam`),
-  cities: Array.from(fullOffers.keys())
+  cities: Array.from(fullOffers.keys()),
+  activeOffer: fullOffers.get(`Amsterdam`)[0]
 };
 
 const ActionType = {
+  ACTIVATE_OFFER: `ACTIVATE_OFFER`,
   GET_OFFERS: `GET_OFFERS`,
   CHANGE_CITY: `CHANGE_CITY`,
-  OPEN_DETAILS_SCREEN: `OPEN_DETAILS_SCREEN`
+  OPEN_DETAILS_SCREEN: `OPEN_DETAILS_SCREEN`,
 };
 
 const ActionCreator = {
+  activateOffer: (offer) => ({
+    type: ActionType.ACTIVATE_OFFER,
+    payload: offer,
+  }),
+
   getOffers: (city) => ({
     type: ActionType.GET_OFFERS,
     payload: fullOffers.get(city),
@@ -33,6 +40,11 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionType.ACTIVATE_OFFER:
+      return Object.assign({}, state, {
+        activeOffer: action.payload,
+      });
+
     case ActionType.GET_OFFERS:
       return Object.assign({}, state, {
         offers: action.payload,

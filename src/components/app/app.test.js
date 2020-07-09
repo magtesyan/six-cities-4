@@ -334,11 +334,12 @@ describe(`Render App`, () => {
       .create(<App
         offers={offers}
         onOfferTitleClick={jest.fn()}
-        onCityClick={jest.fn}
+        onCityClick={jest.fn()}
         step={`mainScreen`}
         city={`Amsterdam`}
         place={{}}
         cities={cities}
+        onCardMouseOver={jest.fn()}
       />)
       .toJSON();
 

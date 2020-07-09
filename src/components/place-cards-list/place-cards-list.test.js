@@ -48,6 +48,7 @@ const offers = [
   }
 ];
 const className = `near-places__card`;
+const activeCity = `Amsterdam`;
 
 it(`Cards List is rendered correctly`, () => {
   const tree = renderer
@@ -57,6 +58,8 @@ it(`Cards List is rendered correctly`, () => {
             className = {className}
             offers = {offers}
             onOfferTitleClick = {jest.fn()}
+            activeCity={activeCity}
+            onCardMouseOver={jest.fn()}
           />
         </BrowserRouter>
     ).toJSON();

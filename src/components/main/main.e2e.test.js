@@ -84,6 +84,8 @@ describe(`Click on Title Test`, () => {
             onCityClick={jest.fn()}
             city={city}
             cities={cities}
+            activeOffer={offers[0]}
+            onCardMouseOver={jest.fn()}
           />
         </BrowserRouter>
     );
