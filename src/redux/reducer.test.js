@@ -1,3 +1,5 @@
+import {reducer, ActionType, ActionCreator} from "./reducer.js";
+
 const fullOffers = new Map([
   [`Amsterdam`, [
     {
@@ -379,4 +381,41 @@ const fullOffers = new Map([
   [`Dusseldorf`, []],
 ]);
 
-export {fullOffers};
+it(`Reducer without additional parameters should return initial state`, () => {
+  expect(reducer(void 0, {})).toEqual({
+    city: `Amsterdam`,
+    place: {},
+    step: `mainScreen`,
+    offers: fullOffers.get(`Amsterdam`),
+    cities: Array.from(fullOffers.keys())
+  });
+});
+
+it(`Reducer should change the city by a given value`, () => {
+  expect(reducer({
+    city: `Amsterdam`
+  }, {
+    type: ActionType.CHANGE_CITY,
+    payload: `Brussels`,
+  })).toEqual({
+    city: `Brussels`,
+  });
+
+  expect(reducer({
+    city: `Brussels`
+  }, {
+    type: ActionType.CHANGE_CITY,
+    payload: `Amsterdam`,
+  })).toEqual({
+    city: `Amsterdam`,
+  });
+});
+
+describe(`Action creators work correctly`, () => {
+  it(`Action creator for change city to Brussels returns correct action`, () => {
+    expect(ActionCreator.changeCity(`Brussels`)).toEqual({
+      type: ActionType.CHANGE_CITY,
+      payload: `Brussels`,
+    });
+  });
+});

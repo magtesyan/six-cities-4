@@ -2,11 +2,13 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import {CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
+import CityList from "../city-list/city-list.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 
 const Main = (props) => {
-  const {offers, onOfferTitleClick} = props;
+  const {offers, onOfferTitleClick, onCityClick, city, cities} = props;
+  const printPlacesFoundCount = offers.length ? `${offers.length} places to stay in ${city}` : `No places to stay available`;
 
   return (
     <div>
@@ -36,46 +38,17 @@ const Main = (props) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
-          </section>
+          <CityList
+            onCityClick={onCityClick}
+            activeCity={city}
+            cities={cities}
+          />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{printPlacesFoundCount}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -92,19 +65,25 @@ const Main = (props) => {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCardsList
-                  className={OFFER_CARDS_CLASSES.get(`main-page`)}
-                  offers = {offers}
-                  onOfferTitleClick = {onOfferTitleClick}
-                />
+                {
+                  <PlaceCardsList
+                    className={OFFER_CARDS_CLASSES.get(`main-page`)}
+                    offers = {offers}
+                    onOfferTitleClick = {onOfferTitleClick}
+                  />
+                }
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map
-                  city={CITY_COORDINATES.get(`Amsterdam`)}
-                  offers = {offers}
-                />
+                {
+                  offers.length &&
+                  <Map
+                    key={city}
+                    city={CITY_COORDINATES.get(city)}
+                    offers = {offers}
+                  />
+                }
               </section>
             </div>
           </div>
@@ -115,8 +94,11 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  offers: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
 };
 
 export default Main;

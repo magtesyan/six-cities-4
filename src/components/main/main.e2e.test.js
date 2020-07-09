@@ -54,6 +54,13 @@ const offers = [
   }
 ];
 
+const city = `Amsterdam`;
+const cities = [
+  `Amsterdam`,
+  `Brussels`,
+  `Paris`
+];
+
 Enzyme.configure({
   adapter: new Adapter(),
 });
@@ -74,6 +81,9 @@ describe(`Click on Title Test`, () => {
           <Main
             offers={offers}
             onOfferTitleClick = {onOfferTitleClick}
+            onCityClick={jest.fn()}
+            city={city}
+            cities={cities}
           />
         </BrowserRouter>
     );

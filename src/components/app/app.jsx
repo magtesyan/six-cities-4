@@ -1,40 +1,25 @@
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
+import {ActionCreator} from "../../redux/reducer.js";
 import Main from "../main/main.jsx";
 import PlaceDetails from "../place-details/place-details.jsx";
 
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    const {offers} = this.props;
-
-    this.state = {
-      step: `mainScreen`,
-      place: offers && offers.length && offers[0]
-    };
-
-    this.handleOfferTitle = this.handleOfferTitle.bind(this);
-  }
-
-  handleOfferTitle(offer) {
-    this.setState(() => ({
-      step: `detailsScreen`,
-      place: offer
-    }));
-  }
-
   _renderMainScreen() {
-    const {offers} = this.props;
-    const {step} = this.state;
+    const {offers, onOfferTitleClick, onCityClick, step, city, place, cities} = this.props;
 
     if (step === `mainScreen`) {
       return (
         <Main
           offers={offers}
-          onOfferTitleClick={this.handleOfferTitle}
+          onOfferTitleClick={onOfferTitleClick}
+          onCityClick={onCityClick}
+          city={city}
+          cities={cities}
         />
       );
     }
@@ -42,9 +27,9 @@ class App extends PureComponent {
     if (step === `detailsScreen`) {
       return (
         <PlaceDetails
-          offer = {this.state.place}
+          offer = {place}
           nearestOffers = {offers.slice(0, 3)}
-          onOfferTitleClick={this.handleOfferTitle}
+          onOfferTitleClick={onOfferTitleClick}
         />
       );
     }
@@ -52,7 +37,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onOfferTitleClick, place} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -61,9 +46,9 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/details">
             <PlaceDetails
-              offer = {this.state.place}
+              offer = {place}
               nearestOffers = {offers.slice(0, 3)}
-              onOfferTitleClick={this.handleOfferTitle}
+              onOfferTitleClick={onOfferTitleClick}
             />
           </Route>
         </Switch>
@@ -73,7 +58,32 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired
+  offers: PropTypes.array.isRequired,
+  onOfferTitleClick: PropTypes.func.isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  step: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  place: PropTypes.object.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  step: state.step,
+  city: state.city,
+  place: state.place,
+  offers: state.offers,
+  cities: state.cities
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onOfferTitleClick(offer) {
+    dispatch(ActionCreator.openDetailsScreen(offer));
+  },
+  onCityClick(city) {
+    dispatch(ActionCreator.changeCity(city));
+    dispatch(ActionCreator.getOffers(city));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

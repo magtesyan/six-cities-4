@@ -53,6 +53,13 @@ const offers = [
   }
 ];
 
+const city = `Amsterdam`;
+const cities = [
+  `Amsterdam`,
+  `Brussels`,
+  `Paris`
+];
+
 const createMapBlock = () => {
   const div = global.document.createElement(`div`);
   div.setAttribute(`id`, `map`);
@@ -66,7 +73,10 @@ it(`Render Main`, () => {
         <BrowserRouter>
           <Main
             offers={offers}
-            onOfferTitleClick={() => {}}
+            onOfferTitleClick={jest.fn()}
+            onCityClick={jest.fn()}
+            city={city}
+            cities={cities}
           />
         </BrowserRouter>)
     .toJSON();
