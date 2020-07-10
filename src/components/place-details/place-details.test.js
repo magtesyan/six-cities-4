@@ -317,6 +317,8 @@ const offers = [
   }
 ];
 
+const city = `Amsterdam`;
+
 const createMapBlock = () => {
   const div = global.document.createElement(`div`);
   div.setAttribute(`id`, `map`);
@@ -334,6 +336,8 @@ it(`PlaceDetailsScreen is not rendered correctly`, () => {
             offer={offers[0]}
             nearestOffers = {offers}
             onOfferTitleClick = {onOfferTitleClick}
+            city={city}
+            onCardMouseOver={jest.fn()}
           />
         </BrowserRouter>
     ).toJSON();

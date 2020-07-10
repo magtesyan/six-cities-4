@@ -387,7 +387,8 @@ it(`Reducer without additional parameters should return initial state`, () => {
     place: {},
     step: `mainScreen`,
     offers: fullOffers.get(`Amsterdam`),
-    cities: Array.from(fullOffers.keys())
+    cities: Array.from(fullOffers.keys()),
+    activeOffer: fullOffers.get(`Amsterdam`)[0]
   });
 });
 

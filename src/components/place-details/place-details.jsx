@@ -9,7 +9,7 @@ import PlaceDetailsFeatures from "../place-details-features/place-details-featur
 import {RATING_IN_WIDTH_PERCENT, CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick} = props;
+  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver} = props;
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   return (
     <div className="page">
@@ -118,6 +118,8 @@ const PlaceDetails = (props) => {
                 className={OFFER_CARDS_CLASSES.get(`details-page`)}
                 offers = {nearestOffers}
                 onOfferTitleClick = {onOfferTitleClick}
+                activeCity={city}
+                onCardMouseOver={onCardMouseOver}
               />
             </div>
           </section>
@@ -154,6 +156,8 @@ PlaceDetails.propTypes = {
   }),
   nearestOffers: PropTypes.array,
   onOfferTitleClick: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
+  onCardMouseOver: PropTypes.func.isRequired
 };
 
 export default PlaceDetails;
