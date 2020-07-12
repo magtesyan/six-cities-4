@@ -5,7 +5,7 @@ import {CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
 import CityList from "../city-list/city-list.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
-import withSorting from "../../hocs/with-sorting.js";
+import withSorting from "../../hocs/with-sorting/with-sorting.js";
 
 const PlaceCardsListSorted = withSorting(PlaceCardsList);
 

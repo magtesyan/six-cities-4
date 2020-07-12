@@ -1,49 +1,15 @@
 import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 
-const sortingOptions = [
-  {
-    name: `Popular`,
-  },
-  {
-    name: `Price: low to high`,
-  },
-  {
-    name: `Price: high to low`,
-  },
-  {
-    name: `Top rated first`,
-  },
-];
-
 class PlacesSorting extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleFilterClick = this.handleFilterClick.bind(this);
-
-    this.state = {
-      isFilterOpened: false,
-      activeOption: sortingOptions[0].name
-    };
-  }
-
-  handleFilterClick() {
-    this.setState((prevState) => ({
-      isFilterOpened: !prevState.isFilterOpened
-    }));
-  }
-
   render() {
-    const {onSortTypeClick} = this.props;
-    const toggleFilterClass = this.state.isFilterOpened ? `places__options--opened` : ``;
+    const {onSortTypeClick, onFilterClick, sortingOptions, isFilterOpened, activeSortingOption} = this.props;
+    const toggleFilterClass = isFilterOpened ? `places__options--opened` : ``;
     const renderSortingOptions = sortingOptions.map((option) => {
-      const activeOptionClass = (option.name === this.state.activeOption ? `places__option--active` : ``);
+      const activeOptionClass = (option.name === activeSortingOption ? `places__option--active` : ``);
 
       const callSortTypeClick = () => {
         onSortTypeClick(option.name);
-        this.setState({
-          activeOption: option.name
-        });
       };
 
       return (
@@ -64,16 +30,16 @@ class PlacesSorting extends PureComponent {
         <span
           className="places__sorting-type"
           tabIndex="0"
-          onClick={this.handleFilterClick}
+          onClick={onFilterClick}
         >
-          {this.state.activeOption}
+          {activeSortingOption}
           <svg className="places__sorting-arrow" width="7" height="4">
             <use xlinkHref="#icon-arrow-select"></use>
           </svg>
         </span>
         <ul
           className={`places__options places__options--custom ${toggleFilterClass}`}
-          onClick={this.handleFilterClick}
+          onClick={onFilterClick}
         >
           {renderSortingOptions}
         </ul>
@@ -83,7 +49,11 @@ class PlacesSorting extends PureComponent {
 }
 
 PlacesSorting.propTypes = {
-  onSortTypeClick: PropTypes.func.isRequired
+  onSortTypeClick: PropTypes.func.isRequired,
+  sortingOptions: PropTypes.array.isRequired,
+  isFilterOpened: PropTypes.bool.isRequired,
+  onFilterClick: PropTypes.func.isRequired,
+  activeSortingOption: PropTypes.string.isRequired,
 };
 
 
