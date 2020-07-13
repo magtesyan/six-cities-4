@@ -13,7 +13,7 @@ exports[`Sorting dropdown is rendered correctly 1`] = `
   </span>
   <span
     className="places__sorting-type"
-    onClick={[Function]}
+    onClick={[MockFunction]}
     tabIndex="0"
   >
     Popular
@@ -28,8 +28,8 @@ exports[`Sorting dropdown is rendered correctly 1`] = `
     </svg>
   </span>
   <ul
-    className="places__options places__options--custom "
-    onClick={[Function]}
+    className="places__options places__options--custom places__options--opened"
+    onClick={[MockFunction]}
   >
     <li
       className="places__option places__option--active"
