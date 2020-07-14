@@ -5,14 +5,6 @@ import PlaceCard from "../place-card/place-card.jsx";
 import PlacesSorting from "../places-sorting/places-sorting.jsx";
 
 class PlaceCardsList extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeCard: null,
-    };
-  }
-
   _sortOffers(offers, sortName) {
     switch (sortName) {
       case `Price: low to high`:
