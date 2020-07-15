@@ -5,16 +5,6 @@ import PlaceCard from "../place-card/place-card.jsx";
 import PlacesSorting from "../places-sorting/places-sorting.jsx";
 
 class PlaceCardsList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleSortTypeClick = this.handleSortTypeClick.bind(this);
-
-    this.state = {
-      activeCard: null,
-      sortType: `Popular`
-    };
-  }
-
   _sortOffers(offers, sortName) {
     switch (sortName) {
       case `Price: low to high`:
@@ -28,17 +18,11 @@ class PlaceCardsList extends PureComponent {
     }
   }
 
-  handleSortTypeClick(sortName) {
-    this.setState({
-      sortType: sortName
-    });
-  }
-
   render() {
-    const {offers, onOfferTitleClick, className, activeCity, onCardMouseOver} = this.props;
+    const {offers, onOfferTitleClick, className, activeCity, onCardMouseOver, onSortTypeClick, onFilterClick, activeSortingOption, sortingOptions, isFilterOpened} = this.props;
     const printPlacesFoundCount = offers.length ? `${offers.length} places to stay in ${activeCity}` : `No places to stay available`;
 
-    const cards = this._sortOffers(offers, this.state.sortType).map((offer) =>
+    const cards = this._sortOffers(offers, activeSortingOption).map((offer) =>
       <PlaceCard
         className = {className}
         offer={offer}
@@ -49,16 +33,23 @@ class PlaceCardsList extends PureComponent {
     );
 
     return (
-      <section className="cities__places places">
-        <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{printPlacesFoundCount}</b>
-        <PlacesSorting
-          onSortTypeClick={this.handleSortTypeClick}
-        />
-        <div className="cities__places-list places__list tabs__content">
-          {cards}
-        </div>
-      </section>
+      <React.Fragment>
+        {activeSortingOption && <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">{printPlacesFoundCount}</b>
+          <PlacesSorting
+            onSortTypeClick={onSortTypeClick}
+            onFilterClick={onFilterClick}
+            sortingOptions={sortingOptions}
+            isFilterOpened={isFilterOpened}
+            activeSortingOption={activeSortingOption}
+          />
+          <div className="cities__places-list places__list tabs__content">
+            {cards}
+          </div>
+        </section>}
+        {!activeSortingOption && cards}
+      </React.Fragment>
     );
   }
 }
@@ -69,6 +60,11 @@ PlaceCardsList.propTypes = {
   onOfferTitleClick: PropTypes.func.isRequired,
   activeCity: PropTypes.string.isRequired,
   onCardMouseOver: PropTypes.func.isRequired,
+  onFilterClick: PropTypes.func,
+  onSortTypeClick: PropTypes.func,
+  activeSortingOption: PropTypes.string,
+  sortingOptions: PropTypes.array,
+  isFilterOpened: PropTypes.bool,
 };
 
 export default PlaceCardsList;
