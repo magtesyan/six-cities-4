@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Main 1`] = `
-<div>
+<div
+  className="page page--gray page--main"
+>
   <header
     className="header"
   >
@@ -55,7 +57,7 @@ exports[`Render Main 1`] = `
     </div>
   </header>
   <main
-    className="page__main page__main--index"
+    className="page__main page__main--index "
   >
     <h1
       className="visually-hidden"
@@ -117,7 +119,7 @@ exports[`Render Main 1`] = `
       className="cities"
     >
       <div
-        className="cities__places-container container"
+        className="cities__places-container  container"
       >
         <section
           className="cities__places places"
