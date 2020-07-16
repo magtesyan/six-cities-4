@@ -3,6 +3,7 @@ import React from "react";
 
 import {CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
 import CityList from "../city-list/city-list.jsx";
+import EmptyScreen from "../empty-screen/empty-screen.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import withSorting from "../../hocs/with-sorting/with-sorting.js";
@@ -11,9 +12,12 @@ const PlaceCardsListSorted = withSorting(PlaceCardsList);
 
 const Main = (props) => {
   const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer} = props;
+  const isOffersEmpty = offers.length === 0;
+  const emptyMainClassName = isOffersEmpty ? `page__main--index-empty` : ``;
+  const emptyCityPlacesClassName = isOffersEmpty ? `cities__places-container--empty` : ``;
 
   return (
-    <div>
+    <div className="page page--gray page--main">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
@@ -37,7 +41,7 @@ const Main = (props) => {
         </div>
       </header>
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${emptyMainClassName}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <CityList
@@ -47,26 +51,27 @@ const Main = (props) => {
           />
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
+          <div className={`cities__places-container ${emptyCityPlacesClassName} container`}>
+            {!isOffersEmpty &&
             <PlaceCardsListSorted
               className={OFFER_CARDS_CLASSES.get(`main-page`)}
               offers = {offers}
               onOfferTitleClick = {onOfferTitleClick}
               activeCity={city}
               onCardMouseOver={onCardMouseOver}
-            />
+            /> }
+            {isOffersEmpty && <EmptyScreen />}
             <div className="cities__right-section">
-              <section className="cities__map map">
-                {
-                  offers.length &&
+              {
+                !isOffersEmpty &&
+                <section className="cities__map map">
                   <Map
                     key={city}
                     city={CITY_COORDINATES.get(city)}
                     offers = {offers}
                     activeOffer={activeOffer}
                   />
-                }
-              </section>
+                </section> }
             </div>
           </div>
         </div>
