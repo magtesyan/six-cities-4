@@ -1,12 +1,8 @@
-import {fullOffers} from "../mocks/offers.js";
-
 const initialState = {
-  city: `Amsterdam`,
+  city: ``,
   step: `mainScreen`,
   place: {},
-  offers: fullOffers.get(`Amsterdam`),
-  cities: Array.from(fullOffers.keys()),
-  activeOffer: fullOffers.get(`Amsterdam`)[0]
+  activeOffer: {}
 };
 
 const ActionType = {
@@ -20,11 +16,6 @@ const ActionCreator = {
   activateOffer: (offer) => ({
     type: ActionType.ACTIVATE_OFFER,
     payload: offer,
-  }),
-
-  getOffers: (city) => ({
-    type: ActionType.GET_OFFERS,
-    payload: fullOffers.get(city),
   }),
 
   openDetailsScreen: (offer) => ({
@@ -43,11 +34,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.ACTIVATE_OFFER:
       return Object.assign({}, state, {
         activeOffer: action.payload,
-      });
-
-    case ActionType.GET_OFFERS:
-      return Object.assign({}, state, {
-        offers: action.payload,
       });
 
     case ActionType.CHANGE_CITY:

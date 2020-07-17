@@ -3,14 +3,21 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-import {ActionCreator} from "../../redux/reducer.js";
+import {ActionCreator} from "../../redux/reducer/application/application.js";
+// import {AuthorizationStatus} from "../../redux/reducer/user/user.js";
+// import {getAuthorizationStatus} from "../../redux/reducer/user/selectors.js";
+import {getOffers, getCities} from "../../redux/reducer/data/selectors.js";
+import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/reducer/application/selectors.js";
 import Main from "../main/main.jsx";
+import {ActionCreator as DataActionCreator} from "../../redux/reducer/data/data.js";
+// import {Operation as UserOperation} from "../../redux/reducer/user/user.js";
 import PlaceDetails from "../place-details/place-details.jsx";
 
 
 class App extends PureComponent {
   _renderMainScreen() {
     const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer} = this.props;
+    const activeCity = city === `` ? cities[0] : city;
 
     if (step === `mainScreen`) {
       return (
@@ -18,7 +25,7 @@ class App extends PureComponent {
           offers={offers}
           onOfferTitleClick={onOfferTitleClick}
           onCityClick={onCityClick}
-          city={city}
+          city={activeCity}
           cities={cities}
           activeOffer={activeOffer}
           onCardMouseOver={onCardMouseOver}
@@ -32,7 +39,7 @@ class App extends PureComponent {
           offer = {place}
           nearestOffers = {offers.slice(0, 3)}
           onOfferTitleClick={onOfferTitleClick}
-          city={city}
+          city={activeCity}
           onCardMouseOver={onCardMouseOver}
         />
       );
@@ -41,7 +48,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, place, city, onCardMouseOver} = this.props;
+    const {offers, onOfferTitleClick, place, city, cities, onCardMouseOver} = this.props;
+    const activeCity = city === `` ? cities[0] : city;
     return (
       <BrowserRouter>
         <Switch>
@@ -53,7 +61,7 @@ class App extends PureComponent {
               offer = {place}
               nearestOffers = {offers.slice(0, 3)}
               onOfferTitleClick={onOfferTitleClick}
-              city={city}
+              city={activeCity}
               onCardMouseOver={onCardMouseOver}
             />
           </Route>
@@ -76,12 +84,12 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step,
-  city: state.city,
-  place: state.place,
-  offers: state.offers,
-  cities: state.cities,
-  activeOffer: state.activeOffer
+  step: getStep(state),
+  city: getCity(state),
+  place: getPlace(state),
+  offers: getOffers(state),
+  cities: getCities(state),
+  activeOffer: getActiveOffer(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -90,7 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.getOffers(city));
+    dispatch(DataActionCreator.getOffers(city));
   },
   onCardMouseOver(offer) {
     dispatch(ActionCreator.activateOffer(offer));

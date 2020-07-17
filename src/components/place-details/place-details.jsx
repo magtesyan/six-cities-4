@@ -6,7 +6,7 @@ import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
 import PlaceDetailsFeatures from "../place-details-features/place-details-features.jsx";
-import {RATING_IN_WIDTH_PERCENT, CITY_COORDINATES, OFFER_CARDS_CLASSES} from "../../const.js";
+import {RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
   const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver} = props;
@@ -43,9 +43,11 @@ const PlaceDetails = (props) => {
           />
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                <span>{offer.rank}</span>
-              </div>
+              {offer.rank &&
+                <div className="property__mark">
+                  <span>Premium</span>
+                </div>
+              }
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.name}
@@ -105,7 +107,7 @@ const PlaceDetails = (props) => {
           </div>
           <section className="property__map map">
             <Map
-              city={CITY_COORDINATES.get(`Amsterdam`)}
+              city={offer.coordinates}
               offers = {nearestOffers}
             />
           </section>
@@ -132,9 +134,10 @@ const PlaceDetails = (props) => {
 PlaceDetails.propTypes = {
   offer: PropTypes.shape({
     id: PropTypes.string,
+    coordinates: PropTypes.arrayOf(PropTypes.number),
     name: PropTypes.string,
     type: PropTypes.string,
-    rank: PropTypes.string,
+    rank: PropTypes.bool,
     price: PropTypes.number,
     rating: PropTypes.number,
     pictures: PropTypes.arrayOf(PropTypes.string),
@@ -156,7 +159,7 @@ PlaceDetails.propTypes = {
   }),
   nearestOffers: PropTypes.array,
   onOfferTitleClick: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   onCardMouseOver: PropTypes.func.isRequired
 };
 

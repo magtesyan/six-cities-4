@@ -13,7 +13,7 @@ const offers = {
   price: 80,
   rating: 1,
   type: `Apartment`,
-  rank: `Premium`
+  rank: true
 };
 
 it(`Cards are rendered correctly`, () => {

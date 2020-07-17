@@ -12,7 +12,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: true
   },
   {
     id: shortid.generate(),
@@ -20,7 +20,7 @@ const offers = [
     price: 90,
     rating: 2,
     type: `Private room`,
-    rank: `Premium`
+    rank: true
   },
   {
     id: shortid.generate(),
@@ -28,7 +28,7 @@ const offers = [
     price: 100,
     rating: 3,
     type: `Apartment`,
-    rank: `Premium`
+    rank: false
   },
   {
     id: shortid.generate(),
@@ -36,7 +36,7 @@ const offers = [
     price: 110,
     rating: 4,
     type: `Private room`,
-    rank: `Premium`
+    rank: false
   },
   {
     id: shortid.generate(),
@@ -44,7 +44,7 @@ const offers = [
     price: 120,
     rating: 5,
     type: `Apartment`,
-    rank: `Premium`
+    rank: true
   }
 ];
 const className = `near-places__card`;
