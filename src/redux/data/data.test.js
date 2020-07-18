@@ -1,5 +1,5 @@
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../../api.js";
+import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation} from "./data.js";
 
 const fullOffers = new Map([
@@ -399,7 +399,6 @@ it(`Reducer should update offers by load offers`, () => {
     type: ActionType.GET_OFFERS,
     payload: fullOffers,
   })).toEqual({
-    cities: [],
     offers: fullOffers,
   });
 });
@@ -451,31 +450,39 @@ describe(`Operation work correctly`, () => {
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: ActionType.GET_OFFERS,
-          payload: [{
-            id: expect.anything(),
-            name: serverMock[0].title,
-            price: serverMock[0].price,
-            rating: serverMock[0].rating,
-            type: serverMock[0].type,
-            rank: serverMock[0].is_premium,
-            pictures: serverMock[0].images,
-            description: serverMock[0].description,
-            bedrooms: serverMock[0].bedrooms,
-            guests: serverMock[0].max_adults,
-            features: serverMock[0].goods,
-            host: {
-              avatar: serverMock[0].host.avatar_url,
-              id: serverMock[0].host.id,
-              super: serverMock[0].host.is_pro ? 1 : 0,
-              name: serverMock[0].host.name
-            },
-            coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
-            reviews: []
-          }],
-        });
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            {
+              type: ActionType.GET_CITIES,
+              payload: [serverMock[0].city.name],
+            }
+        );
+        expect(dispatch).toHaveBeenNthCalledWith(2,
+            {
+              type: ActionType.GET_OFFERS,
+              payload: new Map().set(serverMock[0].city.name, [{
+                id: expect.anything(),
+                name: serverMock[0].title,
+                price: serverMock[0].price,
+                rating: serverMock[0].rating,
+                type: serverMock[0].type,
+                rank: serverMock[0].is_premium,
+                pictures: serverMock[0].images,
+                description: serverMock[0].description,
+                bedrooms: serverMock[0].bedrooms,
+                guests: serverMock[0].max_adults,
+                features: serverMock[0].goods,
+                host: {
+                  avatar: serverMock[0].host.avatar_url,
+                  id: serverMock[0].host.id,
+                  super: serverMock[0].host.is_pro ? 1 : 0,
+                  name: serverMock[0].host.name
+                },
+                coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
+                reviews: []
+              }]),
+            }
+        );
       });
   });
 });

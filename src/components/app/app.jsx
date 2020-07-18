@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
-import {ActionCreator} from "../../redux/reducer/application/application.js";
+import {ActionCreator} from "../../redux/application/application.js";
 // import {AuthorizationStatus} from "../../redux/reducer/user/user.js";
 // import {getAuthorizationStatus} from "../../redux/reducer/user/selectors.js";
-import {getOffers, getCities} from "../../redux/reducer/data/selectors.js";
-import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/reducer/application/selectors.js";
+import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
+import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
-import {ActionCreator as DataActionCreator} from "../../redux/reducer/data/data.js";
+import {ActionCreator as DataActionCreator} from "../../redux/data/data.js";
 // import {Operation as UserOperation} from "../../redux/reducer/user/user.js";
 import PlaceDetails from "../place-details/place-details.jsx";
 
@@ -87,7 +87,7 @@ const mapStateToProps = (state) => ({
   step: getStep(state),
   city: getCity(state),
   place: getPlace(state),
-  offers: getOffers(state),
+  offers: getOffersByCity(state),
   cities: getCities(state),
   activeOffer: getActiveOffer(state)
 });
@@ -98,7 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(DataActionCreator.getOffers(city));
+    dispatch(DataActionCreator.getOffersByCity());
   },
   onCardMouseOver(offer) {
     dispatch(ActionCreator.activateOffer(offer));
