@@ -85,7 +85,7 @@ Main.propTypes = {
   cities: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   activeOffer: PropTypes.object,
   onCardMouseOver: PropTypes.func.isRequired,
 };

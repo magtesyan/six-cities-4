@@ -1,4 +1,6 @@
-import {reducer, ActionType, ActionCreator} from "./reducer.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "../../api.js";
+import {reducer, ActionType, Operation} from "./data.js";
 
 const fullOffers = new Map([
   [`Amsterdam`, [
@@ -381,42 +383,106 @@ const fullOffers = new Map([
   [`Dusseldorf`, []],
 ]);
 
+const api = createAPI(() => {});
+
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
-    city: `Amsterdam`,
-    place: {},
-    step: `mainScreen`,
-    offers: fullOffers.get(`Amsterdam`),
-    cities: Array.from(fullOffers.keys()),
-    activeOffer: fullOffers.get(`Amsterdam`)[0]
+    cities: [],
+    offers: [],
   });
 });
 
-it(`Reducer should change the city by a given value`, () => {
+it(`Reducer should update offers by load offers`, () => {
   expect(reducer({
-    city: `Amsterdam`
+    offers: [],
   }, {
-    type: ActionType.CHANGE_CITY,
-    payload: `Brussels`,
+    type: ActionType.GET_OFFERS,
+    payload: fullOffers,
   })).toEqual({
-    city: `Brussels`,
-  });
-
-  expect(reducer({
-    city: `Brussels`
-  }, {
-    type: ActionType.CHANGE_CITY,
-    payload: `Amsterdam`,
-  })).toEqual({
-    city: `Amsterdam`,
+    offers: fullOffers,
   });
 });
 
-describe(`Action creators work correctly`, () => {
-  it(`Action creator for change city to Brussels returns correct action`, () => {
-    expect(ActionCreator.changeCity(`Brussels`)).toEqual({
-      type: ActionType.CHANGE_CITY,
-      payload: `Brussels`,
-    });
+const serverMock = [{
+  "bedrooms": 3,
+  "city": {
+    "location": {
+      "latitude": 52.370216,
+      "longitude": 4.895168,
+      "zoom": 10
+    },
+    "name": `Amsterdam`
+  },
+  "description": `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  "goods": [`Heating`, `Kitchen`, `Cable TV`, `Washing machine`, `Coffee machine`, `Dishwasher`],
+  "host": {
+    "avatar_url": `img/1.png`,
+    "id": 3,
+    "is_pro": true,
+    "name": `Angelina`
+  },
+  "id": 1,
+  "images": [`img/1.png`, `img/2.png`],
+  "is_favorite": false,
+  "is_premium": false,
+  "location": {
+    "latitude": 52.35514938496378,
+    "longitude": 4.673877537499948,
+    "zoom": 8
+  },
+  "max_adults": 4,
+  "preview_image": `img/1.png`,
+  "price": 120,
+  "rating": 4.8,
+  "title": `Beautiful & luxurious studio at great location`,
+  "type": `apartment`
+}];
+
+describe(`Operation work correctly`, () => {
+  it(`Should make a correct API call to /hotels`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offersLoader = Operation.getOffers();
+
+    apiMock
+      .onGet(`/hotels`)
+      .reply(200, serverMock);
+
+    return offersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            {
+              type: ActionType.GET_CITIES,
+              payload: [serverMock[0].city.name],
+            }
+        );
+        expect(dispatch).toHaveBeenNthCalledWith(2,
+            {
+              type: ActionType.GET_OFFERS,
+              payload: new Map().set(serverMock[0].city.name, [{
+                id: expect.anything(),
+                name: serverMock[0].title,
+                price: serverMock[0].price,
+                rating: serverMock[0].rating,
+                type: serverMock[0].type,
+                rank: serverMock[0].is_premium,
+                pictures: serverMock[0].images,
+                description: serverMock[0].description,
+                bedrooms: serverMock[0].bedrooms,
+                guests: serverMock[0].max_adults,
+                features: serverMock[0].goods,
+                host: {
+                  avatar: serverMock[0].host.avatar_url,
+                  id: serverMock[0].host.id,
+                  super: serverMock[0].host.is_pro ? 1 : 0,
+                  name: serverMock[0].host.name
+                },
+                coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
+                reviews: []
+              }]),
+            }
+        );
+      });
   });
 });

@@ -15,9 +15,11 @@ const PlaceCard = (props) => {
       className={`${className} place-card`}
       onMouseOver={callMouseOver}
     >
-      <div className="place-card__mark">
-        <span>{offer.rank}</span>
-      </div>
+      {offer.rank &&
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      }
       <div className={`cities__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
@@ -59,7 +61,7 @@ PlaceCard.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     type: PropTypes.string,
-    rank: PropTypes.string,
+    rank: PropTypes.bool,
     price: PropTypes.number,
     rating: PropTypes.number,
   }),

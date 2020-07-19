@@ -16,7 +16,7 @@ const mock = {
   price: 80,
   rating: 1,
   type: `Apartment`,
-  rank: `Premium`
+  rank: true
 };
 
 const className = `cities__place-card`;
@@ -28,7 +28,7 @@ it(`When mouse on card - card details sent`, () => {
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: true
   };
 
   const card = mount(
@@ -56,7 +56,7 @@ it(`When title is clicked - card details sent`, () => {
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`
+    rank: true
   };
 
   const card = mount(

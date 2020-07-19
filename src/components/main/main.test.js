@@ -12,7 +12,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`,
+    rank: true,
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
@@ -21,7 +21,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`,
+    rank: true,
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
@@ -30,7 +30,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`,
+    rank: true,
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
@@ -39,7 +39,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`,
+    rank: true,
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
@@ -48,7 +48,7 @@ const offers = [
     price: 80,
     rating: 1,
     type: `Apartment`,
-    rank: `Premium`,
+    rank: false,
     coordinates: [52.3909553943508, 4.85309666406198],
   }
 ];
