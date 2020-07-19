@@ -1,3 +1,5 @@
+import {ActionCreator as AppActionCreator} from "../application/application.js";
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -9,6 +11,7 @@ const initialState = {
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  SET_EMAIL: `SET_EMAIL`,
 };
 
 const ActionCreator = {
@@ -16,6 +19,12 @@ const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
+    };
+  },
+  setEmail: (email) => {
+    return {
+      type: ActionType.SET_EMAIL,
+      payload: email,
     };
   },
 };
@@ -38,6 +47,8 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setEmail(authData.login));
+        dispatch(AppActionCreator.openMainScreen());
       });
   },
 };
@@ -47,6 +58,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
+      });
+    case ActionType.SET_EMAIL:
+      return Object.assign({}, state, {
+        email: action.payload,
       });
   }
 

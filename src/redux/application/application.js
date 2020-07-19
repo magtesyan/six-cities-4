@@ -10,6 +10,8 @@ const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
   CHANGE_CITY: `CHANGE_CITY`,
   OPEN_DETAILS_SCREEN: `OPEN_DETAILS_SCREEN`,
+  OPEN_AUTH_SCREEN: `OPEN_AUTH_SCREEN`,
+  OPEN_MAIN_SCREEN: `OPEN_MAIN_SCREEN`,
 };
 
 const ActionCreator = {
@@ -21,6 +23,14 @@ const ActionCreator = {
   openDetailsScreen: (offer) => ({
     type: ActionType.OPEN_DETAILS_SCREEN,
     payload: offer,
+  }),
+
+  openAuthScreen: () => ({
+    type: ActionType.OPEN_AUTH_SCREEN,
+  }),
+
+  openMainScreen: () => ({
+    type: ActionType.OPEN_MAIN_SCREEN,
   }),
 
   changeCity: (city) => ({
@@ -35,16 +45,22 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         activeOffer: action.payload,
       });
-
     case ActionType.CHANGE_CITY:
       return Object.assign({}, state, {
         city: action.payload,
       });
-
     case ActionType.OPEN_DETAILS_SCREEN:
       return Object.assign({}, state, {
         step: `detailsScreen`,
         place: action.payload
+      });
+    case ActionType.OPEN_AUTH_SCREEN:
+      return Object.assign({}, state, {
+        step: `authScreen`,
+      });
+    case ActionType.OPEN_MAIN_SCREEN:
+      return Object.assign({}, state, {
+        step: `mainScreen`,
       });
 
     default:

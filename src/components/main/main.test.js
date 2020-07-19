@@ -66,12 +66,16 @@ const createMapBlock = () => {
   global.document.body.appendChild(div);
 };
 
+const authorizationStatus = `AUTH`;
+
 it(`Render Main`, () => {
   createMapBlock();
   const tree = renderer
     .create(
         <BrowserRouter>
           <Main
+            onSignInClick={jest.fn()}
+            authorizationStatus={authorizationStatus}
             offers={offers}
             onOfferTitleClick={jest.fn()}
             onCityClick={jest.fn()}
