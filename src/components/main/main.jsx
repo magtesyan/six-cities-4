@@ -11,10 +11,11 @@ import withSorting from "../../hocs/with-sorting/with-sorting.js";
 const PlaceCardsListSorted = withSorting(PlaceCardsList);
 
 const Main = (props) => {
-  const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer} = props;
+  const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer, authorizationStatus, onSignInClick, email} = props;
   const isOffersEmpty = offers.length === 0;
   const emptyMainClassName = isOffersEmpty ? `page__main--index-empty` : ``;
   const emptyCityPlacesClassName = isOffersEmpty ? `cities__places-container--empty` : ``;
+  const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
 
   return (
     <div className="page page--gray page--main">
@@ -28,11 +29,19 @@ const Main = (props) => {
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
+                <li
+                  className="header__nav-item user"
+                  onClick={onSignInClick}
+                >
                   <a className="header__nav-link header__nav-link--profile" href="#">
                     <div className="header__avatar-wrapper user__avatar-wrapper">
                     </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                    {isUserAuthorized &&
+                      <span className="header__user-name user__name">{email}</span>
+                    }
+                    {isUserAuthorized ||
+                      <span className="header__login">Sign in</span>
+                    }
                   </a>
                 </li>
               </ul>
@@ -81,6 +90,8 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
   offers: PropTypes.array.isRequired,
   cities: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
@@ -88,6 +99,7 @@ Main.propTypes = {
   city: PropTypes.string,
   activeOffer: PropTypes.object,
   onCardMouseOver: PropTypes.func.isRequired,
+  email: PropTypes.string,
 };
 
 export default Main;

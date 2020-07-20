@@ -71,6 +71,8 @@ const createMapBlock = () => {
   global.document.body.appendChild(div);
 };
 
+const authorizationStatus = `AUTH`;
+
 describe(`Click on Title Test`, () => {
   createMapBlock();
   it(`Should offer title be pressed`, () => {
@@ -79,6 +81,8 @@ describe(`Click on Title Test`, () => {
     const mainScreen = mount(
         <BrowserRouter>
           <Main
+            onSignInClick={jest.fn()}
+            authorizationStatus={authorizationStatus}
             offers={offers}
             onOfferTitleClick = {onOfferTitleClick}
             onCityClick={jest.fn()}

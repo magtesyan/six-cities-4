@@ -1,4 +1,5 @@
 import {collectOffers} from "../../adapters/offers";
+import {getHotels} from "../../clients/data.js";
 
 const initialState = {
   offers: [],
@@ -23,7 +24,7 @@ const ActionCreator = {
 
 const Operation = {
   getOffers: () => (dispatch, getState, api) => {
-    return api.get(`/hotels`)
+    return getHotels(api)
       .then((response) => {
         const fullOffers = collectOffers(response.data);
         const cities = Array.from(fullOffers.keys());

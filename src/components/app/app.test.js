@@ -321,6 +321,8 @@ const cities = [
   `Brussels`
 ];
 
+const authorizationStatus = `AUTH`;
+
 const createMapBlock = () => {
   const div = global.document.createElement(`div`);
   div.setAttribute(`id`, `map`);
@@ -332,6 +334,9 @@ describe(`Render App`, () => {
     createMapBlock();
     const tree = renderer
       .create(<App
+        login={jest.fn()}
+        onSignInClick={jest.fn()}
+        authorizationStatus={authorizationStatus}
         offers={offers}
         onOfferTitleClick={jest.fn()}
         onCityClick={jest.fn()}
