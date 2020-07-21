@@ -5,19 +5,21 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import {ActionCreator} from "../../redux/application/application.js";
 // import {AuthorizationStatus} from "../../redux/user/user.js";
+import {getFeedbacks} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
 import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
 import {ActionCreator as DataActionCreator} from "../../redux/data/data.js";
 import {Operation as UserOperation} from "../../redux/user/user.js";
+import {Operation as FeedbackOperation} from "../../redux/feedback/feedback.js";
 import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 
 
 class App extends PureComponent {
   _renderMainScreen() {
-    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email} = this.props;
+    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email, feedbacks} = this.props;
     const activeCity = city === `` ? cities[0] : city;
 
     if (step === `mainScreen`) {
@@ -45,6 +47,7 @@ class App extends PureComponent {
           onOfferTitleClick={onOfferTitleClick}
           city={activeCity}
           onCardMouseOver={onCardMouseOver}
+          feedbacks={feedbacks}
         />
       );
     }
@@ -60,7 +63,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, place, city, cities, onCardMouseOver, login} = this.props;
+    const {offers, onOfferTitleClick, place, city, cities, onCardMouseOver, login, authorizationStatus, feedbacks} = this.props;
     const activeCity = city === `` ? cities[0] : city;
     return (
       <BrowserRouter>
@@ -75,6 +78,8 @@ class App extends PureComponent {
               onOfferTitleClick={onOfferTitleClick}
               city={activeCity}
               onCardMouseOver={onCardMouseOver}
+              authorizationStatus={authorizationStatus}
+              feedbacks={feedbacks}
             />
           </Route>
           <Route exact path="/dev-auth">
@@ -102,6 +107,7 @@ App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeOffer: PropTypes.object,
   email: PropTypes.string,
+  feedbacks: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
@@ -112,7 +118,8 @@ const mapStateToProps = (state) => ({
   offers: getOffersByCity(state),
   cities: getCities(state),
   activeOffer: getActiveOffer(state),
-  email: getEmail(state)
+  email: getEmail(state),
+  feedbacks: getFeedbacks(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -123,6 +130,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserOperation.login(authData));
   },
   onOfferTitleClick(offer) {
+    dispatch(FeedbackOperation.getFeedbacks(offer.id));
     dispatch(ActionCreator.openDetailsScreen(offer));
   },
   onCityClick(city) {

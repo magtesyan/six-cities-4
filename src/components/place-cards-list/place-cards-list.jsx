@@ -26,7 +26,7 @@ class PlaceCardsList extends PureComponent {
       <PlaceCard
         className = {className}
         offer={offer}
-        key={offer.id}
+        key={`${offer.id}${offer.price}${offer.name}`}
         onOfferTitleClick = {onOfferTitleClick}
         onMouseOver = {onCardMouseOver}
       />

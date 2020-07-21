@@ -1,11 +1,9 @@
-import shortid from "shortid";
-
 const fullOffers = new Map();
 let cities = Array.from(fullOffers.keys());
 
 const transformOffer = (offerFromServer) => {
   const transformedOffer = {
-    id: shortid.generate(),
+    id: offerFromServer.id.toString(),
     name: offerFromServer.title,
     price: offerFromServer.price,
     rating: offerFromServer.rating,

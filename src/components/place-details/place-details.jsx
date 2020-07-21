@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import FeedbackList from "../feedback-list/feedback-list.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
@@ -9,8 +10,9 @@ import PlaceDetailsFeatures from "../place-details-features/place-details-featur
 import {RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver} = props;
+  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks} = props;
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
+  const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   return (
     <div className="page">
       <header className="header">
@@ -102,7 +104,12 @@ const PlaceDetails = (props) => {
               </div>
               <FeedbackList
                 reviews={offer.reviews}
+                feedbacks={feedbacks}
               />
+              {
+                isUserAuthorized &&
+                <FeedbackForm />
+              }
             </div>
           </div>
           <section className="property__map map">
@@ -160,7 +167,9 @@ PlaceDetails.propTypes = {
   nearestOffers: PropTypes.array,
   onOfferTitleClick: PropTypes.func.isRequired,
   city: PropTypes.string,
-  onCardMouseOver: PropTypes.func.isRequired
+  onCardMouseOver: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string,
+  feedbacks: PropTypes.array,
 };
 
 export default PlaceDetails;
