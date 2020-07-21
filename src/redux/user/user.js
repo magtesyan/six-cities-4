@@ -33,7 +33,8 @@ const ActionCreator = {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return getLogin(api)
-      .then(() => {
+      .then((response) => {
+        dispatch(ActionCreator.setEmail(response.data.email));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       })
       .catch((err) => {

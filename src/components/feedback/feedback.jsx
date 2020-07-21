@@ -6,7 +6,6 @@ import {RATING_IN_WIDTH_PERCENT, MONTHS} from "../../const.js";
 const Feedback = (props) => {
   const {feedback} = props;
   const feedbackDate = new Date(feedback.date);
-  console.log(feedback);
   const reviewRatingStyleWidth = `${feedback.rating * RATING_IN_WIDTH_PERCENT}%`;
   const reviewDate = `${MONTHS[feedbackDate.getMonth()]} ${feedbackDate.getDate()}, ${feedbackDate.getFullYear()}`;
 

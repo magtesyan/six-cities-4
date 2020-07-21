@@ -10,7 +10,6 @@ import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
 import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
-import {ActionCreator as DataActionCreator} from "../../redux/data/data.js";
 import {Operation as UserOperation} from "../../redux/user/user.js";
 import {Operation as FeedbackOperation} from "../../redux/feedback/feedback.js";
 import PlaceDetails from "../place-details/place-details.jsx";
@@ -42,12 +41,15 @@ class App extends PureComponent {
     if (step === `detailsScreen`) {
       return (
         <PlaceDetails
+          onSignInClick={onSignInClick}
+          authorizationStatus={authorizationStatus}
           offer = {place}
           nearestOffers = {offers.slice(0, 3)}
           onOfferTitleClick={onOfferTitleClick}
           city={activeCity}
           onCardMouseOver={onCardMouseOver}
           feedbacks={feedbacks}
+          email={email}
         />
       );
     }
@@ -63,8 +65,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, place, city, cities, onCardMouseOver, login, authorizationStatus, feedbacks} = this.props;
-    const activeCity = city === `` ? cities[0] : city;
+    const {login} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -72,15 +73,7 @@ class App extends PureComponent {
             {this._renderMainScreen()}
           </Route>
           <Route exact path="/details">
-            <PlaceDetails
-              offer = {place}
-              nearestOffers = {offers.slice(0, 3)}
-              onOfferTitleClick={onOfferTitleClick}
-              city={activeCity}
-              onCardMouseOver={onCardMouseOver}
-              authorizationStatus={authorizationStatus}
-              feedbacks={feedbacks}
-            />
+            {this._renderMainScreen()}
           </Route>
           <Route exact path="/dev-auth">
             <SignIn
@@ -135,7 +128,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(DataActionCreator.getOffersByCity());
   },
   onCardMouseOver(offer) {
     dispatch(ActionCreator.activateOffer(offer));
