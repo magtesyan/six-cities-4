@@ -43,7 +43,7 @@ Feedback.propTypes = {
       name: PropTypes.string,
       avatar_url: PropTypes.string,
       id: PropTypes.number,
-      isPro: PropTypes.bool,
+      is_pro: PropTypes.bool,
     }),
     date: PropTypes.date,
     id: PropTypes.number,

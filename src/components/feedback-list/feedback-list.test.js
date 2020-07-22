@@ -10,9 +10,9 @@ const feedbacks = [
     rating: 5,
     date: `2019-05-08T14:13:56.569Z`,
     user: {
-      avatarUrl: `img/1.png`,
+      avatar_url: `img/1.png`,
       id: 4,
-      isProp: true,
+      is_pro: true,
       name: `Alex`
     }
   }

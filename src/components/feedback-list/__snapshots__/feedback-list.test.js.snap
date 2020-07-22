@@ -30,7 +30,7 @@ exports[`Feedback List is rendered correctly 1`] = `
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="undefined"
+            src="img/1.png"
             width="54"
           />
         </div>
