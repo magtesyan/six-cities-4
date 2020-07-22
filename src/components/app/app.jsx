@@ -4,8 +4,9 @@ import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import {ActionCreator} from "../../redux/application/application.js";
+import {ActionCreator as FeedbackActionCreator} from "../../redux/feedback/feedback.js";
 // import {AuthorizationStatus} from "../../redux/user/user.js";
-import {getFeedbacks} from "../../redux/feedback/selectors.js";
+import {getFeedbacks, getFeedbackFormStatus} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
 import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
@@ -18,7 +19,7 @@ import SignIn from "../sign-in/sign-in.jsx";
 
 class App extends PureComponent {
   _renderMainScreen() {
-    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email, feedbacks} = this.props;
+    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email, feedbacks, onSubmitFeedback, feedbackFormStatus} = this.props;
     const activeCity = city === `` ? cities[0] : city;
 
     if (step === `mainScreen`) {
@@ -50,6 +51,8 @@ class App extends PureComponent {
           onCardMouseOver={onCardMouseOver}
           feedbacks={feedbacks}
           email={email}
+          onSubmitFeedback={onSubmitFeedback}
+          feedbackFormStatus={feedbackFormStatus}
         />
       );
     }
@@ -89,6 +92,7 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  onSubmitFeedback: PropTypes.func.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   offers: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
@@ -101,6 +105,7 @@ App.propTypes = {
   activeOffer: PropTypes.object,
   email: PropTypes.string,
   feedbacks: PropTypes.array,
+  feedbackFormStatus: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -112,7 +117,8 @@ const mapStateToProps = (state) => ({
   cities: getCities(state),
   activeOffer: getActiveOffer(state),
   email: getEmail(state),
-  feedbacks: getFeedbacks(state)
+  feedbacks: getFeedbacks(state),
+  feedbackFormStatus: getFeedbackFormStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,6 +127,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login(authData) {
     dispatch(UserOperation.login(authData));
+  },
+  onSubmitFeedback(hotelId, feedbackData) {
+    dispatch(FeedbackActionCreator.changeFormStatus(`disabled`));
+    dispatch(FeedbackOperation.postFeedbacks(hotelId, feedbackData));
   },
   onOfferTitleClick(offer) {
     dispatch(FeedbackOperation.getFeedbacks(offer.id));

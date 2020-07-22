@@ -11,7 +11,7 @@ import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 import {RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email} = props;
+  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus} = props;
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   return (
@@ -98,12 +98,15 @@ const PlaceDetails = (props) => {
                 </div>
               </div>
               <FeedbackList
-                reviews={offer.reviews}
                 feedbacks={feedbacks}
               />
               {
                 isUserAuthorized &&
-                <FeedbackForm />
+                <FeedbackForm
+                  onSubmitFeedback={onSubmitFeedback}
+                  hotelId={offer.id}
+                  feedbackFormStatus={feedbackFormStatus}
+                />
               }
             </div>
           </div>
@@ -167,6 +170,8 @@ PlaceDetails.propTypes = {
   feedbacks: PropTypes.array,
   onSignInClick: PropTypes.func.isRequired,
   email: PropTypes.string,
+  onSubmitFeedback: PropTypes.func.isRequired,
+  feedbackFormStatus: PropTypes.string,
 };
 
 export default PlaceDetails;
