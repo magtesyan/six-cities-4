@@ -14,14 +14,14 @@ exports[`Feedbacks are rendered correctly 1`] = `
         alt="Reviews avatar"
         className="reviews__avatar user__avatar"
         height="54"
-        src="img/avatar-max.jpg"
+        src="img/1.png"
         width="54"
       />
     </div>
     <span
       className="reviews__user-name"
     >
-      Francis
+      Alex
     </span>
   </div>
   <div
@@ -54,9 +54,9 @@ exports[`Feedbacks are rendered correctly 1`] = `
     </p>
     <time
       className="reviews__time"
-      dateTime="January 1, 2020"
+      dateTime="May 8, 2019"
     >
-      January 1, 2020
+      May 8, 2019
     </time>
   </div>
 </li>

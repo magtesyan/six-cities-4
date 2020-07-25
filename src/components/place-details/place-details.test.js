@@ -317,6 +317,21 @@ const offers = [
   }
 ];
 
+const feedbacks = [
+  {
+    id: 1,
+    comment: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+    rating: 5,
+    date: `2019-05-08T14:13:56.569Z`,
+    user: {
+      avatar_url: `img/1.png`,
+      id: 4,
+      is_pro: true,
+      name: `Alex`
+    }
+  }
+];
+
 const city = `Amsterdam`;
 
 const createMapBlock = () => {
@@ -338,6 +353,9 @@ it(`PlaceDetailsScreen is not rendered correctly`, () => {
             onOfferTitleClick = {onOfferTitleClick}
             city={city}
             onCardMouseOver={jest.fn()}
+            onSignInClick={jest.fn()}
+            onSubmitFeedback={jest.fn()}
+            feedbacks={feedbacks}
           />
         </BrowserRouter>
     ).toJSON();

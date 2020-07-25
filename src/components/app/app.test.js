@@ -345,6 +345,7 @@ describe(`Render App`, () => {
         place={{}}
         cities={cities}
         onCardMouseOver={jest.fn()}
+        onSubmitFeedback={jest.fn()}
       />)
       .toJSON();
 

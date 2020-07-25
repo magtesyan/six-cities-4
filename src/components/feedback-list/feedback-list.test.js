@@ -1,31 +1,28 @@
 import renderer from "react-test-renderer";
 import React from "react";
-import shortid from "shortid";
 
 import FeedbackList from "./feedback-list.jsx";
 
-const reviews = [
+const feedbacks = [
   {
-    id: shortid.generate(),
-    text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
-    assessment: 5,
-    name: `Francis`,
-    date: new Date(2020, 0, 1)
-  },
-  {
-    id: shortid.generate(),
-    text: `We like the beach view.`,
-    assessment: 4,
-    name: `Marjorie`,
-    date: new Date(2019, 1, 2)
-  },
+    id: 1,
+    comment: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+    rating: 5,
+    date: `2019-05-08T14:13:56.569Z`,
+    user: {
+      avatar_url: `img/1.png`,
+      id: 4,
+      is_pro: true,
+      name: `Alex`
+    }
+  }
 ];
 
 it(`Feedback List is rendered correctly`, () => {
   const tree = renderer
     .create(
         <FeedbackList
-          reviews={reviews}
+          feedbacks={feedbacks}
         />
     ).toJSON();
 

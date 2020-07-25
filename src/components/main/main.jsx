@@ -6,6 +6,7 @@ import CityList from "../city-list/city-list.jsx";
 import EmptyScreen from "../empty-screen/empty-screen.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
+import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 import withSorting from "../../hocs/with-sorting/with-sorting.js";
 
 const PlaceCardsListSorted = withSorting(PlaceCardsList);
@@ -27,25 +28,11 @@ const Main = (props) => {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </a>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li
-                  className="header__nav-item user"
-                  onClick={onSignInClick}
-                >
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    {isUserAuthorized &&
-                      <span className="header__user-name user__name">{email}</span>
-                    }
-                    {isUserAuthorized ||
-                      <span className="header__login">Sign in</span>
-                    }
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <ProfileNavigation
+              onSignInClick={onSignInClick}
+              isUserAuthorized={isUserAuthorized}
+              email={email}
+            />
           </div>
         </div>
       </header>

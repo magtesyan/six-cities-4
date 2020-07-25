@@ -4,20 +4,22 @@ import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 
 import {ActionCreator} from "../../redux/application/application.js";
+import {ActionCreator as FeedbackActionCreator} from "../../redux/feedback/feedback.js";
 // import {AuthorizationStatus} from "../../redux/user/user.js";
+import {getFeedbacks, getFeedbackFormStatus} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
 import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
-import {ActionCreator as DataActionCreator} from "../../redux/data/data.js";
 import {Operation as UserOperation} from "../../redux/user/user.js";
+import {Operation as FeedbackOperation} from "../../redux/feedback/feedback.js";
 import PlaceDetails from "../place-details/place-details.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 
 
 class App extends PureComponent {
   _renderMainScreen() {
-    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email} = this.props;
+    const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, step, city, place, cities, activeOffer, authorizationStatus, login, onSignInClick, email, feedbacks, onSubmitFeedback, feedbackFormStatus} = this.props;
     const activeCity = city === `` ? cities[0] : city;
 
     if (step === `mainScreen`) {
@@ -40,11 +42,17 @@ class App extends PureComponent {
     if (step === `detailsScreen`) {
       return (
         <PlaceDetails
+          onSignInClick={onSignInClick}
+          authorizationStatus={authorizationStatus}
           offer = {place}
           nearestOffers = {offers.slice(0, 3)}
           onOfferTitleClick={onOfferTitleClick}
           city={activeCity}
           onCardMouseOver={onCardMouseOver}
+          feedbacks={feedbacks}
+          email={email}
+          onSubmitFeedback={onSubmitFeedback}
+          feedbackFormStatus={feedbackFormStatus}
         />
       );
     }
@@ -60,8 +68,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, place, city, cities, onCardMouseOver, login} = this.props;
-    const activeCity = city === `` ? cities[0] : city;
+    const {login} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -69,13 +76,7 @@ class App extends PureComponent {
             {this._renderMainScreen()}
           </Route>
           <Route exact path="/details">
-            <PlaceDetails
-              offer = {place}
-              nearestOffers = {offers.slice(0, 3)}
-              onOfferTitleClick={onOfferTitleClick}
-              city={activeCity}
-              onCardMouseOver={onCardMouseOver}
-            />
+            {this._renderMainScreen()}
           </Route>
           <Route exact path="/dev-auth">
             <SignIn
@@ -91,6 +92,7 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  onSubmitFeedback: PropTypes.func.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   offers: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
@@ -102,6 +104,8 @@ App.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeOffer: PropTypes.object,
   email: PropTypes.string,
+  feedbacks: PropTypes.array,
+  feedbackFormStatus: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -112,7 +116,9 @@ const mapStateToProps = (state) => ({
   offers: getOffersByCity(state),
   cities: getCities(state),
   activeOffer: getActiveOffer(state),
-  email: getEmail(state)
+  email: getEmail(state),
+  feedbacks: getFeedbacks(state),
+  feedbackFormStatus: getFeedbackFormStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -122,12 +128,16 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
+  onSubmitFeedback(hotelId, feedbackData) {
+    dispatch(FeedbackActionCreator.changeFormStatus(`disabled`));
+    dispatch(FeedbackOperation.postFeedbacks(hotelId, feedbackData));
+  },
   onOfferTitleClick(offer) {
+    dispatch(FeedbackOperation.getFeedbacks(offer.id));
     dispatch(ActionCreator.openDetailsScreen(offer));
   },
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
-    dispatch(DataActionCreator.getOffersByCity());
   },
   onCardMouseOver(offer) {
     dispatch(ActionCreator.activateOffer(offer));

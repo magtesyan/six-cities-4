@@ -1,16 +1,19 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import FeedbackList from "../feedback-list/feedback-list.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
 import PlaceDetailsFeatures from "../place-details-features/place-details-features.jsx";
+import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 import {RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver} = props;
+  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus} = props;
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
+  const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   return (
     <div className="page">
       <header className="header">
@@ -21,17 +24,11 @@ const PlaceDetails = (props) => {
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </a>
             </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <ProfileNavigation
+              onSignInClick={onSignInClick}
+              isUserAuthorized={isUserAuthorized}
+              email={email}
+            />
           </div>
         </div>
       </header>
@@ -101,8 +98,16 @@ const PlaceDetails = (props) => {
                 </div>
               </div>
               <FeedbackList
-                reviews={offer.reviews}
+                feedbacks={feedbacks}
               />
+              {
+                isUserAuthorized &&
+                <FeedbackForm
+                  onSubmitFeedback={onSubmitFeedback}
+                  hotelId={offer.id}
+                  feedbackFormStatus={feedbackFormStatus}
+                />
+              }
             </div>
           </div>
           <section className="property__map map">
@@ -160,7 +165,13 @@ PlaceDetails.propTypes = {
   nearestOffers: PropTypes.array,
   onOfferTitleClick: PropTypes.func.isRequired,
   city: PropTypes.string,
-  onCardMouseOver: PropTypes.func.isRequired
+  onCardMouseOver: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string,
+  feedbacks: PropTypes.array,
+  onSignInClick: PropTypes.func.isRequired,
+  email: PropTypes.string,
+  onSubmitFeedback: PropTypes.func.isRequired,
+  feedbackFormStatus: PropTypes.string,
 };
 
 export default PlaceDetails;
