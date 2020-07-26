@@ -21,7 +21,9 @@ const transformOffer = (offerFromServer) => {
       name: offerFromServer.host.name
     },
     coordinates: [offerFromServer.location.latitude, offerFromServer.location.longitude],
-    reviews: []
+    reviews: [],
+    isFavorite: offerFromServer.is_favorite,
+    city: offerFromServer.city.name
   };
 
   return transformedOffer;
@@ -40,4 +42,4 @@ const collectOffers = (offersFromServer) => {
   return fullOffers;
 };
 
-export {collectOffers, cities};
+export {collectOffers, cities, transformOffer};

@@ -1,5 +1,7 @@
-import {collectOffers} from "../../adapters/offers";
-import {getHotels} from "../../clients/data.js";
+import {collectOffers, transformOffer} from "../../adapters/offers";
+import {getHotels, postFavorite} from "../../clients/data.js";
+
+import {ActionCreator as AppActionCreator} from "../application/application.js";
 
 const initialState = {
   offers: [],
@@ -8,7 +10,8 @@ const initialState = {
 
 const ActionType = {
   GET_OFFERS: `GET_OFFERS`,
-  GET_CITIES: `GET_CITIES`
+  GET_CITIES: `GET_CITIES`,
+  CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
 };
 
 const ActionCreator = {
@@ -19,6 +22,10 @@ const ActionCreator = {
   getCities: (cities) => ({
     type: ActionType.GET_CITIES,
     payload: cities,
+  }),
+  changeActiveOfferFavoriteStatus: (offer) => ({
+    type: ActionType.CHANGE_FAVORITE_STATUS,
+    payload: offer,
   }),
 };
 
@@ -32,6 +39,13 @@ const Operation = {
         dispatch(ActionCreator.getOffers(fullOffers));
       });
   },
+  changeActiveOfferFavoriteStatus: (hotelId, status) => (dispatch, getState, api) => {
+    return postFavorite(api, hotelId, status)
+      .then((response) => {
+        dispatch(ActionCreator.changeActiveOfferFavoriteStatus(transformOffer(response.data)));
+        dispatch(AppActionCreator.openDetailsScreen(transformOffer(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +57,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_CITIES:
       return Object.assign({}, state, {
         cities: action.payload,
+      });
+    case ActionType.CHANGE_FAVORITE_STATUS:
+      const newOffers = new Map(state.offers).set(action.payload.city, state.offers.get(action.payload.city).map((offer) => {
+        return offer.id === action.payload.id ? action.payload : offer;
+      }));
+
+      return Object.assign({}, state, {
+        offers: newOffers
       });
 
     default:

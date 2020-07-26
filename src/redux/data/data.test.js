@@ -479,7 +479,9 @@ describe(`Operation work correctly`, () => {
                   name: serverMock[0].host.name
                 },
                 coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
-                reviews: []
+                reviews: [],
+                isFavorite: serverMock[0].is_favorite,
+                city: serverMock[0].city.name
               }]),
             }
         );

@@ -1,8 +1,8 @@
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
 import React from "react";
 import renderer from "react-test-renderer";
 import shortid from "shortid";
-
+import history from "../../history.js";
 import Main from "./main.jsx";
 
 const offers = [
@@ -72,7 +72,9 @@ it(`Render Main`, () => {
   createMapBlock();
   const tree = renderer
     .create(
-        <BrowserRouter>
+        <Router
+          history={history}
+        >
           <Main
             onSignInClick={jest.fn()}
             authorizationStatus={authorizationStatus}
@@ -83,8 +85,10 @@ it(`Render Main`, () => {
             cities={cities}
             activeOffer={offers[0]}
             onCardMouseOver={jest.fn()}
+            onLogoClick={jest.fn()}
+            onFavoriteButtonClick={jest.fn()}
           />
-        </BrowserRouter>)
+        </Router>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

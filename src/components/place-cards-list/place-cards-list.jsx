@@ -19,7 +19,7 @@ class PlaceCardsList extends PureComponent {
   }
 
   render() {
-    const {offers, onOfferTitleClick, className, activeCity, onCardMouseOver, onSortTypeClick, onFilterClick, activeSortingOption, sortingOptions, isFilterOpened} = this.props;
+    const {offers, onOfferTitleClick, className, activeCity, onCardMouseOver, onSortTypeClick, onFilterClick, activeSortingOption, sortingOptions, isFilterOpened, isUserAuthorized, onFavoriteButtonClick} = this.props;
     const printPlacesFoundCount = offers.length ? `${offers.length} places to stay in ${activeCity}` : `No places to stay available`;
 
     const cards = this._sortOffers(offers, activeSortingOption).map((offer) =>
@@ -28,7 +28,9 @@ class PlaceCardsList extends PureComponent {
         offer={offer}
         key={`${offer.id}${offer.price}${offer.name}`}
         onOfferTitleClick = {onOfferTitleClick}
-        onMouseOver = {onCardMouseOver}
+        onMouseOver={onCardMouseOver}
+        isUserAuthorized={isUserAuthorized}
+        onFavoriteButtonClick={onFavoriteButtonClick}
       />
     );
 
@@ -65,6 +67,8 @@ PlaceCardsList.propTypes = {
   activeSortingOption: PropTypes.string,
   sortingOptions: PropTypes.array,
   isFilterOpened: PropTypes.bool,
+  isUserAuthorized: PropTypes.bool,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
 };
 
 export default PlaceCardsList;

@@ -37,6 +37,11 @@ const ActionCreator = {
     type: ActionType.CHANGE_CITY,
     payload: city,
   }),
+
+  changeActiveOfferFavoriteStatus: (activeOffer) => ({
+    type: ActionType.CHANGE_FAVORITE_STATUS,
+    payload: activeOffer,
+  }),
 };
 
 const reducer = (state = initialState, action) => {
@@ -61,6 +66,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.OPEN_MAIN_SCREEN:
       return Object.assign({}, state, {
         step: `mainScreen`,
+      });
+    case ActionType.CHANGE_FAVORITE_STATUS:
+      return Object.assign({}, state, {
+        activeOffer: action.payload
       });
 
     default:

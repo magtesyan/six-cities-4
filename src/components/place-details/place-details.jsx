@@ -3,27 +3,35 @@ import React from "react";
 
 import FeedbackForm from "../feedback-form/feedback-form.jsx";
 import FeedbackList from "../feedback-list/feedback-list.jsx";
+import history from "../../history.js";
+import Logo from "../logo/logo.jsx";
 import Map from "../map/map.jsx";
 import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
 import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
 import PlaceDetailsFeatures from "../place-details-features/place-details-features.jsx";
 import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
-import {RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES} from "../../const.js";
+import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus} = props;
+  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus, onLogoClick, onFavoriteButtonClick} = props;
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
+  const favoriteButtonClassName = offer.isFavorite ? `property__bookmark-button--active` : ``;
+  const favoriteStatus = offer.isFavorite ? 0 : 1;
+
+  const handleFavoriteButtonClick = () => {
+    return isUserAuthorized ? onFavoriteButtonClick(offer, favoriteStatus) : history.push(AppRoute.LOGIN);
+  };
+
   return (
     <div className="page">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
-            <div className="header__left">
-              <a className="header__logo-link" href="main.html">
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
-            </div>
+            <Logo
+              onLogoClick={onLogoClick}
+              logoType={LOGO_TYPE.HEADER}
+            />
             <ProfileNavigation
               onSignInClick={onSignInClick}
               isUserAuthorized={isUserAuthorized}
@@ -49,8 +57,12 @@ const PlaceDetails = (props) => {
                 <h1 className="property__name">
                   {offer.name}
                 </h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
+                <button
+                  className={`property__bookmark-button ${favoriteButtonClassName} button`}
+                  type="button"
+                  onClick={handleFavoriteButtonClick}
+                >
+                  <svg className="place-card__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
@@ -127,6 +139,8 @@ const PlaceDetails = (props) => {
                 onOfferTitleClick = {onOfferTitleClick}
                 activeCity={city}
                 onCardMouseOver={onCardMouseOver}
+                isUserAuthorized={isUserAuthorized}
+                onFavoriteButtonClick={onFavoriteButtonClick}
               />
             </div>
           </section>
@@ -150,6 +164,7 @@ PlaceDetails.propTypes = {
     bedrooms: PropTypes.number,
     guests: PropTypes.number,
     features: PropTypes.arrayOf(PropTypes.string),
+    isFavorite: PropTypes.bool,
     host: PropTypes.shape({
       avatar: PropTypes.string,
       name: PropTypes.string,
@@ -172,6 +187,8 @@ PlaceDetails.propTypes = {
   email: PropTypes.string,
   onSubmitFeedback: PropTypes.func.isRequired,
   feedbackFormStatus: PropTypes.string,
+  onLogoClick: PropTypes.func,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
 };
 
 export default PlaceDetails;

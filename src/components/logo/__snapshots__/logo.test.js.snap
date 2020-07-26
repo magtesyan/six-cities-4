@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo is rendered correctly 1`] = `
+<div
+  className="header__left"
+  onClick={[MockFunction]}
+>
+  <a
+    className="header__logo-link"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="6 cities logo"
+      className="header__logo"
+      height={41}
+      src="img/logo.svg"
+      width={81}
+    />
+  </a>
+</div>
+`;

@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import React, {createRef} from "react";
-import shortid from "shortid";
 
 import RatingInput from "../rating-input/rating-input.jsx";
+
+const feedbackPoints = [5, 4, 3, 2, 1];
 
 const FeedbackForm = (props) => {
   const {onSubmitFeedback, hotelId, feedbackFormStatus = ``} = props;
@@ -10,11 +11,11 @@ const FeedbackForm = (props) => {
   const feedbackFormStatusOutput = feedbackFormStatus !== `disabled` ? feedbackFormStatus : ``;
   const feedbackFormRef = createRef();
 
-  const ratingsInputList = [5, 4, 3, 2, 1].map((index) => {
+  const ratingsInputList = feedbackPoints.map((index) => {
     return (
       <RatingInput
         number={index}
-        key={shortid.generate()}
+        key={`${index}Points`}
         isDisabled={isDisabled}
       />
     );
