@@ -34,7 +34,7 @@ const LOGO_SIZE = {
 
 const AppRoute = {
   LOGIN: `/login`,
-  DETAILS: `/details`,
+  DETAILS: `/offer`,
   ROOT: `/`,
   FAVORITES: `/favorites`,
 };

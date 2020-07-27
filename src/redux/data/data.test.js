@@ -435,7 +435,7 @@ const serverMock = [{
   "price": 120,
   "rating": 4.8,
   "title": `Beautiful & luxurious studio at great location`,
-  "type": `apartment`
+  "type": `apartment`,
 }];
 
 describe(`Operation work correctly`, () => {
@@ -481,7 +481,8 @@ describe(`Operation work correctly`, () => {
                 coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
                 reviews: [],
                 isFavorite: serverMock[0].is_favorite,
-                city: serverMock[0].city.name
+                city: serverMock[0].city.name,
+                previewImage: serverMock[0].preview_image,
               }]),
             }
         );

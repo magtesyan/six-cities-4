@@ -60,7 +60,7 @@ PlaceCardsList.propTypes = {
   className: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
-  activeCity: PropTypes.string.isRequired,
+  activeCity: PropTypes.string,
   onCardMouseOver: PropTypes.func.isRequired,
   onFilterClick: PropTypes.func,
   onSortTypeClick: PropTypes.func,

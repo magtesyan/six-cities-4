@@ -43,19 +43,21 @@ class Map extends PureComponent {
   _setIcons() {
     const {offers, activeOffer} = this.props;
 
-    offers.forEach((offer) => {
-      const offerCords = offer.coordinates;
-      const icon = leaflet.icon({
-        iconUrl: (offer === activeOffer) ? `img/pin-active.svg` : `img/pin.svg`,
-        iconSize: [30, 30]
-      });
+    if (offers.length) {
+      offers.forEach((offer) => {
+        const offerCords = offer.coordinates;
+        const icon = leaflet.icon({
+          iconUrl: (offer === activeOffer) ? `/img/pin-active.svg` : `/img/pin.svg`,
+          iconSize: [30, 30]
+        });
 
-      if (offerCords.length) {
-        leaflet
-        .marker(offerCords, {icon})
-        .addTo(this.map);
-      }
-    });
+        if (offerCords.length) {
+          leaflet
+          .marker(offerCords, {icon})
+          .addTo(this.map);
+        }
+      });
+    }
   }
 
   render() {
@@ -66,7 +68,7 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
-  city: PropTypes.arrayOf(PropTypes.number).isRequired,
+  city: PropTypes.arrayOf(PropTypes.number),
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeOffer: PropTypes.object
 };

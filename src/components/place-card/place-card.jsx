@@ -30,7 +30,7 @@ const PlaceCard = (props) => {
       }
       <div className={`cities__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -60,7 +60,7 @@ const PlaceCard = (props) => {
           className="place-card__name"
           onClick={callOfferTitleClick}
         >
-          <Link to="/details">{offer.name}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.name}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -77,6 +77,7 @@ PlaceCard.propTypes = {
     price: PropTypes.number,
     rating: PropTypes.number,
     isFavorite: PropTypes.bool,
+    previewImage: PropTypes.string,
   }),
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseOver: PropTypes.func.isRequired,

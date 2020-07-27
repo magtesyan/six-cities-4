@@ -10,7 +10,7 @@ import {AppRoute} from "../../const.js";
 import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
 import {getFeedbacks, getFeedbackFormStatus} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
-import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
+import {getOffers, getOffersByCity, getCities} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
 import {Operation as DataOperation} from "../../redux/data/data.js";
@@ -24,13 +24,13 @@ class App extends PureComponent {
   _renderMainScreen() {
     const {step} = this.props;
 
-    if (step === `mainScreen`) {
-      return history.push(AppRoute.ROOT);
-    }
+    // if (step === `mainScreen`) {
+    //   return history.push(AppRoute.ROOT);
+    // }
 
-    if (step === `detailsScreen`) {
-      return history.push(AppRoute.DETAILS);
-    }
+    // if (step === `detailsScreen`) {
+    //   return history.push(`${AppRoute.DETAILS}/${id}`);
+    // }
 
     if (step === `authScreen`) {
       return history.push(AppRoute.LOGIN);
@@ -56,11 +56,12 @@ class App extends PureComponent {
       onSubmitFeedback,
       onLogoClick,
       onFavoriteButtonClick,
-      place,
+      fullOffers,
     } = this.props;
 
     const activeCity = city === `` ? cities[0] : city;
     this._renderMainScreen();
+
     return (
       <Router
         history={history}
@@ -82,11 +83,12 @@ class App extends PureComponent {
               onFavoriteButtonClick={onFavoriteButtonClick}
             />
           </Route>
-          <Route exact path={AppRoute.DETAILS}>
+          <Route exact path={`${AppRoute.DETAILS}/:id`} render={(props) => (
             <PlaceDetails
               onSignInClick={onSignInClick}
               authorizationStatus={authorizationStatus}
-              offer={place}
+              offer={fullOffers.length !== 0 ? Array.from(fullOffers.values()).reduce((offerCounter, offersArray) =>
+                [...offerCounter, ...offersArray.filter((offer) => offer.id === props.match.params.id.toString())], [])[0] : {}}
               nearestOffers={offers.slice(0, 3)}
               onOfferTitleClick={onOfferTitleClick}
               city={activeCity}
@@ -97,7 +99,7 @@ class App extends PureComponent {
               feedbackFormStatus={feedbackFormStatus}
               onLogoClick={onLogoClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
-            />
+            />)}>
           </Route>
           <Route exact path={AppRoute.LOGIN}>
             <SignIn
@@ -135,6 +137,10 @@ App.propTypes = {
   feedbacks: PropTypes.array,
   feedbackFormStatus: PropTypes.string,
   onFavoriteButtonClick: PropTypes.func.isRequired,
+  fullOffers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 };
 
 const mapStateToProps = (state) => ({
@@ -143,6 +149,7 @@ const mapStateToProps = (state) => ({
   city: getCity(state),
   place: getPlace(state),
   offers: getOffersByCity(state),
+  fullOffers: getOffers(state),
   cities: getCities(state),
   activeOffer: getActiveOffer(state),
   email: getEmail(state),

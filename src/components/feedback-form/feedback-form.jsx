@@ -58,7 +58,7 @@ const FeedbackForm = (props) => {
 
 FeedbackForm.propTypes = {
   onSubmitFeedback: PropTypes.func.isRequired,
-  hotelId: PropTypes.string.isRequired,
+  hotelId: PropTypes.string,
   feedbackFormStatus: PropTypes.string
 };
 

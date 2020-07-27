@@ -26,7 +26,7 @@ exports[`Render App Render MainScreen 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width={81}
             />
           </a>
@@ -207,7 +207,6 @@ exports[`Render App Render MainScreen 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -279,7 +278,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/2DO35vJgT"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -313,7 +312,6 @@ exports[`Render App Render MainScreen 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -385,7 +383,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/ecmenRKUJi"
                     onClick={[Function]}
                   >
                     Wood and stone place
@@ -412,7 +410,6 @@ exports[`Render App Render MainScreen 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -484,7 +481,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/jRSg1AQZjx"
                     onClick={[Function]}
                   >
                     Canal View Prinsengracht
@@ -518,7 +515,6 @@ exports[`Render App Render MainScreen 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -590,7 +586,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/S7phBloxrJ"
                     onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
@@ -624,7 +620,6 @@ exports[`Render App Render MainScreen 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
-                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -696,7 +691,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/7uPDqg7uBpW"
                     onClick={[Function]}
                   >
                     Wood and stone place

@@ -23,7 +23,8 @@ const transformOffer = (offerFromServer) => {
     coordinates: [offerFromServer.location.latitude, offerFromServer.location.longitude],
     reviews: [],
     isFavorite: offerFromServer.is_favorite,
-    city: offerFromServer.city.name
+    city: offerFromServer.city.name,
+    previewImage: offerFromServer.preview_image
   };
 
   return transformedOffer;

@@ -11,7 +11,7 @@ const Logo = (props) => {
   return (
     <div className={logoContainerClass} onClick={onLogoClick}>
       <Link to={AppRoute.ROOT} className={`${logoType}__logo-link`}>
-        <img className={`${logoType}__logo`} src="img/logo.svg" alt="6 cities logo" width={LOGO_SIZE[logoType].width} height={LOGO_SIZE[logoType].height} />
+        <img className={`${logoType}__logo`} src="/img/logo.svg" alt="6 cities logo" width={LOGO_SIZE[logoType].width} height={LOGO_SIZE[logoType].height} />
       </Link>
     </div>
   );

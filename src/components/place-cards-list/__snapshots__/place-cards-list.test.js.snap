@@ -23,7 +23,6 @@ Array [
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -95,7 +94,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/details"
+          href="/offer/mdzCzVEJZ"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -129,7 +128,6 @@ Array [
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -201,7 +199,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/details"
+          href="/offer/8yEa8GVhCv"
           onClick={[Function]}
         >
           Wood and stone place
@@ -228,7 +226,6 @@ Array [
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -300,7 +297,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/details"
+          href="/offer/tSeaJbYSLk"
           onClick={[Function]}
         >
           Canal View Prinsengracht
@@ -327,7 +324,6 @@ Array [
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -399,7 +395,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/details"
+          href="/offer/5Tp3Q5cur-"
           onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
@@ -433,7 +429,6 @@ Array [
           alt="Place image"
           className="place-card__image"
           height="200"
-          src="img/apartment-01.jpg"
           width="260"
         />
       </a>
@@ -505,7 +500,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/details"
+          href="/offer/cDhcAYrzhM"
           onClick={[Function]}
         >
           Wood and stone place

@@ -18,7 +18,6 @@ const PlaceDetails = (props) => {
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   const favoriteButtonClassName = offer.isFavorite ? `property__bookmark-button--active` : ``;
   const favoriteStatus = offer.isFavorite ? 0 : 1;
-
   const handleFavoriteButtonClick = () => {
     return isUserAuthorized ? onFavoriteButtonClick(offer, favoriteStatus) : history.push(AppRoute.LOGIN);
   };
@@ -96,11 +95,11 @@ const PlaceDetails = (props) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${offer.host.super === 1 ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${(offer.host && offer.host.super === 1) ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src="/img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {offer.host.name}
+                    {offer.host ? offer.host.name : ``}
                   </span>
                 </div>
                 <div className="property__description">
@@ -123,10 +122,10 @@ const PlaceDetails = (props) => {
             </div>
           </div>
           <section className="property__map map">
-            <Map
+            {offer.coordinates && <Map
               city={offer.coordinates}
               offers = {nearestOffers}
-            />
+            />}
           </section>
         </section>
         <div className="container">

@@ -4,13 +4,13 @@ import React from "react";
 const PlaceDetailsFeatures = (props) => {
   const {features} = props;
 
-  const featuresList = features.map((feature) => {
+  const featuresList = features ? features.map((feature) => {
     return (
       <li className="property__inside-item" key={feature}>
         {feature}
       </li>
     );
-  });
+  }) : ``;
 
   return (
     <div className="property__inside">
@@ -23,7 +23,7 @@ const PlaceDetailsFeatures = (props) => {
 };
 
 PlaceDetailsFeatures.propTypes = {
-  features: PropTypes.arrayOf(PropTypes.string).isRequired
+  features: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PlaceDetailsFeatures;
