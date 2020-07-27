@@ -1,9 +1,9 @@
 import Adapter from "enzyme-adapter-react-16";
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
 import Enzyme, {mount} from "enzyme";
 import React from "react";
 import shortid from "shortid";
-
+import history from "../../history.js";
 import PlaceCard from "./place-card.jsx";
 
 Enzyme.configure({
@@ -32,15 +32,19 @@ it(`When mouse on card - card details sent`, () => {
   };
 
   const card = mount(
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <PlaceCard
           className = {className}
           offer={mock}
           key={mock.id}
           onOfferTitleClick = {() => {}}
           onMouseOver = {onMouseOver}
+          onFavoriteButtonClick={jest.fn()}
+          isUserAuthorized={true}
         />
-      </BrowserRouter>);
+      </Router>);
 
   const article = card.find(`article`);
   article.simulate(`mouseover`);
@@ -60,15 +64,19 @@ it(`When title is clicked - card details sent`, () => {
   };
 
   const card = mount(
-      <BrowserRouter>
+      <Router
+        history={history}
+      >
         <PlaceCard
           className = {className}
           offer={mock}
           key={mock.id}
           onOfferTitleClick = {onOfferTitleClick}
+          onFavoriteButtonClick={jest.fn()}
+          isUserAuthorized={true}
           onMouseOver = {jest.fn()}
         />
-      </BrowserRouter>);
+      </Router>);
 
   const title = card.find(`.place-card__name`);
   title.simulate(`click`);

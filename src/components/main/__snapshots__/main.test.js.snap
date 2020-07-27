@@ -15,16 +15,19 @@ exports[`Render Main 1`] = `
       >
         <div
           className="header__left"
+          onClick={[MockFunction]}
         >
           <a
-            className="header__logo-link header__logo-link--active"
+            className="header__logo-link"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
-              height="41"
+              height={41}
               src="img/logo.svg"
-              width="81"
+              width={81}
             />
           </a>
         </div>
@@ -36,7 +39,7 @@ exports[`Render Main 1`] = `
           >
             <li
               className="header__nav-item user"
-              onClick={[MockFunction]}
+              onClick={[Function]}
             >
               <a
                 className="header__nav-link header__nav-link--profile"
@@ -244,7 +247,8 @@ exports[`Render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -349,7 +353,8 @@ exports[`Render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -454,7 +459,8 @@ exports[`Render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -559,7 +565,8 @@ exports[`Render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -657,7 +664,8 @@ exports[`Render Main 1`] = `
                     </span>
                   </div>
                   <button
-                    className="place-card__bookmark-button button"
+                    className="place-card__bookmark-button  button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

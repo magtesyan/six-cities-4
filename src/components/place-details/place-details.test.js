@@ -1,8 +1,8 @@
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
 import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
-
+import history from "../../history.js";
 import PlaceDetails from "./place-details.jsx";
 
 const offers = [
@@ -346,7 +346,9 @@ it(`PlaceDetailsScreen is not rendered correctly`, () => {
 
   const tree = renderer
     .create(
-        <BrowserRouter>
+        <Router
+          history={history}
+        >
           <PlaceDetails
             offer={offers[0]}
             nearestOffers = {offers}
@@ -356,8 +358,10 @@ it(`PlaceDetailsScreen is not rendered correctly`, () => {
             onSignInClick={jest.fn()}
             onSubmitFeedback={jest.fn()}
             feedbacks={feedbacks}
+            onLogoClick={jest.fn()}
+            onFavoriteButtonClick={jest.fn()}
           />
-        </BrowserRouter>
+        </Router>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

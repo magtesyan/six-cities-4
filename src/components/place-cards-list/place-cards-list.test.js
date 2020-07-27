@@ -1,8 +1,8 @@
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
 import renderer from "react-test-renderer";
 import React from "react";
 import shortid from "shortid";
-
+import history from "../../history.js";
 import PlaceCardsList from "./place-cards-list.jsx";
 
 const offers = [
@@ -53,15 +53,19 @@ const activeCity = `Amsterdam`;
 it(`Cards List is rendered correctly`, () => {
   const tree = renderer
     .create(
-        <BrowserRouter>
+        <Router
+          history={history}
+        >
           <PlaceCardsList
             className = {className}
             offers = {offers}
             onOfferTitleClick = {jest.fn()}
             activeCity={activeCity}
             onCardMouseOver={jest.fn()}
+            onFavoriteButtonClick={jest.fn()}
+            isUserAuthorized={true}
           />
-        </BrowserRouter>
+        </Router>
     ).toJSON();
 
   expect(tree).toMatchSnapshot();

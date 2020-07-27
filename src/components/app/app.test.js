@@ -346,6 +346,8 @@ describe(`Render App`, () => {
         cities={cities}
         onCardMouseOver={jest.fn()}
         onSubmitFeedback={jest.fn()}
+        onLogoClick={jest.fn()}
+        onFavoriteButtonClick={jest.fn()}
       />)
       .toJSON();
 

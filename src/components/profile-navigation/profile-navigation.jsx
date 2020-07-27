@@ -1,14 +1,22 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import {AppRoute} from "../../const.js";
+import history from "../../history.js";
+
 const ProfileNavigation = (props) => {
   const {onSignInClick, isUserAuthorized, email} = props;
+
+  const handleSignLinkClick = () => {
+    return isUserAuthorized ? history.push(AppRoute.FAVORITES) : onSignInClick();
+  };
+
   return (
     <nav className="header__nav">
       <ul className="header__nav-list">
         <li
           className="header__nav-item user"
-          onClick={onSignInClick}
+          onClick={handleSignLinkClick}
         >
           <a className="header__nav-link header__nav-link--profile" href="#">
             <div className="header__avatar-wrapper user__avatar-wrapper">
