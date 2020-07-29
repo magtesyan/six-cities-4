@@ -10,16 +10,26 @@ class Map extends PureComponent {
     this.cityCoords = city;
     this.zoom = 12;
     this.map = null;
+    this.activeOffer = {};
+    this.markersGroup = null;
   }
 
   componentDidMount() {
+    const {activeOffer} = this.props;
     this._initialize();
     this._setView();
     this._setIcons();
+    this.activeOffer = activeOffer;
   }
 
   componentDidUpdate() {
     this._setIcons();
+  }
+
+  _clearMarkers() {
+    if (this.markersGroup) {
+      this.markersGroup.clearLayers();
+    }
   }
 
   _initialize() {
@@ -29,6 +39,7 @@ class Map extends PureComponent {
       zoomControl: false,
       marker: true
     });
+
 
     leaflet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -42,8 +53,12 @@ class Map extends PureComponent {
 
   _setIcons() {
     const {offers, activeOffer} = this.props;
-
+    if (this.activeOffer !== activeOffer) {
+      this._clearMarkers(this.markers);
+    }
+    let markers = [];
     if (offers.length) {
+      this._clearMarkers(this.markers);
       offers.forEach((offer) => {
         const offerCords = offer.coordinates;
         const icon = leaflet.icon({
@@ -52,11 +67,12 @@ class Map extends PureComponent {
         });
 
         if (offerCords.length) {
-          leaflet
-          .marker(offerCords, {icon})
-          .addTo(this.map);
+          const marker = leaflet.marker(offerCords, {icon});
+          markers.push(marker);
         }
       });
+      this.markersGroup = leaflet.featureGroup(markers);
+      this.markersGroup.addTo(this.map);
     }
   }
 

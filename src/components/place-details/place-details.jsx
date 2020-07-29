@@ -13,7 +13,23 @@ import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus, onLogoClick, onFavoriteButtonClick} = props;
+  const {
+    authorizationStatus,
+    city,
+    email,
+    feedbacks,
+    feedbackFormStatus,
+    nearestOffers,
+    offer,
+    onOfferTitleClick,
+    onCardMouseOver,
+    onEmailClick,
+    onSignInClick,
+    onSubmitFeedback,
+    onLogoClick,
+    onFavoriteButtonClick
+  } = props;
+
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   const favoriteButtonClassName = offer.isFavorite ? `property__bookmark-button--active` : ``;
@@ -35,6 +51,7 @@ const PlaceDetails = (props) => {
               onSignInClick={onSignInClick}
               isUserAuthorized={isUserAuthorized}
               email={email}
+              onEmailClick={onEmailClick}
             />
           </div>
         </div>
@@ -124,7 +141,8 @@ const PlaceDetails = (props) => {
           <section className="property__map map">
             {offer.coordinates && <Map
               city={offer.coordinates}
-              offers = {nearestOffers}
+              offers = {nearestOffers.concat([offer])}
+              activeOffer={offer}
             />}
           </section>
         </section>
@@ -188,6 +206,7 @@ PlaceDetails.propTypes = {
   feedbackFormStatus: PropTypes.string,
   onLogoClick: PropTypes.func,
   onFavoriteButtonClick: PropTypes.func.isRequired,
+  onEmailClick: PropTypes.func.isRequired,
 };
 
 export default PlaceDetails;

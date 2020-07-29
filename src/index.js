@@ -25,6 +25,7 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.getOffers());
+store.dispatch(DataOperation.getFavoriteOffers());
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

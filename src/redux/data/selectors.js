@@ -9,8 +9,20 @@ export const getOffers = (state) => {
   return state[NameSpace.DATA].offers;
 };
 
+export const getNearOffers = (state) => {
+  return state[NameSpace.DATA].nearOffers;
+};
+
+export const getFavoriteOffers = (state) => {
+  return state[NameSpace.DATA].favoriteOffers;
+};
+
 export const getCities = (state) => {
   return state[NameSpace.DATA].cities;
+};
+
+export const getFavoriteCities = (state) => {
+  return state[NameSpace.DATA].favoriteCities;
 };
 
 export const getOffersByCity = createSelector(

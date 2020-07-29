@@ -5,10 +5,15 @@ import {AppRoute} from "../../const.js";
 import history from "../../history.js";
 
 const ProfileNavigation = (props) => {
-  const {onSignInClick, isUserAuthorized, email} = props;
+  const {onSignInClick, isUserAuthorized, email, onEmailClick} = props;
 
   const handleSignLinkClick = () => {
-    return isUserAuthorized ? history.push(AppRoute.FAVORITES) : onSignInClick();
+    return isUserAuthorized ? handleEmailClick() : onSignInClick();
+  };
+
+  const handleEmailClick = () => {
+    onEmailClick();
+    return history.push(AppRoute.FAVORITES);
   };
 
   return (
@@ -38,6 +43,7 @@ ProfileNavigation.propTypes = {
   isUserAuthorized: PropTypes.bool.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   email: PropTypes.string,
+  onEmailClick: PropTypes.func.isRequired,
 };
 
 export default ProfileNavigation;

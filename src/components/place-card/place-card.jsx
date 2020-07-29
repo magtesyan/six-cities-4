@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import {Link} from "react-router-dom";
 
-import {AppRoute, RATING_IN_WIDTH_PERCENT} from "../../const.js";
+import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, PLACE_CARD_IMG_SIZE} from "../../const.js";
 import history from "../../history.js";
 // import SignIn from "../sign-in/sign-in.jsx";
 
@@ -13,6 +13,7 @@ const PlaceCard = (props) => {
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   const favoriteButtonClassName = offer.isFavorite ? `place-card__bookmark-button--active` : ``;
   const favoriteStatus = offer.isFavorite ? 0 : 1;
+  const imgWrapperClass = className === OFFER_CARDS_CLASSES.get(`favorites-page`) ? `favorites` : `cities`;
 
   const handleFavoriteButtonClick = () => {
     return isUserAuthorized ? onFavoriteButtonClick(offer, favoriteStatus) : history.push(AppRoute.LOGIN);
@@ -28,9 +29,9 @@ const PlaceCard = (props) => {
           <span>Premium</span>
         </div>
       }
-      <div className={`cities__image-wrapper place-card__image-wrapper`}>
+      <div className={`${imgWrapperClass}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={offer.previewImage} width={PLACE_CARD_IMG_SIZE[imgWrapperClass].width} height={PLACE_CARD_IMG_SIZE[imgWrapperClass].height} alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
