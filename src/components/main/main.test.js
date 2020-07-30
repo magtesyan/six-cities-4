@@ -1,13 +1,12 @@
 import {Router} from "react-router-dom";
 import React from "react";
 import renderer from "react-test-renderer";
-import shortid from "shortid";
 import history from "../../history.js";
 import Main from "./main.jsx";
 
 const offers = [
   {
-    id: shortid.generate(),
+    id: `1`,
     name: `Beautiful & luxurious apartment at great location`,
     price: 80,
     rating: 1,
@@ -16,7 +15,7 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
-    id: shortid.generate(),
+    id: `2`,
     name: `Wood and stone place`,
     price: 80,
     rating: 1,
@@ -25,7 +24,7 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
-    id: shortid.generate(),
+    id: `3`,
     name: `Canal View Prinsengracht`,
     price: 80,
     rating: 1,
@@ -34,7 +33,7 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
-    id: shortid.generate(),
+    id: `4`,
     name: `Nice, cozy, warm big bed apartment`,
     price: 80,
     rating: 1,
@@ -43,7 +42,7 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
   },
   {
-    id: shortid.generate(),
+    id: `5`,
     name: `Wood and stone place`,
     price: 80,
     rating: 1,
@@ -87,6 +86,8 @@ it(`Render Main`, () => {
             onCardMouseOver={jest.fn()}
             onLogoClick={jest.fn()}
             onFavoriteButtonClick={jest.fn()}
+            onEmailClick={jest.fn()}
+            errorStatus={false}
           />
         </Router>)
     .toJSON();

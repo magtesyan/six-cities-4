@@ -12,6 +12,9 @@ it(`SignIn component render correctly`, () => {
         <SignIn
           onSubmit={jest.fn()}
           onLogoClick={jest.fn()}
+          errorStatus={false}
+          onEmailClick={jest.fn()}
+          onSignInClick={jest.fn()}
         />
       </Router>
   ).toJSON();

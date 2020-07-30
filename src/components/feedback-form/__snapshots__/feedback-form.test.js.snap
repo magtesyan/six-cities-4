@@ -5,6 +5,7 @@ exports[`Render Feedback Form 1`] = `
   action="#"
   className="reviews__form form"
   method="post"
+  onChange={[Function]}
   onSubmit={[Function]}
 >
   <label
@@ -141,6 +142,16 @@ exports[`Render Feedback Form 1`] = `
     placeholder="Tell how was your stay, what you like and what can be improved"
   />
   <div
+    style={
+      Object {
+        "color": "red",
+        "fontSize": "20px",
+      }
+    }
+  >
+    
+  </div>
+  <div
     className="reviews__button-wrapper"
   >
     <p
@@ -162,7 +173,7 @@ exports[`Render Feedback Form 1`] = `
     </p>
     <button
       className="reviews__submit form__submit button"
-      disabled={false}
+      disabled={true}
       type="submit"
     >
       Submit

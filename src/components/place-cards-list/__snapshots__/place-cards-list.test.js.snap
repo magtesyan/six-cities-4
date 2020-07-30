@@ -22,8 +22,8 @@ Array [
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
-          width="260"
+          height={200}
+          width={260}
         />
       </a>
     </div>
@@ -94,7 +94,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/offer/mdzCzVEJZ"
+          href="/offer/1"
           onClick={[Function]}
         >
           Beautiful & luxurious apartment at great location
@@ -127,8 +127,8 @@ Array [
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
-          width="260"
+          height={200}
+          width={260}
         />
       </a>
     </div>
@@ -199,7 +199,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/offer/8yEa8GVhCv"
+          href="/offer/2"
           onClick={[Function]}
         >
           Wood and stone place
@@ -225,8 +225,8 @@ Array [
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
-          width="260"
+          height={200}
+          width={260}
         />
       </a>
     </div>
@@ -297,7 +297,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/offer/tSeaJbYSLk"
+          href="/offer/3"
           onClick={[Function]}
         >
           Canal View Prinsengracht
@@ -323,8 +323,8 @@ Array [
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
-          width="260"
+          height={200}
+          width={260}
         />
       </a>
     </div>
@@ -395,7 +395,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/offer/5Tp3Q5cur-"
+          href="/offer/4"
           onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
@@ -428,8 +428,8 @@ Array [
         <img
           alt="Place image"
           className="place-card__image"
-          height="200"
-          width="260"
+          height={200}
+          width={260}
         />
       </a>
     </div>
@@ -500,7 +500,7 @@ Array [
         onClick={[Function]}
       >
         <a
-          href="/offer/cDhcAYrzhM"
+          href="/offer/5"
           onClick={[Function]}
         >
           Wood and stone place

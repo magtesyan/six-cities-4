@@ -13,6 +13,8 @@ it(`Render Feedback Form`, () => {
           onSubmitFeedback={jest.fn()}
           hotelId={hotelId}
           feedbackFormStatus={feedbackFormStatus}
+          onFeedbackFormChange={jest.fn()}
+          feedbackSubmitBtnStatus={true}
         />)
     .toJSON();
 

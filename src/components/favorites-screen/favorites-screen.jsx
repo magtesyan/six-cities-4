@@ -8,7 +8,7 @@ import {AppRoute, LOGO_TYPE} from "../../const.js";
 import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 
 const FavoritesScreen = (props) => {
-  const {onLogoClick, onSignInClick, authorizationStatus, email, onEmailClick, favoriteOffers, onOfferTitleClick, onFavoriteButtonClick, onCardMouseOver} = props;
+  const {onLogoClick, onSignInClick, authorizationStatus, email, onEmailClick, favoriteOffers, onOfferTitleClick, onFavoriteButtonClick, onCardMouseOver, errorStatus} = props;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   const isThereOffers = (favoriteOffers.size || favoriteOffers.length) > 0;
   const favoriteCities = isThereOffers ? Array.from(favoriteOffers.keys()) : [];
@@ -44,6 +44,7 @@ const FavoritesScreen = (props) => {
                 isUserAuthorized={isUserAuthorized}
                 email={email}
                 onEmailClick={onEmailClick}
+                errorStatus={errorStatus}
               />
             </div>
           </div>
@@ -94,6 +95,7 @@ FavoritesScreen.propTypes = {
   onOfferTitleClick: PropTypes.func.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   onCardMouseOver: PropTypes.func.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default FavoritesScreen;

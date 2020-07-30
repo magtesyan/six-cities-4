@@ -1,12 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import shortid from "shortid";
 
 import {App} from "./app.jsx";
 
 const offers = [
   {
-    id: shortid.generate(),
+    id: `1`,
     name: `Beautiful & luxurious apartment at great location`,
     price: 80,
     rating: 1,
@@ -44,28 +43,28 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
     reviews: [
       {
-        id: shortid.generate(),
+        id: `2`,
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
-        id: shortid.generate(),
+        id: `3`,
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
-        id: shortid.generate(),
+        id: `4`,
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
-        id: shortid.generate(),
+        id: `5`,
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -74,7 +73,7 @@ const offers = [
     ]
   },
   {
-    id: shortid.generate(),
+    id: `6`,
     name: `Wood and stone place`,
     price: 90,
     rating: 2,
@@ -105,28 +104,28 @@ const offers = [
     coordinates: [52.369553943508, 4.85309666406198],
     reviews: [
       {
-        id: shortid.generate(),
+        id: `7`,
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
-        id: shortid.generate(),
+        id: `8`,
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
-        id: shortid.generate(),
+        id: `9`,
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
-        id: shortid.generate(),
+        id: `10`,
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -135,7 +134,7 @@ const offers = [
     ]
   },
   {
-    id: shortid.generate(),
+    id: `11`,
     name: `Canal View Prinsengracht`,
     price: 100,
     rating: 3,
@@ -169,28 +168,28 @@ const offers = [
     coordinates: [52.3909553943508, 4.929309666406198],
     reviews: [
       {
-        id: shortid.generate(),
+        id: `12`,
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
-        id: shortid.generate(),
+        id: `13`,
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
-        id: shortid.generate(),
+        id: `14`,
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
-        id: shortid.generate(),
+        id: `15`,
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -199,7 +198,7 @@ const offers = [
     ]
   },
   {
-    id: shortid.generate(),
+    id: `16`,
     name: `Nice, cozy, warm big bed apartment`,
     price: 110,
     rating: 4,
@@ -229,28 +228,28 @@ const offers = [
     coordinates: [52.3809553943508, 4.939309666406198],
     reviews: [
       {
-        id: shortid.generate(),
+        id: `17`,
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
-        id: shortid.generate(),
+        id: `18`,
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
-        id: shortid.generate(),
+        id: `19`,
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
-        id: shortid.generate(),
+        id: `20`,
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -259,7 +258,7 @@ const offers = [
     ]
   },
   {
-    id: shortid.generate(),
+    id: `21`,
     name: `Wood and stone place`,
     price: 120,
     rating: 5,
@@ -285,28 +284,28 @@ const offers = [
     coordinates: [52.3909553943508, 4.85309666406198],
     reviews: [
       {
-        id: shortid.generate(),
+        id: `22`,
         text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
         assessment: 5,
         name: `Francis`,
         date: new Date(2020, 0, 1)
       },
       {
-        id: shortid.generate(),
+        id: `23`,
         text: `We like the beach view.`,
         assessment: 4,
         name: `Marjorie`,
         date: new Date(2019, 1, 2)
       },
       {
-        id: shortid.generate(),
+        id: `24`,
         text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
         assessment: 3,
         name: `Amy`,
         date: new Date(2017, 3, 13)
       },
       {
-        id: shortid.generate(),
+        id: `25`,
         text: `Very nice accommodations and would definitely recommend.`,
         assessment: 2,
         name: `Lori`,
@@ -348,6 +347,10 @@ describe(`Render App`, () => {
         onSubmitFeedback={jest.fn()}
         onLogoClick={jest.fn()}
         onFavoriteButtonClick={jest.fn()}
+        onEmailClick={jest.fn()}
+        onFeedbackFormChange={jest.fn()}
+        feedbackSubmitBtnStatus={true}
+        errorStatus={false}
       />)
       .toJSON();
 

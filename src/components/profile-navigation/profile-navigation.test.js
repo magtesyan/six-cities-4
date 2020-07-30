@@ -13,6 +13,8 @@ it(`Render Profile Navigation`, () => {
           onSignInClick={jest.fn()}
           isUserAuthorized={isUserAuthorized}
           email={email}
+          onEmailClick={jest.fn()}
+          errorStatus={false}
         />)
     .toJSON();
 
