@@ -8,11 +8,13 @@ const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  errorStatus: false
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SET_EMAIL: `SET_EMAIL`,
+  SET_ERROR: `SET_ERROR`
 };
 
 const ActionCreator = {
@@ -28,6 +30,10 @@ const ActionCreator = {
       payload: email,
     };
   },
+  setError: (error) => ({
+    type: ActionType.SET_ERROR,
+    payload: error,
+  }),
 };
 
 const Operation = {
@@ -37,8 +43,8 @@ const Operation = {
         dispatch(ActionCreator.setEmail(response.data.email));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
       })
-      .catch((err) => {
-        throw err;
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
 
@@ -48,6 +54,9 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.setEmail(authData.login));
         dispatch(AppActionCreator.openMainScreen());
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
 };
@@ -61,6 +70,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_EMAIL:
       return Object.assign({}, state, {
         email: action.payload,
+      });
+    case ActionType.SET_ERROR:
+      return Object.assign({}, state, {
+        errorStatus: action.payload,
       });
   }
 

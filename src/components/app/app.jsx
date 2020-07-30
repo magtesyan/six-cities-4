@@ -8,9 +8,9 @@ import {ActionCreator} from "../../redux/application/application.js";
 import {ActionCreator as FeedbackActionCreator} from "../../redux/feedback/feedback.js";
 import {AppRoute} from "../../const.js";
 import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
-import {getFeedbacks, getFeedbackFormStatus} from "../../redux/feedback/selectors.js";
+import {getFeedbacks, getFeedbackFormStatus, getFeedbackSubmitBtnStatus} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
-import {getOffers, getOffersByCity, getCities, getFavoriteCities, getFavoriteOffers, getNearOffers} from "../../redux/data/selectors.js";
+import {getOffers, getOffersByCity, getCities, getFavoriteCities, getFavoriteOffers, getNearOffers, getError} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
 import {Operation as DataOperation} from "../../redux/data/data.js";
@@ -37,9 +37,11 @@ class App extends PureComponent {
       cities,
       city,
       email,
+      errorStatus,
       favoriteOffers,
       feedbackFormStatus,
       feedbacks,
+      feedbackSubmitBtnStatus,
       fullOffers,
       login,
       nearOffers,
@@ -48,6 +50,7 @@ class App extends PureComponent {
       onCityClick,
       onCardMouseOver,
       onFavoriteButtonClick,
+      onFeedbackFormChange,
       onLogoClick,
       onOfferTitleClick,
       onSignInClick,
@@ -82,6 +85,7 @@ class App extends PureComponent {
               onLogoClick={onLogoClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
               onEmailClick={onEmailClick}
+              errorStatus={errorStatus}
             />
           </Route>
           <Route exact path={`${AppRoute.DETAILS}/:id`} render={(props) => (
@@ -100,13 +104,21 @@ class App extends PureComponent {
               onLogoClick={onLogoClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
               onEmailClick={onEmailClick}
+              feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
+              onFeedbackFormChange={onFeedbackFormChange}
+              errorStatus={errorStatus}
             />)}>
           </Route>
-          <Route exact path={AppRoute.LOGIN}>
+          <Route exact path={AppRoute.LOGIN} render={() => (
             <SignIn
               onSubmit={login}
               onLogoClick={onLogoClick}
-            />
+              authorizationStatus={authorizationStatus}
+              errorStatus={errorStatus}
+              onSignInClick={onSignInClick}
+              email={email}
+              onEmailClick={onEmailClick}
+            />)}>
           </Route>
           <Route exact path={AppRoute.FAVORITES} render={() => (
             <FavoritesScreen
@@ -119,6 +131,7 @@ class App extends PureComponent {
               onOfferTitleClick={onOfferTitleClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
               onCardMouseOver={onCardMouseOver}
+              errorStatus={errorStatus}
             />)}>
           </Route>
         </Switch>
@@ -156,6 +169,9 @@ App.propTypes = {
     PropTypes.object
   ]),
   nearOffers: PropTypes.array,
+  onFeedbackFormChange: PropTypes.func.isRequired,
+  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -173,6 +189,8 @@ const mapStateToProps = (state) => ({
   feedbacks: getFeedbacks(state),
   feedbackFormStatus: getFeedbackFormStatus(state),
   nearOffers: getNearOffers(state),
+  feedbackSubmitBtnStatus: getFeedbackSubmitBtnStatus(state),
+  errorStatus: getError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -194,6 +212,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmitFeedback(hotelId, feedbackData) {
     dispatch(FeedbackActionCreator.changeFormStatus(`disabled`));
     dispatch(FeedbackOperation.postFeedbacks(hotelId, feedbackData));
+  },
+  onFeedbackFormChange(status) {
+    dispatch(FeedbackActionCreator.changeFormSubmitStatus(status));
   },
   onOfferTitleClick(offer) {
     dispatch(FeedbackOperation.getFeedbacks(offer.id));

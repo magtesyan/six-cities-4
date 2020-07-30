@@ -6,6 +6,7 @@ const initialState = {
   cities: [],
   favoriteOffers: [],
   nearOffers: [],
+  errorStatus: false
 };
 
 const ActionType = {
@@ -14,6 +15,7 @@ const ActionType = {
   GET_FAVORITE_OFFERS: `GET_FAVORITE_OFFERS`,
   GET_CITIES: `GET_CITIES`,
   CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
+  SET_ERROR: `SET_ERROR`
 };
 
 const ActionCreator = {
@@ -37,6 +39,10 @@ const ActionCreator = {
     type: ActionType.CHANGE_FAVORITE_STATUS,
     payload: offer,
   }),
+  setError: (error) => ({
+    type: ActionType.SET_ERROR,
+    payload: error,
+  }),
 };
 
 const Operation = {
@@ -47,12 +53,20 @@ const Operation = {
         const cities = Array.from(fullOffers.keys());
         dispatch(ActionCreator.getCities(cities));
         dispatch(ActionCreator.getOffers(fullOffers));
+        dispatch(ActionCreator.setError(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
   getNearOffers: (hotelId) => (dispatch, getState, api) => {
     return getNearHotels(api, hotelId)
       .then((response) => {
         dispatch(ActionCreator.getNearOffers(Array.from(collectOffers(response.data).values())[0]));
+        dispatch(ActionCreator.setError(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
   changeActiveOfferFavoriteStatus: (hotelId, status) => (dispatch, getState, api) => {
@@ -60,6 +74,10 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.changeActiveOfferFavoriteStatus(transformOffer(response.data)));
         dispatch(Operation.getFavoriteOffers());
+        dispatch(ActionCreator.setError(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
   getFavoriteOffers: () => (dispatch, getState, api) => {
@@ -67,6 +85,10 @@ const Operation = {
       .then((response) => {
         const favoriteOffers = collectOffers(response.data);
         dispatch(ActionCreator.getFavoriteOffers(favoriteOffers));
+        dispatch(ActionCreator.setError(false));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setError(true));
       });
   },
 };
@@ -88,6 +110,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_CITIES:
       return Object.assign({}, state, {
         cities: action.payload,
+      });
+    case ActionType.SET_ERROR:
+      return Object.assign({}, state, {
+        errorStatus: action.payload,
       });
     case ActionType.CHANGE_FAVORITE_STATUS:
       const newOffers = new Map(state.offers).set(action.payload.city, state.offers.get(action.payload.city).map((offer) => {

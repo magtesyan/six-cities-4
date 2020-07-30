@@ -10,7 +10,7 @@ const PlaceCard = (props) => {
   const {offer, onOfferTitleClick, onMouseOver, className, onFavoriteButtonClick, isUserAuthorized} = props;
   const callMouseOver = () => onMouseOver(offer);
   const callOfferTitleClick = () => onOfferTitleClick(offer);
-  const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
+  const offerRatingStyleWidth = `${Math.round(offer.rating) * RATING_IN_WIDTH_PERCENT}%`;
   const favoriteButtonClassName = offer.isFavorite ? `place-card__bookmark-button--active` : ``;
   const favoriteStatus = offer.isFavorite ? 0 : 1;
   const imgWrapperClass = className === OFFER_CARDS_CLASSES.get(`favorites-page`) ? `favorites` : `cities`;

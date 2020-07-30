@@ -17,17 +17,20 @@ const PlaceDetails = (props) => {
     authorizationStatus,
     city,
     email,
+    errorStatus,
     feedbacks,
     feedbackFormStatus,
+    feedbackSubmitBtnStatus,
     nearestOffers,
     offer,
     onOfferTitleClick,
     onCardMouseOver,
     onEmailClick,
+    onFeedbackFormChange,
     onSignInClick,
     onSubmitFeedback,
     onLogoClick,
-    onFavoriteButtonClick
+    onFavoriteButtonClick,
   } = props;
 
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
@@ -52,6 +55,7 @@ const PlaceDetails = (props) => {
               isUserAuthorized={isUserAuthorized}
               email={email}
               onEmailClick={onEmailClick}
+              errorStatus={errorStatus}
             />
           </div>
         </div>
@@ -134,6 +138,8 @@ const PlaceDetails = (props) => {
                   onSubmitFeedback={onSubmitFeedback}
                   hotelId={offer.id}
                   feedbackFormStatus={feedbackFormStatus}
+                  onFeedbackFormChange={onFeedbackFormChange}
+                  feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
                 />
               }
             </div>
@@ -207,6 +213,9 @@ PlaceDetails.propTypes = {
   onLogoClick: PropTypes.func,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   onEmailClick: PropTypes.func.isRequired,
+  onFeedbackFormChange: PropTypes.func.isRequired,
+  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default PlaceDetails;

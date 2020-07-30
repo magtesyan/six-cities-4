@@ -13,7 +13,7 @@ import withSorting from "../../hocs/with-sorting/with-sorting.js";
 const PlaceCardsListSorted = withSorting(PlaceCardsList);
 
 const Main = (props) => {
-  const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer, authorizationStatus, onSignInClick, email, onLogoClick, onFavoriteButtonClick, onEmailClick} = props;
+  const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer, authorizationStatus, onSignInClick, email, onLogoClick, onFavoriteButtonClick, onEmailClick, errorStatus} = props;
   const isOffersEmpty = offers.length === 0;
   const emptyMainClassName = isOffersEmpty ? `page__main--index-empty` : ``;
   const emptyCityPlacesClassName = isOffersEmpty ? `cities__places-container--empty` : ``;
@@ -33,6 +33,7 @@ const Main = (props) => {
               isUserAuthorized={isUserAuthorized}
               email={email}
               onEmailClick={onEmailClick}
+              errorStatus={errorStatus}
             />
           </div>
         </div>
@@ -93,6 +94,7 @@ Main.propTypes = {
   onLogoClick: PropTypes.func.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   onEmailClick: PropTypes.func.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default Main;

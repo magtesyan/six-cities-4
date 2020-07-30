@@ -2,7 +2,8 @@ const initialState = {
   city: ``,
   step: `mainScreen`,
   place: {},
-  activeOffer: {}
+  activeOffer: {},
+  errorStatus: false
 };
 
 const ActionType = {
