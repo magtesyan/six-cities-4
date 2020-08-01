@@ -9,8 +9,10 @@ class FeedbackForm extends PureComponent {
   constructor(props) {
     super(props);
     this.feedbackFormRef = createRef();
+
     this.feedbackText = ``;
     this.ratingValue = 0;
+
     this.handleChangeForm = this.handleChangeForm.bind(this);
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
     this.handleFeedbackCommentChange = this.handleFeedbackCommentChange.bind(this);
