@@ -13,7 +13,7 @@ const feedbackFormStatus = ``;
 const hotelId = ``;
 
 describe(`ReviewForm works correctly`, () => {
-  it(`When adding review info - onFeedbackFormChange callback is called`, () => {
+  it(`When submit review info - onFeedbackSubmit callback is called`, () => {
     const onFeedbackFormChange = jest.fn((args) => args);
     const onSubmitFeedback = jest.fn();
 
@@ -30,8 +30,32 @@ describe(`ReviewForm works correctly`, () => {
           />
         </Router>);
 
-    reviewForm.simulate(`submit`);
+    const form = reviewForm.find(`form`);
+    form.simulate(`submit`);
 
     expect(onSubmitFeedback).toHaveBeenCalledTimes(1);
+  });
+
+  it(`When add review info - onFeedbackFormChange callback is called`, () => {
+    const onFeedbackFormChange = jest.fn((args) => args);
+    const onSubmitFeedback = jest.fn();
+
+    const reviewForm = mount(
+        <Router
+          history={history}
+        >
+          <FeedbackForm
+            onSubmitFeedback={onSubmitFeedback}
+            hotelId={hotelId}
+            feedbackFormStatus={feedbackFormStatus}
+            onFeedbackFormChange={onFeedbackFormChange}
+            feedbackSubmitBtnStatus={true}
+          />
+        </Router>);
+
+    const form = reviewForm.find(`textarea`);
+    form.simulate(`change`, {target: {value: `test`}});
+
+    expect(onFeedbackFormChange).toHaveBeenCalledTimes(1);
   });
 });
