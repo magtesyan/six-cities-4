@@ -21,6 +21,7 @@ exports[`Render Feedback Form 1`] = `
       disabled={false}
       id="5-stars"
       name="rating"
+      onChange={[Function]}
       type="radio"
       value={5}
     />
@@ -44,6 +45,7 @@ exports[`Render Feedback Form 1`] = `
       disabled={false}
       id="4-stars"
       name="rating"
+      onChange={[Function]}
       type="radio"
       value={4}
     />
@@ -67,6 +69,7 @@ exports[`Render Feedback Form 1`] = `
       disabled={false}
       id="3-stars"
       name="rating"
+      onChange={[Function]}
       type="radio"
       value={3}
     />
@@ -90,6 +93,7 @@ exports[`Render Feedback Form 1`] = `
       disabled={false}
       id="2-stars"
       name="rating"
+      onChange={[Function]}
       type="radio"
       value={2}
     />
@@ -113,6 +117,7 @@ exports[`Render Feedback Form 1`] = `
       disabled={false}
       id="1-stars"
       name="rating"
+      onChange={[Function]}
       type="radio"
       value={1}
     />
@@ -138,8 +143,19 @@ exports[`Render Feedback Form 1`] = `
     disabled={false}
     id="review"
     name="review"
+    onChange={[Function]}
     placeholder="Tell how was your stay, what you like and what can be improved"
   />
+  <div
+    style={
+      Object {
+        "color": "red",
+        "fontSize": "20px",
+      }
+    }
+  >
+    
+  </div>
   <div
     className="reviews__button-wrapper"
   >
@@ -162,7 +178,7 @@ exports[`Render Feedback Form 1`] = `
     </p>
     <button
       className="reviews__submit form__submit button"
-      disabled={false}
+      disabled={true}
       type="submit"
     >
       Submit

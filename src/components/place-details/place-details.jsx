@@ -13,12 +13,30 @@ import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
 import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const.js";
 
 const PlaceDetails = (props) => {
-  const {offer, nearestOffers, onOfferTitleClick, city, onCardMouseOver, authorizationStatus, feedbacks, onSignInClick, email, onSubmitFeedback, feedbackFormStatus, onLogoClick, onFavoriteButtonClick} = props;
+  const {
+    authorizationStatus,
+    city,
+    email,
+    errorStatus,
+    feedbacks,
+    feedbackFormStatus,
+    feedbackSubmitBtnStatus,
+    nearestOffers,
+    offer,
+    onOfferTitleClick,
+    onCardMouseOver,
+    onEmailClick,
+    onFeedbackFormChange,
+    onSignInClick,
+    onSubmitFeedback,
+    onLogoClick,
+    onFavoriteButtonClick,
+  } = props;
+
   const offerRatingStyleWidth = `${offer.rating * RATING_IN_WIDTH_PERCENT}%`;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
   const favoriteButtonClassName = offer.isFavorite ? `property__bookmark-button--active` : ``;
   const favoriteStatus = offer.isFavorite ? 0 : 1;
-
   const handleFavoriteButtonClick = () => {
     return isUserAuthorized ? onFavoriteButtonClick(offer, favoriteStatus) : history.push(AppRoute.LOGIN);
   };
@@ -36,6 +54,8 @@ const PlaceDetails = (props) => {
               onSignInClick={onSignInClick}
               isUserAuthorized={isUserAuthorized}
               email={email}
+              onEmailClick={onEmailClick}
+              errorStatus={errorStatus}
             />
           </div>
         </div>
@@ -96,11 +116,11 @@ const PlaceDetails = (props) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className={`property__avatar-wrapper ${offer.host.super === 1 ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
+                  <div className={`property__avatar-wrapper ${(offer.host && offer.host.super === 1) ? `property__avatar-wrapper--pro` : ``} user__avatar-wrapper`}>
+                    <img className="property__avatar user__avatar" src="/img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    {offer.host.name}
+                    {offer.host ? offer.host.name : ``}
                   </span>
                 </div>
                 <div className="property__description">
@@ -118,15 +138,18 @@ const PlaceDetails = (props) => {
                   onSubmitFeedback={onSubmitFeedback}
                   hotelId={offer.id}
                   feedbackFormStatus={feedbackFormStatus}
+                  onFeedbackFormChange={onFeedbackFormChange}
+                  feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
                 />
               }
             </div>
           </div>
           <section className="property__map map">
-            <Map
+            {offer.coordinates && <Map
               city={offer.coordinates}
-              offers = {nearestOffers}
-            />
+              offers = {nearestOffers.concat([offer])}
+              activeOffer={offer}
+            />}
           </section>
         </section>
         <div className="container">
@@ -189,6 +212,10 @@ PlaceDetails.propTypes = {
   feedbackFormStatus: PropTypes.string,
   onLogoClick: PropTypes.func,
   onFavoriteButtonClick: PropTypes.func.isRequired,
+  onEmailClick: PropTypes.func.isRequired,
+  onFeedbackFormChange: PropTypes.func.isRequired,
+  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default PlaceDetails;

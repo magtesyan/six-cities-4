@@ -2,10 +2,18 @@ import PropTypes from "prop-types";
 import React from "react";
 
 const RatingInput = (props) => {
-  const {number, isDisabled} = props;
+  const {number, isDisabled, onRatingChange} = props;
   return (
     <React.Fragment>
-      <input className="form__rating-input visually-hidden" name="rating" value={number} id={`${number}-stars`} type="radio" disabled={isDisabled}/>
+      <input
+        className="form__rating-input visually-hidden"
+        name="rating"
+        value={number}
+        id={`${number}-stars`}
+        type="radio"
+        disabled={isDisabled}
+        onChange={onRatingChange}
+      />
       <label htmlFor={`${number}-stars`} className="reviews__rating-label form__rating-label" title="perfect">
         <svg className="form__star-image" width="37" height="33">
           <use xlinkHref="#icon-star"></use>
@@ -18,6 +26,7 @@ const RatingInput = (props) => {
 RatingInput.propTypes = {
   number: PropTypes.number.isRequired,
   isDisabled: PropTypes.bool,
+  onRatingChange: PropTypes.func,
 };
 
 export default RatingInput;

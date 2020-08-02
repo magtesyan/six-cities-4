@@ -5,7 +5,8 @@ import Feedback from "../feedback/feedback.jsx";
 
 const FeedbackList = (props) => {
   const {feedbacks} = props;
-  const renderReviews = feedbacks.map((feedback) => {
+  const sortedFeedbacks = feedbacks.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 10);
+  const renderReviews = sortedFeedbacks.map((feedback) => {
     return (
       <Feedback
         key={feedback.id}

@@ -9,3 +9,7 @@ export const getFeedbacks = (state) => {
 export const getFeedbackFormStatus = (state) => {
   return state[NAME_SPACE].formStatus;
 };
+
+export const getFeedbackSubmitBtnStatus = (state) => {
+  return state[NAME_SPACE].formSubmitBtnStatus;
+};

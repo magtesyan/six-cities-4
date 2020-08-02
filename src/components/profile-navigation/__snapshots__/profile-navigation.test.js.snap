@@ -4,6 +4,16 @@ exports[`Render Profile Navigation 1`] = `
 <nav
   className="header__nav"
 >
+  <div
+    style={
+      Object {
+        "color": "red",
+        "fontSize": "20px",
+      }
+    }
+  >
+    
+  </div>
   <ul
     className="header__nav-list"
   >

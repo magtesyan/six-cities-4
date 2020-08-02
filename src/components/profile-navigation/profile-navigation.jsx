@@ -5,14 +5,24 @@ import {AppRoute} from "../../const.js";
 import history from "../../history.js";
 
 const ProfileNavigation = (props) => {
-  const {onSignInClick, isUserAuthorized, email} = props;
+  const {onSignInClick, isUserAuthorized, email, onEmailClick, errorStatus} = props;
 
   const handleSignLinkClick = () => {
-    return isUserAuthorized ? history.push(AppRoute.FAVORITES) : onSignInClick();
+    return isUserAuthorized ? handleEmailClick() : onSignInClick();
+  };
+
+  const error = errorStatus ? `Server error` : ``;
+
+  const handleEmailClick = () => {
+    onEmailClick();
+    return history.push(AppRoute.FAVORITES);
   };
 
   return (
     <nav className="header__nav">
+      <div style={{fontSize: `20px`, color: `red`}}>
+        {error}
+      </div>
       <ul className="header__nav-list">
         <li
           className="header__nav-item user"
@@ -38,6 +48,8 @@ ProfileNavigation.propTypes = {
   isUserAuthorized: PropTypes.bool.isRequired,
   onSignInClick: PropTypes.func.isRequired,
   email: PropTypes.string,
+  onEmailClick: PropTypes.func.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default ProfileNavigation;

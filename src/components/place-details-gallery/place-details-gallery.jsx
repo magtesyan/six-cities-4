@@ -5,13 +5,13 @@ import shortid from "shortid";
 const PlaceDetailsGallery = (props) => {
   const {pictures} = props;
 
-  const picturesList = pictures.map((picture) => {
+  const picturesList = pictures ? pictures.map((picture) => {
     return (
       <div className="property__image-wrapper" key={shortid.generate()}>
         <img className="property__image" src={picture} alt="Photo studio" />
       </div>
     );
-  });
+  }) : ``;
 
   return (
     <div className="property__gallery-container container">
@@ -23,7 +23,7 @@ const PlaceDetailsGallery = (props) => {
 };
 
 PlaceDetailsGallery.propTypes = {
-  pictures: PropTypes.arrayOf(PropTypes.string).isRequired
+  pictures: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PlaceDetailsGallery;

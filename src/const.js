@@ -12,6 +12,7 @@ const CITY_COORDINATES = new Map([
 const OFFER_CARDS_CLASSES = new Map([
   [`main-page`, `cities__place-card`],
   [`details-page`, `near-places__card`],
+  [`favorites-page`, `favorites__card`],
 ]);
 
 const MONTHS = [`January`, `February`, `March`, `April`, `May`, `June`, `Jule`, `August`, `September`, `October`, `November`, `December`];
@@ -32,9 +33,20 @@ const LOGO_SIZE = {
   }
 };
 
+const PLACE_CARD_IMG_SIZE = {
+  cities: {
+    width: 260,
+    height: 200
+  },
+  favorites: {
+    width: 150,
+    height: 110
+  }
+};
+
 const AppRoute = {
   LOGIN: `/login`,
-  DETAILS: `/details`,
+  DETAILS: `/offer`,
   ROOT: `/`,
   FAVORITES: `/favorites`,
 };
@@ -46,5 +58,6 @@ export {
   LOGO_SIZE,
   MONTHS,
   OFFER_CARDS_CLASSES,
+  PLACE_CARD_IMG_SIZE,
   RATING_IN_WIDTH_PERCENT,
 };

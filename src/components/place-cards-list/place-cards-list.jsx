@@ -26,7 +26,7 @@ class PlaceCardsList extends PureComponent {
       <PlaceCard
         className = {className}
         offer={offer}
-        key={`${offer.id}${offer.price}${offer.name}`}
+        key={`${offer.id}${offer.price}${offer.name}${offer.previewImage}`}
         onOfferTitleClick = {onOfferTitleClick}
         onMouseOver={onCardMouseOver}
         isUserAuthorized={isUserAuthorized}
@@ -60,8 +60,8 @@ PlaceCardsList.propTypes = {
   className: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.object).isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
-  activeCity: PropTypes.string.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired,
+  activeCity: PropTypes.string,
+  onCardMouseOver: PropTypes.func,
   onFilterClick: PropTypes.func,
   onSortTypeClick: PropTypes.func,
   activeSortingOption: PropTypes.string,

@@ -2,7 +2,8 @@ const initialState = {
   city: ``,
   step: `mainScreen`,
   place: {},
-  activeOffer: {}
+  activeOffer: {},
+  errorStatus: false
 };
 
 const ActionType = {
@@ -12,6 +13,7 @@ const ActionType = {
   OPEN_DETAILS_SCREEN: `OPEN_DETAILS_SCREEN`,
   OPEN_AUTH_SCREEN: `OPEN_AUTH_SCREEN`,
   OPEN_MAIN_SCREEN: `OPEN_MAIN_SCREEN`,
+  OPEN_FAVORITES_SCREEN: `OPEN_FAVORITES_SCREEN`,
 };
 
 const ActionCreator = {
@@ -31,6 +33,10 @@ const ActionCreator = {
 
   openMainScreen: () => ({
     type: ActionType.OPEN_MAIN_SCREEN,
+  }),
+
+  openFavoriteScreen: () => ({
+    type: ActionType.OPEN_FAVORITES_SCREEN,
   }),
 
   changeCity: (city) => ({
@@ -66,6 +72,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.OPEN_MAIN_SCREEN:
       return Object.assign({}, state, {
         step: `mainScreen`,
+      });
+    case ActionType.OPEN_FAVORITES_SCREEN:
+      return Object.assign({}, state, {
+        step: `favoritesScreen`,
       });
     case ActionType.CHANGE_FAVORITE_STATUS:
       return Object.assign({}, state, {

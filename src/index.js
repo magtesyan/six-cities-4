@@ -25,6 +25,9 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.getOffers());
+if (store.getState().USER.authorizationStatus === `AUTH`) {
+  store.dispatch(DataOperation.getFavoriteOffers());
+}
 store.dispatch(UserOperation.checkAuth());
 
 ReactDOM.render(

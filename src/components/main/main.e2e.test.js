@@ -94,6 +94,8 @@ describe(`Click on Title Test`, () => {
             onCardMouseOver={jest.fn()}
             onLogoClick={jest.fn()}
             onFavoriteButtonClick={jest.fn()}
+            onEmailClick={jest.fn()}
+            errorStatus={false}
           />
         </Router>
     );

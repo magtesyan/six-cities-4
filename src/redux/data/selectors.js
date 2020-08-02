@@ -9,8 +9,24 @@ export const getOffers = (state) => {
   return state[NameSpace.DATA].offers;
 };
 
+export const getNearOffers = (state) => {
+  return state[NameSpace.DATA].nearOffers;
+};
+
+export const getFavoriteOffers = (state) => {
+  return state[NameSpace.DATA].favoriteOffers;
+};
+
 export const getCities = (state) => {
   return state[NameSpace.DATA].cities;
+};
+
+export const getFavoriteCities = (state) => {
+  return state[NameSpace.DATA].favoriteCities;
+};
+
+export const getError = (state) => {
+  return state[NameSpace.DATA].errorStatus || state[NameSpace.APPLICATION].errorStatus || state[NameSpace.FEEDBACK].errorStatus || state[NameSpace.USER].errorStatus;
 };
 
 export const getOffersByCity = createSelector(

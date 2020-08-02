@@ -389,6 +389,9 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     cities: [],
     offers: [],
+    errorStatus: false,
+    favoriteOffers: [],
+    nearOffers: [],
   });
 });
 
@@ -435,10 +438,10 @@ const serverMock = [{
   "price": 120,
   "rating": 4.8,
   "title": `Beautiful & luxurious studio at great location`,
-  "type": `apartment`
+  "type": `apartment`,
 }];
 
-describe(`Operation work correctly`, () => {
+describe(`Data operation work correctly`, () => {
   it(`Should make a correct API call to /hotels`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -450,7 +453,7 @@ describe(`Operation work correctly`, () => {
 
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             {
               type: ActionType.GET_CITIES,
@@ -481,8 +484,102 @@ describe(`Operation work correctly`, () => {
                 coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
                 reviews: [],
                 isFavorite: serverMock[0].is_favorite,
-                city: serverMock[0].city.name
+                city: serverMock[0].city.name,
+                previewImage: serverMock[0].preview_image,
               }]),
+            }
+        );
+      });
+  });
+  it(`Should make a correct API call to /favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const offersLoader = Operation.getFavoriteOffers();
+
+    apiMock
+      .onGet(`/favorite`)
+      .reply(200, serverMock);
+
+    return offersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            {
+              type: ActionType.GET_FAVORITE_OFFERS,
+              payload: new Map().set(serverMock[0].city.name, [{
+                id: expect.anything(),
+                name: serverMock[0].title,
+                price: serverMock[0].price,
+                rating: serverMock[0].rating,
+                type: serverMock[0].type,
+                rank: serverMock[0].is_premium,
+                pictures: serverMock[0].images,
+                description: serverMock[0].description,
+                bedrooms: serverMock[0].bedrooms,
+                guests: serverMock[0].max_adults,
+                features: serverMock[0].goods,
+                host: {
+                  avatar: serverMock[0].host.avatar_url,
+                  id: serverMock[0].host.id,
+                  super: serverMock[0].host.is_pro ? 1 : 0,
+                  name: serverMock[0].host.name
+                },
+                coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
+                reviews: [],
+                isFavorite: serverMock[0].is_favorite,
+                city: serverMock[0].city.name,
+                previewImage: serverMock[0].preview_image,
+              }]),
+            }
+        );
+      });
+  });
+  it(`Should make a correct API call to /hotels/hotelID/nearby`, function () {
+    const apiMock = new MockAdapter(api);
+    const mockId = 1;
+    const dispatch = jest.fn();
+    const offersLoader = Operation.getNearOffers(mockId);
+
+    apiMock
+      .onGet(`/hotels/${mockId}/nearby`)
+      .reply(200, serverMock);
+
+    return offersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            {
+              type: ActionType.GET_NEAR_OFFERS,
+              payload: [{
+                id: expect.anything(),
+                name: serverMock[0].title,
+                price: serverMock[0].price,
+                rating: serverMock[0].rating,
+                type: serverMock[0].type,
+                rank: serverMock[0].is_premium,
+                pictures: serverMock[0].images,
+                description: serverMock[0].description,
+                bedrooms: serverMock[0].bedrooms,
+                guests: serverMock[0].max_adults,
+                features: serverMock[0].goods,
+                host: {
+                  avatar: serverMock[0].host.avatar_url,
+                  id: serverMock[0].host.id,
+                  super: serverMock[0].host.is_pro ? 1 : 0,
+                  name: serverMock[0].host.name
+                },
+                coordinates: [serverMock[0].location.latitude, serverMock[0].location.longitude],
+                reviews: [],
+                isFavorite: serverMock[0].is_favorite,
+                city: serverMock[0].city.name,
+                previewImage: serverMock[0].preview_image,
+              }],
+            }
+        );
+        expect(dispatch).toHaveBeenNthCalledWith(2,
+            {
+              type: ActionType.SET_ERROR,
+              payload: false,
             }
         );
       });

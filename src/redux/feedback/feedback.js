@@ -2,13 +2,16 @@ import {getFeedbacks, postFeedbacks} from "../../clients/feedback.js";
 
 const initialState = {
   feedbacks: [],
-  formStatus: ``
+  formStatus: ``,
+  formSubmitBtnStatus: true,
+  errorStatus: false
 };
 
 const ActionType = {
   GET_FEEDBACKS: `GET_FEEDBACKS`,
   ADD_FEEDBACK: `ADD_FEEDBACK`,
   CHANGE_FORM_STATUS: `CHANGE_FORM_STATUS`,
+  CHANGE_FORM_SUBMIT_BTN_STATUS: `CHANGE_FORM_SUBMIT_BTN_STATUS`,
 };
 
 const ActionCreator = {
@@ -22,6 +25,10 @@ const ActionCreator = {
   }),
   changeFormStatus: (status) => ({
     type: ActionType.CHANGE_FORM_STATUS,
+    payload: status,
+  }),
+  changeFormSubmitStatus: (status) => ({
+    type: ActionType.CHANGE_FORM_SUBMIT_BTN_STATUS,
     payload: status,
   })
 };
@@ -60,6 +67,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_FORM_STATUS:
       return Object.assign({}, state, {
         formStatus: action.payload
+      });
+    case ActionType.CHANGE_FORM_SUBMIT_BTN_STATUS:
+      return Object.assign({}, state, {
+        formSubmitBtnStatus: action.payload
       });
 
     default:

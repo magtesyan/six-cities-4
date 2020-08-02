@@ -26,7 +26,7 @@ exports[`Render App Render MainScreen 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width={81}
             />
           </a>
@@ -34,6 +34,16 @@ exports[`Render App Render MainScreen 1`] = `
         <nav
           className="header__nav"
         >
+          <div
+            style={
+              Object {
+                "color": "red",
+                "fontSize": "20px",
+              }
+            }
+          >
+            
+          </div>
           <ul
             className="header__nav-list"
           >
@@ -206,9 +216,8 @@ exports[`Render App Render MainScreen 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
-                    src="img/apartment-01.jpg"
-                    width="260"
+                    height={200}
+                    width={260}
                   />
                 </a>
               </div>
@@ -279,7 +288,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious apartment at great location
@@ -312,9 +321,8 @@ exports[`Render App Render MainScreen 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
-                    src="img/apartment-01.jpg"
-                    width="260"
+                    height={200}
+                    width={260}
                   />
                 </a>
               </div>
@@ -385,7 +393,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/6"
                     onClick={[Function]}
                   >
                     Wood and stone place
@@ -411,9 +419,8 @@ exports[`Render App Render MainScreen 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
-                    src="img/apartment-01.jpg"
-                    width="260"
+                    height={200}
+                    width={260}
                   />
                 </a>
               </div>
@@ -484,7 +491,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/11"
                     onClick={[Function]}
                   >
                     Canal View Prinsengracht
@@ -517,9 +524,8 @@ exports[`Render App Render MainScreen 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
-                    src="img/apartment-01.jpg"
-                    width="260"
+                    height={200}
+                    width={260}
                   />
                 </a>
               </div>
@@ -590,7 +596,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/16"
                     onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment
@@ -623,9 +629,8 @@ exports[`Render App Render MainScreen 1`] = `
                   <img
                     alt="Place image"
                     className="place-card__image"
-                    height="200"
-                    src="img/apartment-01.jpg"
-                    width="260"
+                    height={200}
+                    width={260}
                   />
                 </a>
               </div>
@@ -696,7 +701,7 @@ exports[`Render App Render MainScreen 1`] = `
                   onClick={[Function]}
                 >
                   <a
-                    href="/details"
+                    href="/offer/21"
                     onClick={[Function]}
                   >
                     Wood and stone place

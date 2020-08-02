@@ -1,8 +1,8 @@
-import {Router} from "react-router-dom";
-import renderer from "react-test-renderer";
 import React from "react";
+import renderer from "react-test-renderer";
+import {Router} from "react-router-dom";
 import history from "../../history.js";
-import PlaceCardsList from "./place-cards-list.jsx";
+import FavoritesList from "./favorites-list.jsx";
 
 const offers = [
   {
@@ -46,23 +46,23 @@ const offers = [
     rank: true
   }
 ];
-const className = `near-places__card`;
-const activeCity = `Amsterdam`;
 
-it(`Cards List is rendered correctly`, () => {
+const city = `Amsterdam`;
+
+it(`Favorites List is rendered correctly`, () => {
   const tree = renderer
     .create(
         <Router
           history={history}
         >
-          <PlaceCardsList
-            className = {className}
-            offers = {offers}
-            onOfferTitleClick = {jest.fn()}
-            activeCity={activeCity}
-            onCardMouseOver={jest.fn()}
-            onFavoriteButtonClick={jest.fn()}
+          <FavoritesList
+            key={`${city}-favorite-offers`}
+            offers={offers}
             isUserAuthorized={true}
+            onFavoriteButtonClick={jest.fn()}
+            onOfferTitleClick={jest.fn()}
+            city={city}
+            onCardMouseOver={jest.fn()}
           />
         </Router>
     ).toJSON();

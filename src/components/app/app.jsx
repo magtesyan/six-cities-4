@@ -8,9 +8,9 @@ import {ActionCreator} from "../../redux/application/application.js";
 import {ActionCreator as FeedbackActionCreator} from "../../redux/feedback/feedback.js";
 import {AppRoute} from "../../const.js";
 import FavoritesScreen from "../favorites-screen/favorites-screen.jsx";
-import {getFeedbacks, getFeedbackFormStatus} from "../../redux/feedback/selectors.js";
+import {getFeedbacks, getFeedbackFormStatus, getFeedbackSubmitBtnStatus} from "../../redux/feedback/selectors.js";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors.js";
-import {getOffersByCity, getCities} from "../../redux/data/selectors.js";
+import {getOffers, getOffersByCity, getCities, getFavoriteCities, getFavoriteOffers, getNearOffers, getError} from "../../redux/data/selectors.js";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors.js";
 import Main from "../main/main.jsx";
 import {Operation as DataOperation} from "../../redux/data/data.js";
@@ -23,14 +23,6 @@ import SignIn from "../sign-in/sign-in.jsx";
 class App extends PureComponent {
   _renderMainScreen() {
     const {step} = this.props;
-
-    if (step === `mainScreen`) {
-      return history.push(AppRoute.ROOT);
-    }
-
-    if (step === `detailsScreen`) {
-      return history.push(AppRoute.DETAILS);
-    }
 
     if (step === `authScreen`) {
       return history.push(AppRoute.LOGIN);
@@ -45,22 +37,34 @@ class App extends PureComponent {
       cities,
       city,
       email,
+      errorStatus,
+      favoriteOffers,
       feedbackFormStatus,
       feedbacks,
+      feedbackSubmitBtnStatus,
+      fullOffers,
       login,
+      nearOffers,
       offers,
-      onOfferTitleClick,
+      onEmailClick,
       onCityClick,
       onCardMouseOver,
+      onFavoriteButtonClick,
+      onFeedbackFormChange,
+      onLogoClick,
+      onOfferTitleClick,
       onSignInClick,
       onSubmitFeedback,
-      onLogoClick,
-      onFavoriteButtonClick,
-      place,
     } = this.props;
 
     const activeCity = city === `` ? cities[0] : city;
     this._renderMainScreen();
+
+    const getOfferById = (id) => {
+      return Array.from(fullOffers.values()).reduce((offerCounter, offersArray) =>
+        [...offerCounter, ...offersArray.filter((offer) => offer.id === id)], [])[0];
+    };
+
     return (
       <Router
         history={history}
@@ -80,14 +84,16 @@ class App extends PureComponent {
               email={email}
               onLogoClick={onLogoClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
+              onEmailClick={onEmailClick}
+              errorStatus={errorStatus}
             />
           </Route>
-          <Route exact path={AppRoute.DETAILS}>
+          <Route exact path={`${AppRoute.DETAILS}/:id`} render={(props) => (
             <PlaceDetails
               onSignInClick={onSignInClick}
               authorizationStatus={authorizationStatus}
-              offer={place}
-              nearestOffers={offers.slice(0, 3)}
+              nearestOffers={nearOffers.length ? nearOffers : []}
+              offer={fullOffers.length !== 0 ? getOfferById(props.match.params.id.toString()) : {}}
               onOfferTitleClick={onOfferTitleClick}
               city={activeCity}
               onCardMouseOver={onCardMouseOver}
@@ -97,18 +103,36 @@ class App extends PureComponent {
               feedbackFormStatus={feedbackFormStatus}
               onLogoClick={onLogoClick}
               onFavoriteButtonClick={onFavoriteButtonClick}
-            />
+              onEmailClick={onEmailClick}
+              feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
+              onFeedbackFormChange={onFeedbackFormChange}
+              errorStatus={errorStatus}
+            />)}>
           </Route>
-          <Route exact path={AppRoute.LOGIN}>
+          <Route exact path={AppRoute.LOGIN} render={() => (
             <SignIn
               onSubmit={login}
               onLogoClick={onLogoClick}
-            />
+              authorizationStatus={authorizationStatus}
+              errorStatus={errorStatus}
+              onSignInClick={onSignInClick}
+              email={email}
+              onEmailClick={onEmailClick}
+            />)}>
           </Route>
-          <Route exact path={AppRoute.FAVORITES}>
+          <Route exact path={AppRoute.FAVORITES} render={() => (
             <FavoritesScreen
               onLogoClick={onLogoClick}
-            />
+              onSignInClick={onSignInClick}
+              authorizationStatus={authorizationStatus}
+              email={email}
+              favoriteOffers={favoriteOffers}
+              onEmailClick={onEmailClick}
+              onOfferTitleClick={onOfferTitleClick}
+              onFavoriteButtonClick={onFavoriteButtonClick}
+              onCardMouseOver={onCardMouseOver}
+              errorStatus={errorStatus}
+            />)}>
           </Route>
         </Switch>
       </Router>
@@ -121,6 +145,7 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   onSubmitFeedback: PropTypes.func.isRequired,
   onSignInClick: PropTypes.func.isRequired,
+  onEmailClick: PropTypes.func.isRequired,
   offers: PropTypes.array.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onCityClick: PropTypes.func.isRequired,
@@ -135,6 +160,18 @@ App.propTypes = {
   feedbacks: PropTypes.array,
   feedbackFormStatus: PropTypes.string,
   onFavoriteButtonClick: PropTypes.func.isRequired,
+  fullOffers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  favoriteOffers: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  nearOffers: PropTypes.array,
+  onFeedbackFormChange: PropTypes.func.isRequired,
+  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
+  errorStatus: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -143,11 +180,17 @@ const mapStateToProps = (state) => ({
   city: getCity(state),
   place: getPlace(state),
   offers: getOffersByCity(state),
+  favoriteOffers: getFavoriteOffers(state),
+  fullOffers: getOffers(state),
   cities: getCities(state),
+  favoriteCities: getFavoriteCities(state),
   activeOffer: getActiveOffer(state),
   email: getEmail(state),
   feedbacks: getFeedbacks(state),
-  feedbackFormStatus: getFeedbackFormStatus(state)
+  feedbackFormStatus: getFeedbackFormStatus(state),
+  nearOffers: getNearOffers(state),
+  feedbackSubmitBtnStatus: getFeedbackSubmitBtnStatus(state),
+  errorStatus: getError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -160,6 +203,9 @@ const mapDispatchToProps = (dispatch) => ({
   onSignInClick() {
     dispatch(ActionCreator.openAuthScreen());
   },
+  onEmailClick() {
+    dispatch(DataOperation.getFavoriteOffers());
+  },
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
@@ -167,8 +213,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(FeedbackActionCreator.changeFormStatus(`disabled`));
     dispatch(FeedbackOperation.postFeedbacks(hotelId, feedbackData));
   },
+  onFeedbackFormChange(status) {
+    dispatch(FeedbackActionCreator.changeFormSubmitStatus(status));
+  },
   onOfferTitleClick(offer) {
     dispatch(FeedbackOperation.getFeedbacks(offer.id));
+    dispatch(DataOperation.getNearOffers(offer.id));
     dispatch(ActionCreator.openDetailsScreen(offer));
   },
   onCityClick(city) {

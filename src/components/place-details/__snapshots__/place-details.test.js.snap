@@ -26,7 +26,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width={81}
             />
           </a>
@@ -34,6 +34,16 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
         <nav
           className="header__nav"
         >
+          <div
+            style={
+              Object {
+                "color": "red",
+                "fontSize": "20px",
+              }
+            }
+          >
+            
+          </div>
           <ul
             className="header__nav-list"
           >
@@ -313,7 +323,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-angelina.jpg"
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
@@ -403,9 +413,9 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="May 8, 2019"
+                    dateTime="May 2019"
                   >
-                    May 8, 2019
+                    May 2019
                   </time>
                 </div>
               </li>
@@ -461,9 +471,8 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
+                  height={200}
+                  width={260}
                 />
               </a>
             </div>
@@ -534,7 +543,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 onClick={[Function]}
               >
                 <a
-                  href="/details"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   Beautiful & luxurious apartment at great location
@@ -567,9 +576,8 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
+                  height={200}
+                  width={260}
                 />
               </a>
             </div>
@@ -640,7 +648,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 onClick={[Function]}
               >
                 <a
-                  href="/details"
+                  href="/offer/6"
                   onClick={[Function]}
                 >
                   Wood and stone place
@@ -673,9 +681,8 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
+                  height={200}
+                  width={260}
                 />
               </a>
             </div>
@@ -746,7 +753,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 onClick={[Function]}
               >
                 <a
-                  href="/details"
+                  href="/offer/11"
                   onClick={[Function]}
                 >
                   Canal View Prinsengracht
@@ -779,9 +786,8 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
+                  height={200}
+                  width={260}
                 />
               </a>
             </div>
@@ -852,7 +858,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 onClick={[Function]}
               >
                 <a
-                  href="/details"
+                  href="/offer/16"
                   onClick={[Function]}
                 >
                   Nice, cozy, warm big bed apartment
@@ -885,9 +891,8 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 <img
                   alt="Place image"
                   className="place-card__image"
-                  height="200"
-                  src="img/apartment-01.jpg"
-                  width="260"
+                  height={200}
+                  width={260}
                 />
               </a>
             </div>
@@ -958,7 +963,7 @@ exports[`PlaceDetailsScreen is not rendered correctly 1`] = `
                 onClick={[Function]}
               >
                 <a
-                  href="/details"
+                  href="/offer/21"
                   onClick={[Function]}
                 >
                   Wood and stone place

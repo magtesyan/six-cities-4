@@ -1,4 +1,4 @@
-const fullOffers = new Map();
+let fullOffers = new Map();
 let cities = Array.from(fullOffers.keys());
 
 const transformOffer = (offerFromServer) => {
@@ -23,13 +23,18 @@ const transformOffer = (offerFromServer) => {
     coordinates: [offerFromServer.location.latitude, offerFromServer.location.longitude],
     reviews: [],
     isFavorite: offerFromServer.is_favorite,
-    city: offerFromServer.city.name
+    city: offerFromServer.city.name,
+    previewImage: offerFromServer.preview_image
   };
 
   return transformedOffer;
 };
 
+
 const collectOffers = (offersFromServer) => {
+  fullOffers = new Map();
+  cities = Array.from(fullOffers.keys());
+
   offersFromServer.forEach((offer) => {
     if (cities.indexOf(offer.city.name) === -1) {
       fullOffers.set(offer.city.name, [transformOffer(offer)]);
@@ -38,7 +43,6 @@ const collectOffers = (offersFromServer) => {
     }
     cities = Array.from(fullOffers.keys());
   });
-
   return fullOffers;
 };
 
