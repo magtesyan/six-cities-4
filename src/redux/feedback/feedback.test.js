@@ -2,7 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation, ActionCreator} from "./feedback.js";
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 
 const serverMock = [{
   comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
@@ -10,9 +10,11 @@ const serverMock = [{
   id: 1,
   rating: 4,
   user: {
+    /* eslint-disable */
     avatar_url: `img/1.png`,
-    id: 4,
     is_pro: false,
+    /* eslint-enable */
+    id: 4,
     name: `Max`
   }
 }];
@@ -42,13 +44,24 @@ describe(`Feedback operation work correctly`, () => {
       .onGet(`/comments/${mockId}`)
       .reply(200, serverMock);
 
-    return feedbacksLoader(dispatch, () => {}, api)
+    return feedbacksLoader(dispatch, jest.fn(), api)
     .then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1,
           {
             type: ActionType.GET_FEEDBACKS,
-            payload: serverMock,
+            payload: [{
+              comment: serverMock[0].comment,
+              date: serverMock[0].date,
+              id: serverMock[0].id,
+              rating: serverMock[0].rating,
+              user: {
+                avatarUrl: serverMock[0].user.avatar_url,
+                isPro: serverMock[0].user.is_pro,
+                id: serverMock[0].user.id,
+                name: serverMock[0].user.name,
+              },
+            }]
           }
       );
     });

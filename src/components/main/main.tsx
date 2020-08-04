@@ -2,7 +2,6 @@ import * as React from "react";
 import {CITY_COORDINATES, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const";
 import CityList from "../city-list/city-list";
 import EmptyScreen from "../empty-screen/empty-screen";
-import {getMapValuesByKey} from "../../util";
 import Logo from "../logo/logo";
 import Map from "../map/map";
 import {OfferType} from "../../types";
@@ -69,7 +68,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
           <div className={`cities__places-container ${emptyCityPlacesClassName} container`}>
             {!isOffersEmpty &&
             <PlaceCardsListSorted
-              className={getMapValuesByKey(OFFER_CARDS_CLASSES, `main-page`)}
+              className={OFFER_CARDS_CLASSES.get(`main-page`)}
               offers = {offers}
               onOfferTitleClick = {onOfferTitleClick}
               activeCity={city}

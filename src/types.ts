@@ -29,9 +29,9 @@ export interface FeedbackType {
     id: number;
     rating: number;
     user: {
-        avatar_url: string;
+        avatarUrl: string;
         id: number;
-        is_pro: false;
+        isPro: boolean;
         name: string;
     };
 }

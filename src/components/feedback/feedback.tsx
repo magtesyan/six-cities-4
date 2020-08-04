@@ -16,7 +16,7 @@ const Feedback: React.FunctionComponent<Props> = (props: Props) => {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={`${feedback.user.avatar_url}`} width="54" height="54" alt="Reviews avatar" />
+          <img className="reviews__avatar user__avatar" src={`${feedback.user.avatarUrl}`} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
           {feedback.user.name}

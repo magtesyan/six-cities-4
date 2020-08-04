@@ -1,4 +1,5 @@
 import {getFeedbacks, postFeedbacks} from "../../clients/feedback.js";
+import {collectFeedbacks} from "../../adapters/feedback.js";
 
 const initialState = {
   feedbacks: [],
@@ -37,14 +38,14 @@ const Operation = {
   getFeedbacks: (hotelId) => (dispatch, getState, api) => {
     return getFeedbacks(api, hotelId)
       .then((response) => {
-        dispatch(ActionCreator.getFeedbacks(response.data));
+        dispatch(ActionCreator.getFeedbacks(collectFeedbacks(response.data)));
       });
   },
 
   postFeedbacks: (hotelId, postData) => (dispatch, getState, api) => {
     return postFeedbacks(api, hotelId, postData)
       .then((response) => {
-        dispatch(ActionCreator.addFeedback(response.data));
+        dispatch(ActionCreator.addFeedback(collectFeedbacks(response.data)));
         dispatch(ActionCreator.changeFormStatus(``));
       })
       .catch((err) => {

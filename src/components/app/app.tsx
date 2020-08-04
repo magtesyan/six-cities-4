@@ -10,9 +10,8 @@ import {getFeedbacks, getFeedbackFormStatus, getFeedbackSubmitBtnStatus} from ".
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors";
 import {getOffers, getOffersByCity, getCities, getFavoriteCities, getFavoriteOffers, getNearOffers, getError} from "../../redux/data/selectors";
 import {getStep, getCity, getPlace, getActiveOffer} from "../../redux/application/selectors";
-import {OfferType, FeedbackType, FullOffersType} from "../../types";
+import {OfferType, FeedbackType} from "../../types";
 import Main from "../main/main";
-import {mapValues} from "../../util";
 import {Operation as DataOperation} from "../../redux/data/data";
 import {Operation as UserOperation} from "../../redux/user/user";
 import {Operation as FeedbackOperation} from "../../redux/feedback/feedback";
@@ -26,11 +25,11 @@ interface Props {
   cities: string[];
   email: string;
   errorStatus: boolean;
-  favoriteOffers: {}[] | FullOffersType;
+  favoriteOffers: {}[] | Map<string, OfferType[]>;
   feedbacks: FeedbackType[];
   feedbackFormStatus: string;
   feedbackSubmitBtnStatus: boolean;
-  fullOffers: {}[] | FullOffersType;
+  fullOffers: {}[] | Map<string, OfferType[]>;
   login: () => void;
   nearOffers: OfferType[];
   offers: OfferType[];
@@ -88,7 +87,7 @@ class App extends React.PureComponent<Props, {}> {
     this._renderMainScreen();
 
     const getOfferById = (id) => {
-      return mapValues(fullOffers).reduce((offerCounter: OfferType[], offersArray: OfferType[]) =>
+      return Array.from(fullOffers.values()).reduce((offerCounter: OfferType[], offersArray: OfferType[]) =>
         [...offerCounter, ...offersArray.filter((offer) => offer.id === id)], [])[0];
     };
 
@@ -120,7 +119,7 @@ class App extends React.PureComponent<Props, {}> {
               onSignInClick={onSignInClick}
               authorizationStatus={authorizationStatus}
               nearestOffers={nearOffers.length ? nearOffers : []}
-              offer={fullOffers.length !== 0 ? getOfferById(props.match.params.id.toString()) : {}}
+              offer={(fullOffers as {}[]).length !== 0 ? getOfferById(props.match.params.id.toString()) : {}}
               onOfferTitleClick={onOfferTitleClick}
               city={activeCity}
               onCardMouseOver={onCardMouseOver}

@@ -2,16 +2,15 @@ import * as React from "react";
 import {AppRoute, LOGO_TYPE} from "../../const";
 import history from "../../history";
 import Logo from "../logo/logo";
-import {getMapValuesByKey, mapKeys, mapSize} from "../../util";
 import FavoritesList from "../favorites-list/favorites-list";
-import {FullOffersType} from "../../types";
+import {OfferType} from "../../types";
 import ProfileNavigation from "../profile-navigation/profile-navigation";
 
 interface Props {
   authorizationStatus: string;
   email: string;
   errorStatus: boolean;
-  favoriteOffers: {}[] | FullOffersType;
+  favoriteOffers: {}[] | Map<string, OfferType[]>;
   onCardMouseOver: () => void;
   onEmailClick: () => void;
   onFavoriteButtonClick: () => void;
@@ -23,11 +22,11 @@ interface Props {
 const FavoritesScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {onLogoClick, onSignInClick, authorizationStatus, email, onEmailClick, favoriteOffers, onOfferTitleClick, onFavoriteButtonClick, onCardMouseOver, errorStatus} = props;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
-  const isThereOffers = (mapSize(favoriteOffers) || favoriteOffers.length) > 0;
-  const favoriteCities = isThereOffers ? mapKeys(favoriteOffers) : [];
+  const isThereOffers = ((favoriteOffers as Map<string, OfferType[]>).size || (favoriteOffers as {}[]).length) > 0;
+  const favoriteCities = isThereOffers ? Array.from((favoriteOffers as Map<string, OfferType[]>).keys()) : [];
 
   const favoritesList = favoriteCities.map((city) => {
-    const offers = favoriteOffers.length !== 0 ? getMapValuesByKey(favoriteOffers, city) : [];
+    const offers = (favoriteOffers as {}[]).length !== 0 ? (favoriteOffers as Map<string, OfferType[]>).get(city) : [];
     return (
       <FavoritesList
         key={`${city}-favorite-offers`}
