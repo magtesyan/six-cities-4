@@ -1,8 +1,23 @@
 import leaflet from "leaflet";
-import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {OfferType} from "../../types";
 
-class Map extends PureComponent {
+interface Props {
+  activeOffer: OfferType;
+  city: number[];
+  offers: OfferType[];
+}
+
+class Map extends React.PureComponent<Props, {}> {
+  private cityCoords: number[];
+  private zoom: number;
+  private map = leaflet;
+  private activeOffer: {} | OfferType;
+  private markersGroup: {
+    clearLayers: () => void;
+    addTo: (map: leaflet) => void;
+  };
+
   constructor(props) {
     super(props);
     const {city} = this.props;
@@ -26,13 +41,13 @@ class Map extends PureComponent {
     this._setIcons();
   }
 
-  _clearMarkers() {
+  private _clearMarkers() {
     if (this.markersGroup) {
       this.markersGroup.clearLayers();
     }
   }
 
-  _initialize() {
+  private _initialize() {
     this.map = leaflet.map(`map`, {
       center: this.cityCoords,
       zoom: this.zoom,
@@ -54,11 +69,11 @@ class Map extends PureComponent {
   _setIcons() {
     const {offers, activeOffer} = this.props;
     if (this.activeOffer !== activeOffer) {
-      this._clearMarkers(this.markers);
+      this._clearMarkers();
     }
-    let markers = [];
+    const markers = [];
     if (offers.length) {
-      this._clearMarkers(this.markers);
+      this._clearMarkers();
       offers.forEach((offer) => {
         const offerCords = offer.coordinates;
         const icon = leaflet.icon({
@@ -82,11 +97,5 @@ class Map extends PureComponent {
     );
   }
 }
-
-Map.propTypes = {
-  city: PropTypes.arrayOf(PropTypes.number),
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  activeOffer: PropTypes.object
-};
 
 export default Map;

@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 
-const EmptyScreen = () => {
+const EmptyScreen: React.FunctionComponent = () => {
   return (
     <section className="cities__no-places">
       <div className="cities__status-wrapper tabs__content">

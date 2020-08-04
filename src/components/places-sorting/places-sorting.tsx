@@ -1,7 +1,15 @@
-import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {SortingOptionType} from "../../types";
 
-class PlacesSorting extends PureComponent {
+interface Props {
+  activeSortingOption: string;
+  isFilterOpened: boolean;
+  onSortTypeClick: (sortingName: string) => void;
+  onFilterClick: () => void;
+  sortingOptions: SortingOptionType[];
+}
+
+class PlacesSorting extends React.PureComponent<Props, {}> {
   render() {
     const {onSortTypeClick, onFilterClick, sortingOptions, isFilterOpened, activeSortingOption} = this.props;
     const toggleFilterClass = isFilterOpened ? `places__options--opened` : ``;
@@ -15,7 +23,7 @@ class PlacesSorting extends PureComponent {
       return (
         <li
           className={`places__option ${activeOptionClass}`}
-          tabIndex="0"
+          tabIndex={0}
           key={option.name}
           onClick={callSortTypeClick}
         >
@@ -29,7 +37,7 @@ class PlacesSorting extends PureComponent {
         <span className="places__sorting-caption">Sort by</span>
         <span
           className="places__sorting-type"
-          tabIndex="0"
+          tabIndex={0}
           onClick={onFilterClick}
         >
           {activeSortingOption}
@@ -47,14 +55,5 @@ class PlacesSorting extends PureComponent {
     );
   }
 }
-
-PlacesSorting.propTypes = {
-  onSortTypeClick: PropTypes.func.isRequired,
-  sortingOptions: PropTypes.array.isRequired,
-  isFilterOpened: PropTypes.bool.isRequired,
-  onFilterClick: PropTypes.func.isRequired,
-  activeSortingOption: PropTypes.string.isRequired,
-};
-
 
 export default PlacesSorting;

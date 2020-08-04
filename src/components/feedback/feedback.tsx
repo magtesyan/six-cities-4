@@ -1,9 +1,12 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {FeedbackType} from "../../types";
+import {RATING_IN_WIDTH_PERCENT, MONTHS} from "../../const";
 
-import {RATING_IN_WIDTH_PERCENT, MONTHS} from "../../const.js";
+interface Props {
+  feedback: FeedbackType;
+}
 
-const Feedback = (props) => {
+const Feedback: React.FunctionComponent<Props> = (props: Props) => {
   const {feedback} = props;
   const feedbackDate = new Date(feedback.date);
   const reviewRatingStyleWidth = `${feedback.rating * RATING_IN_WIDTH_PERCENT}%`;
@@ -33,21 +36,6 @@ const Feedback = (props) => {
       </div>
     </li>
   );
-};
-
-Feedback.propTypes = {
-  feedback: PropTypes.shape({
-    comment: PropTypes.string,
-    rating: PropTypes.number,
-    user: PropTypes.shape({
-      name: PropTypes.string,
-      avatar_url: PropTypes.string,
-      id: PropTypes.number,
-      is_pro: PropTypes.bool,
-    }),
-    date: PropTypes.date,
-    id: PropTypes.number,
-  })
 };
 
 export default Feedback;

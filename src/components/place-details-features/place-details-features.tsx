@@ -1,7 +1,10 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 
-const PlaceDetailsFeatures = (props) => {
+interface Props {
+  features: string[];
+}
+
+const PlaceDetailsFeatures: React.FunctionComponent<Props> = (props: Props) => {
   const {features} = props;
 
   const featuresList = features ? features.map((feature) => {
@@ -20,10 +23,6 @@ const PlaceDetailsFeatures = (props) => {
       </ul>
     </div>
   );
-};
-
-PlaceDetailsFeatures.propTypes = {
-  features: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PlaceDetailsFeatures;

@@ -1,18 +1,37 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import FeedbackForm from "../feedback-form/feedback-form";
+import FeedbackList from "../feedback-list/feedback-list";
+import history from "../../history";
+import Logo from "../logo/logo";
+import Map from "../map/map";
+import PlaceCardsList from "../place-cards-list/place-cards-list";
+import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery";
+import PlaceDetailsFeatures from "../place-details-features/place-details-features";
+import ProfileNavigation from "../profile-navigation/profile-navigation";
+import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const";
+import {OfferType, FeedbackType} from "../../types";
 
-import FeedbackForm from "../feedback-form/feedback-form.jsx";
-import FeedbackList from "../feedback-list/feedback-list.jsx";
-import history from "../../history.js";
-import Logo from "../logo/logo.jsx";
-import Map from "../map/map.jsx";
-import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
-import PlaceDetailsGallery from "../place-details-gallery/place-details-gallery.jsx";
-import PlaceDetailsFeatures from "../place-details-features/place-details-features.jsx";
-import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
-import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const.js";
+interface Props {
+  authorizationStatus: string;
+  nearestOffers: OfferType[];
+  city: string;
+  email: string;
+  errorStatus: boolean;
+  feedbacks: FeedbackType[];
+  feedbackFormStatus: string;
+  feedbackSubmitBtnStatus: boolean;
+  onCardMouseOver: () => void;
+  onEmailClick: () => void;
+  onFavoriteButtonClick: (offer: OfferType, favoriteStatus: number) => void;
+  onFeedbackFormChange: () => void;
+  onLogoClick: () => void;
+  onOfferTitleClick: () => void;
+  onSignInClick: () => void;
+  onSubmitFeedback: () => void;
+  offer: OfferType;
+}
 
-const PlaceDetails = (props) => {
+const PlaceDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {
     authorizationStatus,
     city,
@@ -157,10 +176,10 @@ const PlaceDetails = (props) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               <PlaceCardsList
+                activeCity={city}
                 className={OFFER_CARDS_CLASSES.get(`details-page`)}
                 offers = {nearestOffers}
                 onOfferTitleClick = {onOfferTitleClick}
-                activeCity={city}
                 onCardMouseOver={onCardMouseOver}
                 isUserAuthorized={isUserAuthorized}
                 onFavoriteButtonClick={onFavoriteButtonClick}
@@ -171,51 +190,6 @@ const PlaceDetails = (props) => {
       </main>
     </div>
   );
-};
-
-PlaceDetails.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string,
-    coordinates: PropTypes.arrayOf(PropTypes.number),
-    name: PropTypes.string,
-    type: PropTypes.string,
-    rank: PropTypes.bool,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    pictures: PropTypes.arrayOf(PropTypes.string),
-    description: PropTypes.string,
-    bedrooms: PropTypes.number,
-    guests: PropTypes.number,
-    features: PropTypes.arrayOf(PropTypes.string),
-    isFavorite: PropTypes.bool,
-    host: PropTypes.shape({
-      avatar: PropTypes.string,
-      name: PropTypes.string,
-      super: PropTypes.number,
-    }),
-    reviews: PropTypes.arrayOf(PropTypes.shape({
-      text: PropTypes.string,
-      assessment: PropTypes.number,
-      name: PropTypes.string,
-      date: PropTypes.date
-    }))
-  }),
-  nearestOffers: PropTypes.array,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  city: PropTypes.string,
-  onCardMouseOver: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string,
-  feedbacks: PropTypes.array,
-  onSignInClick: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  onSubmitFeedback: PropTypes.func.isRequired,
-  feedbackFormStatus: PropTypes.string,
-  onLogoClick: PropTypes.func,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  onEmailClick: PropTypes.func.isRequired,
-  onFeedbackFormChange: PropTypes.func.isRequired,
-  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
-  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default PlaceDetails;

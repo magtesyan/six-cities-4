@@ -1,10 +1,18 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {OfferType} from "../../types";
+import {OFFER_CARDS_CLASSES} from "../../const";
+import PlaceCardsList from "../place-cards-list/place-cards-list";
 
-import {OFFER_CARDS_CLASSES} from "../../const.js";
-import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
+interface Props {
+  city: string;
+  isUserAuthorized: boolean;
+  offers: OfferType[];
+  onCardMouseOver: () => void;
+  onFavoriteButtonClick: () => void;
+  onOfferTitleClick: () => void;
+}
 
-const FavoritesList = (props) => {
+const FavoritesList: React.FunctionComponent<Props> = (props: Props) => {
   const {city, isUserAuthorized, offers, onOfferTitleClick, onFavoriteButtonClick, onCardMouseOver} = props;
 
   return (
@@ -29,15 +37,6 @@ const FavoritesList = (props) => {
       </div>
     </li>
   );
-};
-
-FavoritesList.propTypes = {
-  city: PropTypes.string,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  offers: PropTypes.array,
-  isUserAuthorized: PropTypes.bool.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired,
 };
 
 export default FavoritesList;

@@ -1,7 +1,12 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 
-const RatingInput = (props) => {
+interface Props {
+  number: number;
+  isDisabled: boolean;
+  onRatingChange: (evt) => void;
+}
+
+const RatingInput: React.FunctionComponent<Props> = (props: Props) => {
   const {number, isDisabled, onRatingChange} = props;
   return (
     <React.Fragment>
@@ -21,12 +26,6 @@ const RatingInput = (props) => {
       </label>
     </React.Fragment>
   );
-};
-
-RatingInput.propTypes = {
-  number: PropTypes.number.isRequired,
-  isDisabled: PropTypes.bool,
-  onRatingChange: PropTypes.func,
 };
 
 export default RatingInput;

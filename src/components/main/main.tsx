@@ -1,18 +1,35 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {CITY_COORDINATES, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const";
+import CityList from "../city-list/city-list";
+import EmptyScreen from "../empty-screen/empty-screen";
+import {getMapValuesByKey} from "../../util";
+import Logo from "../logo/logo";
+import Map from "../map/map";
+import {OfferType} from "../../types";
+import PlaceCardsList from "../place-cards-list/place-cards-list";
+import ProfileNavigation from "../profile-navigation/profile-navigation";
+import withSorting from "../../hocs/with-sorting/with-sorting";
 
-import {CITY_COORDINATES, OFFER_CARDS_CLASSES, LOGO_TYPE} from "../../const.js";
-import CityList from "../city-list/city-list.jsx";
-import EmptyScreen from "../empty-screen/empty-screen.jsx";
-import Logo from "../logo/logo.jsx";
-import Map from "../map/map.jsx";
-import PlaceCardsList from "../place-cards-list/place-cards-list.jsx";
-import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
-import withSorting from "../../hocs/with-sorting/with-sorting.js";
+interface Props {
+  authorizationStatus: string;
+  cities: string[];
+  city: string;
+  email: string;
+  errorStatus: boolean;
+  offers: OfferType[];
+  activeOffer: OfferType;
+  onCardMouseOver: () => void;
+  onCityClick: () => void;
+  onEmailClick: () => void;
+  onFavoriteButtonClick: () => void;
+  onLogoClick: () => void;
+  onSignInClick: () => void;
+  onOfferTitleClick: () => void;
+}
 
 const PlaceCardsListSorted = withSorting(PlaceCardsList);
 
-const Main = (props) => {
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {offers, onOfferTitleClick, onCityClick, onCardMouseOver, city, cities, activeOffer, authorizationStatus, onSignInClick, email, onLogoClick, onFavoriteButtonClick, onEmailClick, errorStatus} = props;
   const isOffersEmpty = offers.length === 0;
   const emptyMainClassName = isOffersEmpty ? `page__main--index-empty` : ``;
@@ -52,7 +69,7 @@ const Main = (props) => {
           <div className={`cities__places-container ${emptyCityPlacesClassName} container`}>
             {!isOffersEmpty &&
             <PlaceCardsListSorted
-              className={OFFER_CARDS_CLASSES.get(`main-page`)}
+              className={getMapValuesByKey(OFFER_CARDS_CLASSES, `main-page`)}
               offers = {offers}
               onOfferTitleClick = {onOfferTitleClick}
               activeCity={city}
@@ -78,23 +95,6 @@ const Main = (props) => {
       </main>
     </div>
   );
-};
-
-Main.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
-  offers: PropTypes.array.isRequired,
-  cities: PropTypes.array.isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-  city: PropTypes.string,
-  activeOffer: PropTypes.object,
-  onCardMouseOver: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  onLogoClick: PropTypes.func.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  onEmailClick: PropTypes.func.isRequired,
-  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default Main;

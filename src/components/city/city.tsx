@@ -1,7 +1,12 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 
-const City = (props) => {
+interface Props {
+  activeCity: string;
+  city: string;
+  onCityClick: (city: string) => void;
+}
+
+const City: React.FunctionComponent<Props> = (props: Props) => {
   const {city, activeCity, onCityClick} = props;
   const activeCityClass = activeCity === city ? `tabs__item--active` : ``;
   const callCityClick = () => onCityClick(city);
@@ -16,12 +21,6 @@ const City = (props) => {
       </a>
     </li>
   );
-};
-
-City.propTypes = {
-  city: PropTypes.string,
-  activeCity: PropTypes.string,
-  onCityClick: PropTypes.func
 };
 
 export default City;

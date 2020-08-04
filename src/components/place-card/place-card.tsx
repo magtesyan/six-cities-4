@@ -1,12 +1,19 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 import {Link} from "react-router-dom";
+import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, PLACE_CARD_IMG_SIZE} from "../../const";
+import history from "../../history";
+import {OfferType} from "../../types";
 
-import {AppRoute, RATING_IN_WIDTH_PERCENT, OFFER_CARDS_CLASSES, PLACE_CARD_IMG_SIZE} from "../../const.js";
-import history from "../../history.js";
-// import SignIn from "../sign-in/sign-in.jsx";
+interface Props {
+  className: string;
+  isUserAuthorized: boolean;
+  offer: OfferType;
+  onOfferTitleClick: (offer: OfferType) => void;
+  onMouseOver: (offer: OfferType) => void;
+  onFavoriteButtonClick: (offer: OfferType, favoriteStatus: number) => void;
+}
 
-const PlaceCard = (props) => {
+const PlaceCard: React.FunctionComponent<Props> = (props: Props) => {
   const {offer, onOfferTitleClick, onMouseOver, className, onFavoriteButtonClick, isUserAuthorized} = props;
   const callMouseOver = () => onMouseOver(offer);
   const callOfferTitleClick = () => onOfferTitleClick(offer);
@@ -67,24 +74,6 @@ const PlaceCard = (props) => {
       </div>
     </article>
   );
-};
-
-PlaceCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    rank: PropTypes.bool,
-    price: PropTypes.number,
-    rating: PropTypes.number,
-    isFavorite: PropTypes.bool,
-    previewImage: PropTypes.string,
-  }),
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onMouseOver: PropTypes.func.isRequired,
-  className: PropTypes.string.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  isUserAuthorized: PropTypes.bool.isRequired,
 };
 
 export default PlaceCard;

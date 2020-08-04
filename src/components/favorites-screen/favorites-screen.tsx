@@ -1,20 +1,33 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {AppRoute, LOGO_TYPE} from "../../const";
+import history from "../../history";
+import Logo from "../logo/logo";
+import {getMapValuesByKey, mapKeys, mapSize} from "../../util";
+import FavoritesList from "../favorites-list/favorites-list";
+import {FullOffersType} from "../../types";
+import ProfileNavigation from "../profile-navigation/profile-navigation";
 
-import FavoritesList from "../favorites-list/favorites-list.jsx";
-import history from "../../history.js";
-import Logo from "../logo/logo.jsx";
-import {AppRoute, LOGO_TYPE} from "../../const.js";
-import ProfileNavigation from "../profile-navigation/profile-navigation.jsx";
+interface Props {
+  authorizationStatus: string;
+  email: string;
+  errorStatus: boolean;
+  favoriteOffers: {}[] | FullOffersType;
+  onCardMouseOver: () => void;
+  onEmailClick: () => void;
+  onFavoriteButtonClick: () => void;
+  onLogoClick: () => void;
+  onOfferTitleClick: () => void;
+  onSignInClick: () => void;
+}
 
-const FavoritesScreen = (props) => {
+const FavoritesScreen: React.FunctionComponent<Props> = (props: Props) => {
   const {onLogoClick, onSignInClick, authorizationStatus, email, onEmailClick, favoriteOffers, onOfferTitleClick, onFavoriteButtonClick, onCardMouseOver, errorStatus} = props;
   const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
-  const isThereOffers = (favoriteOffers.size || favoriteOffers.length) > 0;
-  const favoriteCities = isThereOffers ? Array.from(favoriteOffers.keys()) : [];
+  const isThereOffers = (mapSize(favoriteOffers) || favoriteOffers.length) > 0;
+  const favoriteCities = isThereOffers ? mapKeys(favoriteOffers) : [];
 
   const favoritesList = favoriteCities.map((city) => {
-    const offers = favoriteOffers.length !== 0 ? favoriteOffers.get(city) : [];
+    const offers = favoriteOffers.length !== 0 ? getMapValuesByKey(favoriteOffers, city) : [];
     return (
       <FavoritesList
         key={`${city}-favorite-offers`}
@@ -80,22 +93,6 @@ const FavoritesScreen = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-FavoritesScreen.propTypes = {
-  onLogoClick: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string,
-  onSignInClick: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  onEmailClick: PropTypes.func.isRequired,
-  favoriteOffers: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.object
-  ]),
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  onCardMouseOver: PropTypes.func.isRequired,
-  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default FavoritesScreen;

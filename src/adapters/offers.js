@@ -30,7 +30,6 @@ const transformOffer = (offerFromServer) => {
   return transformedOffer;
 };
 
-
 const collectOffers = (offersFromServer) => {
   fullOffers = new Map();
   cities = Array.from(fullOffers.keys());

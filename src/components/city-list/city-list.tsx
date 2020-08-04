@@ -1,9 +1,13 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import City from "../city/city";
 
-import City from "../city/city.jsx";
+interface Props {
+  activeCity: string;
+  cities: string[];
+  onCityClick: () => void;
+}
 
-const CityList = (props) => {
+const CityList: React.FunctionComponent<Props> = (props: Props) => {
   const {cities, onCityClick, activeCity} = props;
   const renderCities = cities.map((city) => {
     return (
@@ -23,12 +27,6 @@ const CityList = (props) => {
       </ul>
     </section>
   );
-};
-
-CityList.propTypes = {
-  cities: PropTypes.array,
-  onCityClick: PropTypes.func.isRequired,
-  activeCity: PropTypes.string
 };
 
 export default CityList;

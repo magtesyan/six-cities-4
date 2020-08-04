@@ -1,4 +1,20 @@
-import React, {PureComponent} from 'react';
+import * as React from 'react';
+import {OfferType} from "../../types";
+
+interface State {
+  isFilterOpened: boolean;
+  activeSortingOption: string;
+}
+
+interface Props {
+  activeCity: string;
+  className: string;
+  isUserAuthorized: boolean;
+  offers: OfferType[];
+  onCardMouseOver: () => void;
+  onFavoriteButtonClick: () => void;
+  onOfferTitleClick: () => void;
+}
 
 const sortingOptions = [
   {
@@ -16,10 +32,10 @@ const sortingOptions = [
 ];
 
 const withSorting = (Component) => {
-  class WithSorting extends PureComponent {
+  class WithSorting extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
-      this.handleFilterClick = this.handleFilterClick.bind(this);
+      this._handleFilterClick = this._handleFilterClick.bind(this);
       this.handleSortTypeClick = this.handleSortTypeClick.bind(this);
 
       this.state = {
@@ -28,7 +44,7 @@ const withSorting = (Component) => {
       };
     }
 
-    handleFilterClick() {
+    private _handleFilterClick() {
       this.setState((prevState) => ({
         isFilterOpened: !prevState.isFilterOpened
       }));
@@ -44,7 +60,7 @@ const withSorting = (Component) => {
       return (
         <Component
           {...this.props}
-          onFilterClick = {this.handleFilterClick}
+          onFilterClick = {this._handleFilterClick}
           onSortTypeClick={this.handleSortTypeClick}
           activeSortingOption={this.state.activeSortingOption}
           sortingOptions={sortingOptions}

@@ -1,10 +1,16 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {AppRoute} from "../../const";
+import history from "../../history";
 
-import {AppRoute} from "../../const.js";
-import history from "../../history.js";
+interface Props {
+  email: string;
+  errorStatus: boolean;
+  isUserAuthorized: boolean;
+  onSignInClick: () => void;
+  onEmailClick: () => void;
+}
 
-const ProfileNavigation = (props) => {
+const ProfileNavigation: React.FunctionComponent<Props> = (props: Props) => {
   const {onSignInClick, isUserAuthorized, email, onEmailClick, errorStatus} = props;
 
   const handleSignLinkClick = () => {
@@ -42,14 +48,6 @@ const ProfileNavigation = (props) => {
       </ul>
     </nav>
   );
-};
-
-ProfileNavigation.propTypes = {
-  isUserAuthorized: PropTypes.bool.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
-  email: PropTypes.string,
-  onEmailClick: PropTypes.func.isRequired,
-  errorStatus: PropTypes.bool.isRequired,
 };
 
 export default ProfileNavigation;

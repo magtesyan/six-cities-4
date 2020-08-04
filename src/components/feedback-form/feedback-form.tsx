@@ -1,14 +1,26 @@
-import PropTypes from "prop-types";
-import React, {createRef, PureComponent} from "react";
+import * as React from "react";
+import {FeedbackPostType} from "../../types";
+import RatingInput from "../rating-input/rating-input";
 
-import RatingInput from "../rating-input/rating-input.jsx";
+interface Props {
+  feedbackFormStatus: string;
+  feedbackSubmitBtnStatus: boolean;
+  hotelId: string;
+  onSubmitFeedback: (hotelId: string, feedbackPost: FeedbackPostType) => void;
+  onFeedbackFormChange: (boolean) => void;
+}
 
 const feedbackPoints = [5, 4, 3, 2, 1];
 
-class FeedbackForm extends PureComponent {
+class FeedbackForm extends React.PureComponent<Props, {}> {
+  private feedbackFormRef: React.RefObject<HTMLFormElement>;
+  private feedbackText: string;
+  private ratingValue: number;
+  private isDisabled: boolean;
+
   constructor(props) {
     super(props);
-    this.feedbackFormRef = createRef();
+    this.feedbackFormRef = React.createRef();
 
     this.feedbackText = ``;
     this.ratingValue = 0;
@@ -102,13 +114,5 @@ class FeedbackForm extends PureComponent {
     );
   }
 }
-
-FeedbackForm.propTypes = {
-  onSubmitFeedback: PropTypes.func.isRequired,
-  hotelId: PropTypes.string,
-  feedbackFormStatus: PropTypes.string,
-  onFeedbackFormChange: PropTypes.func.isRequired,
-  feedbackSubmitBtnStatus: PropTypes.bool.isRequired,
-};
 
 export default FeedbackForm;

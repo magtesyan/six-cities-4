@@ -1,8 +1,11 @@
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
 import shortid from "shortid";
 
-const PlaceDetailsGallery = (props) => {
+interface Props {
+  pictures: string[];
+}
+
+const PlaceDetailsGallery: React.FunctionComponent<Props> = (props: Props) => {
   const {pictures} = props;
 
   const picturesList = pictures ? pictures.map((picture) => {
@@ -20,10 +23,6 @@ const PlaceDetailsGallery = (props) => {
       </div>
     </div>
   );
-};
-
-PlaceDetailsGallery.propTypes = {
-  pictures: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default PlaceDetailsGallery;

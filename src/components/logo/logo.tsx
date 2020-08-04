@@ -1,10 +1,13 @@
 import {Link} from "react-router-dom";
-import PropTypes from "prop-types";
-import React from "react";
+import * as React from "react";
+import {AppRoute, LOGO_SIZE} from "../../const";
 
-import {AppRoute, LOGO_SIZE} from "../../const.js";
+interface Props {
+  onLogoClick: () => void;
+  logoType: string;
+}
 
-const Logo = (props) => {
+const Logo: React.FunctionComponent<Props> = (props: Props) => {
   const {onLogoClick, logoType} = props;
   const logoContainerClass = logoType === `header` ? `header__left` : ``;
 
@@ -15,11 +18,6 @@ const Logo = (props) => {
       </Link>
     </div>
   );
-};
-
-Logo.propTypes = {
-  onLogoClick: PropTypes.func.isRequired,
-  logoType: PropTypes.string.isRequired,
 };
 
 export default Logo;

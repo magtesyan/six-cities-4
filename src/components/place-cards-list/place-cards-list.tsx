@@ -1,10 +1,24 @@
-import PropTypes from "prop-types";
-import React, {PureComponent} from "react";
+import * as React from "react";
+import PlaceCard from "../place-card/place-card";
+import PlacesSorting from "../places-sorting/places-sorting";
+import {OfferType, SortingOptionType} from "../../types";
 
-import PlaceCard from "../place-card/place-card.jsx";
-import PlacesSorting from "../places-sorting/places-sorting.jsx";
+interface Props {
+  activeCity: string;
+  activeSortingOption?: string;
+  className: string;
+  isFilterOpened?: boolean;
+  isUserAuthorized: boolean;
+  offers: OfferType[];
+  onOfferTitleClick: () => void;
+  onCardMouseOver: () => void;
+  onFilterClick?: () => void;
+  onSortTypeClick?: () => void;
+  onFavoriteButtonClick: (offer: OfferType, favoriteStatus: number) => void;
+  sortingOptions?: SortingOptionType[];
+}
 
-class PlaceCardsList extends PureComponent {
+class PlaceCardsList extends React.PureComponent<Props, {}> {
   _sortOffers(offers, sortName) {
     switch (sortName) {
       case `Price: low to high`:
@@ -55,20 +69,5 @@ class PlaceCardsList extends PureComponent {
     );
   }
 }
-
-PlaceCardsList.propTypes = {
-  className: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  activeCity: PropTypes.string,
-  onCardMouseOver: PropTypes.func,
-  onFilterClick: PropTypes.func,
-  onSortTypeClick: PropTypes.func,
-  activeSortingOption: PropTypes.string,
-  sortingOptions: PropTypes.array,
-  isFilterOpened: PropTypes.bool,
-  isUserAuthorized: PropTypes.bool,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-};
 
 export default PlaceCardsList;

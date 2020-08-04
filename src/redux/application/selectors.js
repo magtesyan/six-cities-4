@@ -1,6 +1,5 @@
 import NameSpace from "../name-space.js";
 
-
 const NAME_SPACE = NameSpace.APPLICATION;
 
 export const getStep = (state) => {
