@@ -1,11 +1,12 @@
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api.js";
+import {createAPI} from "../../api";
 import {reducer, ActionType, Operation} from "./data.js";
 
 const fullOffers = new Map([
   [`Amsterdam`, [
     {
       id: `M_u53rqBj1L`,
+      city: `Amsterdam`,
       name: `Beautiful & luxurious apartment at great location`,
       price: 80,
       rating: 1,
@@ -74,6 +75,7 @@ const fullOffers = new Map([
     },
     {
       id: `hHjtE1NWpQZ`,
+      city: `Amsterdam`,
       name: `Wood and stone place`,
       price: 90,
       rating: 2,
@@ -135,6 +137,7 @@ const fullOffers = new Map([
     },
     {
       id: `AuW30Tq01qt`,
+      city: `Amsterdam`,
       name: `Canal View Prinsengracht`,
       price: 100,
       rating: 3,
@@ -199,6 +202,7 @@ const fullOffers = new Map([
     },
     {
       id: `9n21f8lMnjh`,
+      city: `Amsterdam`,
       name: `Nice, cozy, warm big bed apartment`,
       price: 110,
       rating: 4,
@@ -259,6 +263,7 @@ const fullOffers = new Map([
     },
     {
       id: `RnSYsvkr797`,
+      city: `Amsterdam`,
       name: `Wood and stone place`,
       price: 120,
       rating: 5,
@@ -383,7 +388,7 @@ const fullOffers = new Map([
   [`Dusseldorf`, []],
 ]);
 
-const api = createAPI(() => {});
+const api = createAPI((jest.fn()));
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
@@ -441,6 +446,129 @@ const serverMock = [{
   "type": `apartment`,
 }];
 
+it(`Reducer should change error status by a given value`, () => {
+  expect(reducer({
+    errorStatus: true,
+  }, {
+    type: ActionType.SET_ERROR,
+    payload: true,
+  })).toEqual({
+    errorStatus: true,
+  });
+});
+
+it(`Reducer should change cities list by a given value`, () => {
+  expect(reducer({
+    cities: [],
+  }, {
+    type: ActionType.GET_CITIES,
+    payload: [`Amsterdam`],
+  })).toEqual({
+    cities: [`Amsterdam`],
+  });
+});
+
+it(`Reducer should change favorite offers list by a given value`, () => {
+  expect(reducer({
+    favoriteOffers: [],
+  }, {
+    type: ActionType.GET_FAVORITE_OFFERS,
+    payload: serverMock,
+  })).toEqual({
+    favoriteOffers: serverMock,
+  });
+});
+
+it(`Reducer should change near offers list by a given value`, () => {
+  expect(reducer({
+    nearOffers: [],
+  }, {
+    type: ActionType.GET_NEAR_OFFERS,
+    payload: serverMock,
+  })).toEqual({
+    nearOffers: serverMock,
+  });
+});
+
+it(`Reducer should change offer favorite status`, () => {
+  expect(reducer({
+    offers: fullOffers,
+  }, {
+    type: ActionType.CHANGE_FAVORITE_STATUS,
+    payload: {
+      id: `M_u53rqBj1L`,
+      city: `Amsterdam`,
+      name: `Beautiful & luxurious apartment at great location`,
+      price: 80,
+      rating: 1,
+      type: `Apartment`,
+      rank: `Premium`,
+      pictures: [
+        `img/room.jpg`,
+        `img/apartment-01.jpg`,
+        `img/apartment-02.jpg`,
+        `img/apartment-03.jpg`,
+        `img/studio-01.jpg`,
+        `img/apartment-01.jpg`
+      ],
+      description: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
+      bedrooms: 1,
+      guests: 5,
+      features: [
+        `Wi-Fi`,
+        `Washing machine`,
+        `Towels`,
+        `Heating`,
+        `Coffee machine`,
+        `Baby seat`,
+        `Kitchen`,
+        `Dishwasher`,
+        `Cabel TV`,
+        `Fridge`
+      ],
+      host: {
+        avatar: `img/avatar-angelina.jpg`,
+        name: `Angelina`,
+        super: 1,
+      },
+      coordinates: [52.3909553943508, 4.85309666406198],
+      reviews: [
+        {
+          id: `hf1VdxqXxV`,
+          text: `Everything. It was really really nice to get away and feel so comfortable where we was. My kids and I had a great time.`,
+          assessment: 5,
+          name: `Francis`,
+          date: new Date(2020, 0, 1)
+        },
+        {
+          id: `7Q3he9zq806`,
+          text: `We like the beach view.`,
+          assessment: 4,
+          name: `Marjorie`,
+          date: new Date(2019, 1, 2)
+        },
+        {
+          id: `TFmHkG3D9L`,
+          text: `Great location! I was very pleased with this condo. May I suggest bar height table and chairs for the patio for better beach viewing? Very clean and had everything we needed and then some!`,
+          assessment: 3,
+          name: `Amy`,
+          date: new Date(2017, 3, 13)
+        },
+        {
+          id: `E7BzjwJhIEm`,
+          text: `Very nice accommodations and would definitely recommend.`,
+          assessment: 2,
+          name: `Lori`,
+          date: new Date(2018, 2, 3)
+        },
+      ]
+    },
+  })).toEqual({
+    offers: fullOffers,
+  });
+});
+
 describe(`Data operation work correctly`, () => {
   it(`Should make a correct API call to /hotels`, function () {
     const apiMock = new MockAdapter(api);
@@ -451,7 +579,7 @@ describe(`Data operation work correctly`, () => {
       .onGet(`/hotels`)
       .reply(200, serverMock);
 
-    return offersLoader(dispatch, () => {}, api)
+    return offersLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1,
@@ -491,6 +619,7 @@ describe(`Data operation work correctly`, () => {
         );
       });
   });
+
   it(`Should make a correct API call to /favorite`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -500,7 +629,7 @@ describe(`Data operation work correctly`, () => {
       .onGet(`/favorite`)
       .reply(200, serverMock);
 
-    return offersLoader(dispatch, () => {}, api)
+    return offersLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1,
@@ -534,6 +663,7 @@ describe(`Data operation work correctly`, () => {
         );
       });
   });
+
   it(`Should make a correct API call to /hotels/hotelID/nearby`, function () {
     const apiMock = new MockAdapter(api);
     const mockId = 1;
@@ -544,7 +674,7 @@ describe(`Data operation work correctly`, () => {
       .onGet(`/hotels/${mockId}/nearby`)
       .reply(200, serverMock);
 
-    return offersLoader(dispatch, () => {}, api)
+    return offersLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1,
@@ -582,6 +712,22 @@ describe(`Data operation work correctly`, () => {
               payload: false,
             }
         );
+      });
+  });
+
+  it(`Should make an incorrect API POST call to /favorite/hotelId/status`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const mockId = 46;
+    const favoriteLoader = Operation.changeActiveOfferFavoriteStatus(mockId, 1);
+
+    apiMock
+      .onPost(`/favorite`)
+      .reply(400, [{fake: true}]);
+
+    return favoriteLoader(dispatch, jest.fn(), api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
       });
   });
 });

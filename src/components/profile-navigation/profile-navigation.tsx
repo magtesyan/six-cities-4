@@ -14,7 +14,7 @@ const ProfileNavigation: React.FunctionComponent<Props> = (props: Props) => {
   const {onSignInClick, isUserAuthorized, email, onEmailClick, errorStatus} = props;
 
   const handleSignLinkClick = () => {
-    return isUserAuthorized ? handleEmailClick() : onSignInClick();
+    return isUserAuthorized ? handleEmailClick() : handleSingInClick();
   };
 
   const error = errorStatus ? `Server error` : ``;
@@ -22,6 +22,11 @@ const ProfileNavigation: React.FunctionComponent<Props> = (props: Props) => {
   const handleEmailClick = () => {
     onEmailClick();
     return history.push(AppRoute.FAVORITES);
+  };
+
+  const handleSingInClick = () => {
+    onSignInClick();
+    return history.push(AppRoute.LOGIN);
   };
 
   return (

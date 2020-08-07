@@ -1,10 +1,6 @@
 import {ActionCreator as AppActionCreator} from "../application/application.js";
+import {AuthorizationStatus} from "../../const";
 import {getLogin, postLogin} from "../../clients/login.js";
-
-const AuthorizationStatus = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`,
-};
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,

@@ -1,6 +1,5 @@
 import * as React from "react";
-import {AppRoute, LOGO_TYPE} from "../../const";
-import history from "../../history";
+import {LOGO_TYPE} from "../../const";
 import ProfileNavigation from "../profile-navigation/profile-navigation";
 import Logo from "../logo/logo";
 
@@ -42,7 +41,6 @@ class SignIn extends React.PureComponent<Props, {}> {
     const isUserAuthorized = authorizationStatus === `AUTH` ? true : false;
     return (
       <React.Fragment>
-        {isUserAuthorized && history.push(AppRoute.ROOT)}
         <div className="page page--gray page--login">
           <header className="header">
             <div className="container">

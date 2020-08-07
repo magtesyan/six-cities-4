@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: `./src`,
+  rootDir: `./`,
   transform: {
     "^.+\\.tsx?$": `ts-jest`,
     "^.+\\.js?$": `babel-jest`,
@@ -13,4 +13,15 @@ module.exports = {
     `json`,
     `node`
   ],
+  collectCoverage: true,
+  coverageReporters: [`lcov`, `text`],
+  coverageDirectory: `coverage`,
+  coverageThreshold: {
+    "global": {
+      "branches": 0,
+      "functions": 0,
+      "lines": 0,
+      "statements": 0
+    }
+  },
 };

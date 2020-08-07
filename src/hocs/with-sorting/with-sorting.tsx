@@ -16,7 +16,7 @@ interface Props {
   onOfferTitleClick: () => void;
 }
 
-const sortingOptions = [
+const SORTING_OPTIONS = [
   {
     name: `Popular`,
   },
@@ -40,7 +40,7 @@ const withSorting = (Component) => {
 
       this.state = {
         isFilterOpened: false,
-        activeSortingOption: sortingOptions[0].name,
+        activeSortingOption: SORTING_OPTIONS[0].name,
       };
     }
 
@@ -63,7 +63,7 @@ const withSorting = (Component) => {
           onFilterClick = {this._handleFilterClick}
           onSortTypeClick={this.handleSortTypeClick}
           activeSortingOption={this.state.activeSortingOption}
-          sortingOptions={sortingOptions}
+          sortingOptions={SORTING_OPTIONS}
           isFilterOpened={this.state.isFilterOpened}
         />
       );

@@ -10,7 +10,7 @@ interface Props {
   onFeedbackFormChange: (boolean) => void;
 }
 
-const feedbackPoints = [5, 4, 3, 2, 1];
+const FEEDBACK_POINTS = [5, 4, 3, 2, 1];
 
 class FeedbackForm extends React.PureComponent<Props, {}> {
   private feedbackFormRef: React.RefObject<HTMLFormElement>;
@@ -33,7 +33,7 @@ class FeedbackForm extends React.PureComponent<Props, {}> {
 
   ratingsInputList() {
     return (
-      feedbackPoints.map((index) => {
+      FEEDBACK_POINTS.map((index) => {
         return (
           <RatingInput
             number={index}

@@ -1,6 +1,5 @@
 import * as React from "react";
-import {AppRoute, LOGO_TYPE} from "../../const";
-import history from "../../history";
+import {LOGO_TYPE} from "../../const";
 import Logo from "../logo/logo";
 import FavoritesList from "../favorites-list/favorites-list";
 import {OfferType} from "../../types";
@@ -17,6 +16,7 @@ interface Props {
   onLogoClick: () => void;
   onOfferTitleClick: () => void;
   onSignInClick: () => void;
+  onSubmit: () => void;
 }
 
 const FavoritesScreen: React.FunctionComponent<Props> = (props: Props) => {
@@ -42,7 +42,7 @@ const FavoritesScreen: React.FunctionComponent<Props> = (props: Props) => {
 
   return (
     <React.Fragment>
-      {isUserAuthorized || history.push(AppRoute.LOGIN)}
+      {isUserAuthorized &&
       <div className="page">
         <header className="header">
           <div className="container">
@@ -90,6 +90,18 @@ const FavoritesScreen: React.FunctionComponent<Props> = (props: Props) => {
           />
         </footer>
       </div>
+      }
+      {/* {isUserAuthorized ||
+      <SignIn
+        onSubmit={onSubmit}
+        onLogoClick={onLogoClick}
+        authorizationStatus={authorizationStatus}
+        errorStatus={errorStatus}
+        onSignInClick={onSignInClick}
+        email={email}
+        onEmailClick={onEmailClick}
+      />
+      } */}
     </React.Fragment>
   );
 };

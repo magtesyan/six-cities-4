@@ -99,6 +99,7 @@ it(`Favorites Screen is rendered correctly`, () => {
             onFavoriteButtonClick={jest.fn()}
             onCardMouseOver={jest.fn()}
             errorStatus={false}
+            onSubmit={jest.fn()}
           />
         </Router>
     ).toJSON();

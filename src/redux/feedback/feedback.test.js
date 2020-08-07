@@ -33,6 +33,51 @@ it(`Reducer without additional parameters should return initial state`, () => {
   });
 });
 
+it(`Reducer should update feedbacks list by a given value`, () => {
+  expect(reducer({
+    feedbacks: []
+  }, {
+    type: ActionType.GET_FEEDBACKS,
+    payload: [mockFeedback],
+  })).toEqual({
+    feedbacks: [mockFeedback],
+  });
+});
+
+it(`Reducer should add feedback to the list`, () => {
+  expect(reducer({
+    feedbacks: [mockFeedback]
+  }, {
+    type: ActionType.ADD_FEEDBACK,
+    payload: [mockFeedback, mockFeedback]
+  })).toEqual({
+    feedbacks: [mockFeedback, mockFeedback],
+  });
+});
+
+it(`Reducer should change the form status`, () => {
+  expect(reducer({
+    formStatus: ``
+  }, {
+    type: ActionType.CHANGE_FORM_STATUS,
+    payload: `disabled`,
+  })).toEqual({
+    formStatus: `disabled`,
+  });
+});
+
+it(`Reducer should change the form submit button status`, () => {
+  expect(reducer({
+    formSubmitBtnStatus: true
+  }, {
+    type: ActionType.CHANGE_FORM_SUBMIT_BTN_STATUS,
+    payload: false,
+  })).toEqual({
+    formSubmitBtnStatus: false,
+  });
+});
+
+
 describe(`Feedback operation work correctly`, () => {
   it(`Should make a correct API call to /comments/id`, function () {
     const apiMock = new MockAdapter(api);

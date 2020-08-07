@@ -40,6 +40,15 @@ const mockOffer = {
   reviews: []
 };
 
+it(`Reducer without additional parameters should return initial state`, () => {
+  expect(reducer(void 0, {})).toEqual({
+    city: ``,
+    step: `mainScreen`,
+    place: {},
+    errorStatus: false
+  });
+});
+
 it(`Reducer should change the city by a given value`, () => {
   expect(reducer({
     city: `Amsterdam`
@@ -57,6 +66,71 @@ it(`Reducer should change the city by a given value`, () => {
     payload: `Amsterdam`,
   })).toEqual({
     city: `Amsterdam`,
+  });
+});
+
+it(`Reducer should change the active offer by a given value`, () => {
+  expect(reducer({
+    activeOffer: {}
+  }, {
+    type: ActionType.ACTIVATE_OFFER,
+    payload: mockOffer,
+  })).toEqual({
+    activeOffer: mockOffer,
+  });
+});
+
+it(`Reducer should change the step of the screen by a given value`, () => {
+  expect(reducer({
+    place: {},
+    step: `mainScreen`
+  }, {
+    type: ActionType.OPEN_DETAILS_SCREEN,
+    payload: mockOffer,
+  })).toEqual({
+    place: mockOffer,
+    step: `detailsScreen`
+  });
+});
+
+it(`Reducer should change the step to the auth screen by a given value`, () => {
+  expect(reducer({
+    step: `mainScreen`
+  }, {
+    type: ActionType.OPEN_AUTH_SCREEN,
+  })).toEqual({
+    step: `authScreen`
+  });
+});
+
+it(`Reducer should change the step to the Main screen by a given value`, () => {
+  expect(reducer({
+    step: `authScreen`
+  }, {
+    type: ActionType.OPEN_MAIN_SCREEN,
+  })).toEqual({
+    step: `mainScreen`
+  });
+});
+
+it(`Reducer should change the step to the Favorite screen by a given value`, () => {
+  expect(reducer({
+    step: `authScreen`
+  }, {
+    type: ActionType.OPEN_FAVORITES_SCREEN,
+  })).toEqual({
+    step: `favoritesScreen`
+  });
+});
+
+it(`Reducer should change the Favorite status of the offer`, () => {
+  expect(reducer({
+    activeOffer: mockOffer
+  }, {
+    type: ActionType.CHANGE_FAVORITE_STATUS,
+    payload: mockOffer
+  })).toEqual({
+    activeOffer: mockOffer
   });
 });
 

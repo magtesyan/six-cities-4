@@ -24,14 +24,14 @@ const store = createStore(
 );
 
 store.dispatch(DataOperation.getOffers());
-if (store.getState()[`USER`].authorizationStatus === `AUTH`) {
-  store.dispatch(DataOperation.getFavoriteOffers());
-}
-store.dispatch(UserOperation.checkAuth());
+store.dispatch(DataOperation.getFavoriteOffers());
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App />,
-    </Provider>,
-    document.querySelector(`#root`)
-);
+store.dispatch(UserOperation.checkAuth())
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />,
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+});

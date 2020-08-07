@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
 import history from "../../history";
 import * as React from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {ActionCreator} from "../../redux/application/application";
 import {ActionCreator as FeedbackActionCreator} from "../../redux/feedback/feedback";
-import {AppRoute} from "../../const";
+import {AppRoute, AuthorizationStatus} from "../../const";
 import FavoritesScreen from "../favorites-screen/favorites-screen";
 import {getFeedbacks, getFeedbackFormStatus, getFeedbackSubmitBtnStatus} from "../../redux/feedback/selectors";
 import {getAuthorizationStatus, getEmail} from "../../redux/user/selectors";
@@ -46,125 +46,116 @@ interface Props {
   step: string;
 }
 
-class App extends React.PureComponent<Props, {}> {
-  _renderMainScreen() {
-    const {step} = this.props;
+const App: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    activeOffer,
+    authorizationStatus,
+    cities,
+    city,
+    email,
+    errorStatus,
+    favoriteOffers,
+    feedbackFormStatus,
+    feedbacks,
+    feedbackSubmitBtnStatus,
+    fullOffers,
+    login,
+    nearOffers,
+    offers,
+    onEmailClick,
+    onCityClick,
+    onCardMouseOver,
+    onFavoriteButtonClick,
+    onFeedbackFormChange,
+    onLogoClick,
+    onOfferTitleClick,
+    onSignInClick,
+    onSubmitFeedback,
+  } = props;
 
-    if (step === `authScreen`) {
-      return history.push(AppRoute.LOGIN);
-    }
-    return null;
-  }
+  const activeCity = city === `` ? cities[0] : city;
 
-  render() {
-    const {
-      activeOffer,
-      authorizationStatus,
-      cities,
-      city,
-      email,
-      errorStatus,
-      favoriteOffers,
-      feedbackFormStatus,
-      feedbacks,
-      feedbackSubmitBtnStatus,
-      fullOffers,
-      login,
-      nearOffers,
-      offers,
-      onEmailClick,
-      onCityClick,
-      onCardMouseOver,
-      onFavoriteButtonClick,
-      onFeedbackFormChange,
-      onLogoClick,
-      onOfferTitleClick,
-      onSignInClick,
-      onSubmitFeedback,
-    } = this.props;
+  const getOfferById = (id) => {
+    return Array.from(fullOffers.values()).reduce((offerCounters: OfferType[], offersArray: OfferType[]) =>
+      [...offerCounters, ...offersArray.filter((offer) => offer.id === id)], [])[0];
+  };
 
-    const activeCity = city === `` ? cities[0] : city;
-    this._renderMainScreen();
-
-    const getOfferById = (id) => {
-      return Array.from(fullOffers.values()).reduce((offerCounter: OfferType[], offersArray: OfferType[]) =>
-        [...offerCounter, ...offersArray.filter((offer) => offer.id === id)], [])[0];
-    };
-
-    return (
-      <Router
-        history={history}
-      >
-        <Switch>
-          <Route exact path={AppRoute.ROOT}>
-            <Main
-              onSignInClick={onSignInClick}
-              authorizationStatus={authorizationStatus}
-              offers={offers}
-              onOfferTitleClick={onOfferTitleClick}
-              onCityClick={onCityClick}
-              city={activeCity}
-              cities={cities}
-              activeOffer={activeOffer}
-              onCardMouseOver={onCardMouseOver}
-              email={email}
-              onLogoClick={onLogoClick}
-              onFavoriteButtonClick={onFavoriteButtonClick}
-              onEmailClick={onEmailClick}
-              errorStatus={errorStatus}
-            />
-          </Route>
-          <Route exact path={`${AppRoute.DETAILS}/:id`} render={(props) => (
-            <PlaceDetails
-              onSignInClick={onSignInClick}
-              authorizationStatus={authorizationStatus}
-              nearestOffers={nearOffers.length ? nearOffers : []}
-              offer={(fullOffers as {}[]).length !== 0 ? getOfferById(props.match.params.id.toString()) : {}}
-              onOfferTitleClick={onOfferTitleClick}
-              city={activeCity}
-              onCardMouseOver={onCardMouseOver}
-              feedbacks={feedbacks}
-              email={email}
-              onSubmitFeedback={onSubmitFeedback}
-              feedbackFormStatus={feedbackFormStatus}
-              onLogoClick={onLogoClick}
-              onFavoriteButtonClick={onFavoriteButtonClick}
-              onEmailClick={onEmailClick}
-              feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
-              onFeedbackFormChange={onFeedbackFormChange}
-              errorStatus={errorStatus}
-            />)}>
-          </Route>
-          <Route exact path={AppRoute.LOGIN} render={() => (
-            <SignIn
-              onSubmit={login}
-              onLogoClick={onLogoClick}
-              authorizationStatus={authorizationStatus}
-              errorStatus={errorStatus}
-              onSignInClick={onSignInClick}
-              email={email}
-              onEmailClick={onEmailClick}
-            />)}>
-          </Route>
-          <Route exact path={AppRoute.FAVORITES} render={() => (
-            <FavoritesScreen
-              onLogoClick={onLogoClick}
-              onSignInClick={onSignInClick}
-              authorizationStatus={authorizationStatus}
-              email={email}
-              favoriteOffers={favoriteOffers}
-              onEmailClick={onEmailClick}
-              onOfferTitleClick={onOfferTitleClick}
-              onFavoriteButtonClick={onFavoriteButtonClick}
-              onCardMouseOver={onCardMouseOver}
-              errorStatus={errorStatus}
-            />)}>
-          </Route>
-        </Switch>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router
+      history={history}
+    >
+      <Switch>
+        <Route exact path={AppRoute.ROOT}>
+          <Main
+            onSignInClick={onSignInClick}
+            authorizationStatus={authorizationStatus}
+            offers={offers}
+            onOfferTitleClick={onOfferTitleClick}
+            onCityClick={onCityClick}
+            city={activeCity}
+            cities={cities}
+            activeOffer={activeOffer}
+            onCardMouseOver={onCardMouseOver}
+            email={email}
+            onLogoClick={onLogoClick}
+            onFavoriteButtonClick={onFavoriteButtonClick}
+            onEmailClick={onEmailClick}
+            errorStatus={errorStatus}
+          />
+        </Route>
+        <Route exact path={`${AppRoute.DETAILS}/:id`} render={(compProps) => (
+          <PlaceDetails
+            onSignInClick={onSignInClick}
+            authorizationStatus={authorizationStatus}
+            nearestOffers={nearOffers.length ? nearOffers : []}
+            offer={(fullOffers as {}[]).length !== 0 ? getOfferById(compProps.match.params.id.toString()) : {}}
+            onOfferTitleClick={onOfferTitleClick}
+            city={activeCity}
+            onCardMouseOver={onCardMouseOver}
+            feedbacks={feedbacks}
+            email={email}
+            onSubmitFeedback={onSubmitFeedback}
+            feedbackFormStatus={feedbackFormStatus}
+            onLogoClick={onLogoClick}
+            onFavoriteButtonClick={onFavoriteButtonClick}
+            onEmailClick={onEmailClick}
+            feedbackSubmitBtnStatus={feedbackSubmitBtnStatus}
+            onFeedbackFormChange={onFeedbackFormChange}
+            errorStatus={errorStatus}
+          />)}>
+        </Route>
+        <Route exact path={AppRoute.LOGIN}>
+          {authorizationStatus === AuthorizationStatus.AUTH && <Redirect to={AppRoute.ROOT} />}
+          <SignIn
+            onSubmit={login}
+            onLogoClick={onLogoClick}
+            authorizationStatus={authorizationStatus}
+            errorStatus={errorStatus}
+            onSignInClick={onSignInClick}
+            email={email}
+            onEmailClick={onEmailClick}
+          />
+        </Route>
+        <Route exact path={AppRoute.FAVORITES}>
+          {authorizationStatus !== AuthorizationStatus.AUTH && <Redirect to={AppRoute.LOGIN} />}
+          <FavoritesScreen
+            onLogoClick={onLogoClick}
+            onSignInClick={onSignInClick}
+            authorizationStatus={authorizationStatus}
+            email={email}
+            favoriteOffers={favoriteOffers}
+            onEmailClick={onEmailClick}
+            onOfferTitleClick={onOfferTitleClick}
+            onFavoriteButtonClick={onFavoriteButtonClick}
+            onCardMouseOver={onCardMouseOver}
+            errorStatus={errorStatus}
+            onSubmit={login}
+          />
+        </Route>
+      </Switch>
+    </Router>
+  );
+};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
