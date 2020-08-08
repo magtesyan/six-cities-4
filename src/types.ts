@@ -17,7 +17,13 @@ export interface OfferType {
       name: string;
     };
     coordinates: number[];
-    reviews: FeedbackType[];
+    reviews: {
+        id: string;
+        text: string;
+        assessment: number;
+        name: string;
+        date: Date;
+    }[];
     isFavorite: boolean;
     city: string;
     previewImage: string;

@@ -23,11 +23,12 @@ const store = createStore(
     )
 );
 
-store.dispatch(DataOperation.getOffers());
-store.dispatch(DataOperation.getFavoriteOffers());
-
 store.dispatch(UserOperation.checkAuth())
 .then(() => {
+  store.dispatch(DataOperation.getOffers());
+  if (store.getState()[`USER`].authorizationStatus === `AUTH`) {
+    (store.dispatch(DataOperation.getFavoriteOffers()));
+  }
   ReactDOM.render(
       <Provider store={store}>
         <App />,
