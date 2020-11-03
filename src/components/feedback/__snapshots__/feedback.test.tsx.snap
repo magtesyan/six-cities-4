@@ -54,9 +54,9 @@ exports[`Feedbacks are rendered correctly 1`] = `
     </p>
     <time
       className="reviews__time"
-      dateTime="August 2020"
+      dateTime="November 2020"
     >
-      August 2020
+      November 2020
     </time>
   </div>
 </li>
